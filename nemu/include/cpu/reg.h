@@ -24,9 +24,11 @@ typedef struct {
 
 	/* Do NOT change the order of the GPRs' definitions. */
 
+	struct{
 	uint32_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
 	//uint16_t ax, cx, dx, bx, sp, bp, si, di;
 	//uint8_t al, cl, dl, bl, ah, ch, dh, bh;
+	};
 	};
 	swaddr_t eip;
 
