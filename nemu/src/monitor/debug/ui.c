@@ -9,6 +9,7 @@
 
 void cpu_exec(uint32_t);
 
+extern CPU_state cpu;
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
 	static char *line_read = NULL;
@@ -41,6 +42,14 @@ static int cmd_si(char *args) {
 	return 0;
 }
 
+static int cmd_info(char *args) {
+	if (strcmp(args,"r")==0){
+
+		printf("%d",cpu.eax);
+	}
+	return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -52,6 +61,7 @@ static struct {
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si", "Step In", cmd_si},
+	{ "info", "Print register state", cmd_info},
 	/* TODO: Add more commands */
 
 };
