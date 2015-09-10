@@ -43,7 +43,7 @@ static int cmd_si(char *args) {
 
 static int cmd_info(char *args) {
 	if (strcmp(args,"r")==0){
-		printf("%d\n",cpu.eax);
+		printf("eax\t%p\t%x\n",&cpu.eax,cpu.eax);
 		printf("%d\n",cpu.ecx);
 		printf("%d\n",cpu.edx);
 		printf("%d\n",cpu.ebx);
