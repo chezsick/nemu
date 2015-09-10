@@ -8,7 +8,6 @@
 #include <readline/history.h>
 
 void cpu_exec(uint32_t);
-
 extern CPU_state cpu;
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
@@ -44,8 +43,11 @@ static int cmd_si(char *args) {
 
 static int cmd_info(char *args) {
 	if (strcmp(args,"r")==0){
-
-		printf("%d",cpu.eax);
+		printf("%d\n",cpu.eax);
+		printf("%d\n",cpu.ecx);
+		printf("%d\n",cpu.edx);
+		printf("%d\n",cpu.ebx);
+		printf("%d\n",cpu.esp);
 	}
 	return 0;
 }
