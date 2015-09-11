@@ -9,6 +9,9 @@
 
 void cpu_exec(uint32_t);
 extern CPU_state cpu;
+extern const char* regsl[];
+extern const char* regsw[];
+extern const char* regsb[];
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
 	static char *line_read = NULL;
@@ -54,7 +57,11 @@ static int cmd_info(char *args) {
 		printf("eip\t\t%p\t0x%x\t%d\n",&cpu.eip,cpu.eip,cpu.eip);
 		int i;
 		for (i=0;i<8;i++)
-			printf("_16\t0x%x\n",cpu.gpr[i]._16);
+			printf("%s\t0x%x\n",regsw[i],cpu.gpr[i]._16);
+		for (i=0;i<4;i++){
+			printf("%s\t0x%x\n",regsb[i],cpu.gpr[i]._8[0]);
+			printf("%s\t0x%x\n",regsb[i+4],cpu.gpr[i]._8[1]);
+		}
 	}
 	return 0;
 }
