@@ -52,6 +52,9 @@ static int cmd_info(char *args) {
 		printf("esi\t\t%p\t0x%x\t%d\n",&cpu.esi,cpu.esi,cpu.esi);
 		printf("edi\t\t%p\t0x%x\t%d\n",&cpu.edi,cpu.edi,cpu.edi);
 		printf("eip\t\t%p\t0x%x\t%d\n",&cpu.eip,cpu.eip,cpu.eip);
+		int i;
+		for (i=0;i<8;i++)
+			printf("_16\t0x%x\n",cpu.gpr[i]._16);
 	}
 	return 0;
 }
