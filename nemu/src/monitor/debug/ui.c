@@ -44,7 +44,7 @@ static int cmd_si(char *args) {
 		cpu_exec(1);
 	else	{
 		cpu_exec(atoi(args));
-		printf("%s\t%d\n",args,atoi(args));
+		//printf("%s\t%d\n",args,atoi(args));
 	}
 	return 0;
 }
