@@ -78,7 +78,7 @@ static int cmd_x(char *args)
 	char *addr=num+strlen(num)+3;
 	//printf("****%s\n",addr);
 	int addr_int;
-	sscanf(addr,"%d",&addr_int);
+	sscanf(addr,"%x",&addr_int);
 	while (n>0) {
 		printf("%d\n",swaddr_read(addr_int,4));
 		addr_int+=4;
