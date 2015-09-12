@@ -80,6 +80,7 @@ static int cmd_x(char *args)
 	while (n>0) {
 		printf("%d\n",swaddr_read(addr_int,4));
 		addr_int+=4;
+		printf("%d\n",addr_int);
 		n--;
 	}
 
