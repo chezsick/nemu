@@ -57,9 +57,9 @@ static int cmd_info(char *args) {
 		printf("ebx\t\t%p\t0x%x\t%d\n",&cpu.ebx,cpu.ebx,cpu.ebx);
 		printf("esp\t\t%p\t0x%x\t%d\n",&cpu.esp,cpu.esp,cpu.esp);
 		printf("ebp\t\t%p\t0x%x\t%d\n",&cpu.ebp,cpu.ebp,cpu.ebp);
-		printf("esi\t\t%p\t0x%x\t%d\n",&cpu.esi,cpu.esi,cpu.esi);
-		printf("edi\t\t%p\t0x%x\t%d\n",&cpu.edi,cpu.edi,cpu.edi);
-		printf("eip\t\t%p\t0x%x\t%d\n",&cpu.eip,cpu.eip,cpu.eip);
+		printf("esi\t\t%p\t0x%02x\t%d\n",&cpu.esi,cpu.esi,cpu.esi);
+		printf("edi\t\t%p\t0x%08x\t%d\n",&cpu.edi,cpu.edi,cpu.edi);
+		printf("eip\t\t%p\t0x%8x\t%d\n",&cpu.eip,cpu.eip,cpu.eip);
 		int i;
 		for (i=0;i<8;i++)
 			printf("%s\t\t%p\t0x%x\t%d\n",regsw[i],&cpu.gpr[i]._16,cpu.gpr[i]._16,cpu.gpr[i]._16);
