@@ -51,15 +51,15 @@ static int cmd_si(char *args) {
 
 static int cmd_info(char *args) {
 	if (strcmp(args,"r")==0){
-		printf("eax\t\t%p\t0x%x\t%d\n",&cpu.eax,cpu.eax,cpu.eax);
-		printf("ecx\t\t%p\t0x%x\t%d\n",&cpu.ecx,cpu.ecx,cpu.ecx);
-		printf("edx\t\t%p\t0x%x\t%d\n",&cpu.edx,cpu.edx,cpu.edx);
-		printf("ebx\t\t%p\t0x%x\t%d\n",&cpu.ebx,cpu.ebx,cpu.ebx);
-		printf("esp\t\t%p\t0x%x\t%d\n",&cpu.esp,cpu.esp,cpu.esp);
-		printf("ebp\t\t%p\t0x%x\t%d\n",&cpu.ebp,cpu.ebp,cpu.ebp);
-		printf("esi\t\t%p\t0x%x\t%d\n",&cpu.esi,cpu.esi,cpu.esi);
-		printf("edi\t\t%p\t0x%x\t%d\n",&cpu.edi,cpu.edi,cpu.edi);
-		printf("eip\t\t%p\t0x%x\t%d\n",&cpu.eip,cpu.eip,cpu.eip);
+		printf("eax\t\t%p\t0x%x\t\t%d\n",&cpu.eax,cpu.eax,cpu.eax);
+		printf("ecx\t\t%p\t0x%x\t\t%d\n",&cpu.ecx,cpu.ecx,cpu.ecx);
+		printf("edx\t\t%p\t0x%x\t\t%d\n",&cpu.edx,cpu.edx,cpu.edx);
+		printf("ebx\t\t%p\t0x%x\t\t%d\n",&cpu.ebx,cpu.ebx,cpu.ebx);
+		printf("esp\t\t%p\t0x%x\t\t%d\n",&cpu.esp,cpu.esp,cpu.esp);
+		printf("ebp\t\t%p\t0x%x\t\t%d\n",&cpu.ebp,cpu.ebp,cpu.ebp);
+		printf("esi\t\t%p\t0x%x\t\t%d\n",&cpu.esi,cpu.esi,cpu.esi);
+		printf("edi\t\t%p\t0x%x\t\t%d\n",&cpu.edi,cpu.edi,cpu.edi);
+		printf("eip\t\t%p\t0x%x\t\t%d\n",&cpu.eip,cpu.eip,cpu.eip);
 		int i;
 		for (i=0;i<8;i++)
 			printf("%s\t\t%p\t0x%x\t%d\n",regsw[i],&cpu.gpr[i]._16,cpu.gpr[i]._16,cpu.gpr[i]._16);
@@ -68,6 +68,19 @@ static int cmd_info(char *args) {
 			printf("%s\t\t%p\t0x%x\t%d\n",regsb[i+4],&cpu.gpr[i]._8[1],cpu.gpr[i]._8[1],cpu.gpr[i]._8[1]);
 		}
 	}
+	return 0;
+}
+
+static int cmd_x(char *args)
+{
+	char *num=strtok(args," ");
+	int n=atoi(num);
+	char *addr=num+strlen(num)+1;
+	int addr_int=atoi(addr);
+	//while (n>0) {
+		printf("%d\n",swaddr_read(addr_int,n));
+	//}
+
 	return 0;
 }
 static int cmd_help(char *args);
@@ -82,6 +95,7 @@ static struct {
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si", "Step In", cmd_si},
 	{ "info", "Print register state", cmd_info},
+	{ "x", "Examine memory", cmd_x},
 	/* TODO: Add more commands */
 
 };
