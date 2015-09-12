@@ -77,9 +77,10 @@ static int cmd_x(char *args)
 	int n=atoi(num);
 	char *addr=num+strlen(num)+1;
 	int addr_int=atoi(addr);
-	//while (n>0) {
-		printf("%d\n",swaddr_read(addr_int,n));
-	//}
+	while (n>0) {
+		printf("%d\n",swaddr_read(addr_int,4));
+		n--;
+	}
 
 	return 0;
 }
