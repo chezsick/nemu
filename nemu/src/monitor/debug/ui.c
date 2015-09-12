@@ -75,9 +75,10 @@ static int cmd_x(char *args)
 {
 	char *num=strtok(args," ");
 	int n=atoi(num);
-	char *addr=num+strlen(num)+1;
-	printf("****%s\n",addr);
-	int addr_int=atoi(addr);
+	char *addr=num+strlen(num)+3;
+	//printf("****%s\n",addr);
+	int addr_int;
+	sscanf(addr,"%d",&addr_int);
 	while (n>0) {
 		printf("%d\n",swaddr_read(addr_int,4));
 		addr_int+=4;
