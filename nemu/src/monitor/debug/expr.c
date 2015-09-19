@@ -5,6 +5,7 @@
  */
 #include <sys/types.h>
 #include <regex.h>
+#define DEBUG
 
 enum {
 	NOTYPE = 256, EQ,HEX,DEC
@@ -117,14 +118,45 @@ static bool make_token(char *e) {
 	return true; 
 }
 
+uint32_t eval(int p, int q)
+{
+	if (p>q){
+		/* Bad expression */
+		Assert(p<q,"Bad expression");
+
+
+	}
+	else if (p==q){
+		/*Single token
+		 *For now this token should be a number.
+		 *Return the value of the number.
+		 */
+	};
+	/*else if (check_parentheses(p,q)==true){
+		
+		return eval(p+1,q-1);
+	}
+	else{
+	
+	}*/
+	return 0;
+}
+
 uint32_t expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
 	}
-
+#ifdef DEBUG
+	int i;
+	printf("%d\n",nr_token);
+	for (i=0;i<nr_token;i++)
+		printf("%d\t",tokens[i].type);
+	
+#endif
 	/* TODO: Insert codes to evaluate the expression. */
+	//int p=0,q=nr_token;
+	return eval(0,nr_token);
 	panic("please implement me");
 	return 0;
 }
-
