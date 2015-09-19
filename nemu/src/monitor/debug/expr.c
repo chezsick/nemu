@@ -5,7 +5,7 @@
  */
 #include <sys/types.h>
 #include <regex.h>
-#define DEBUG
+//#define DEBUG
 
 enum {
 	NOTYPE = 256, EQ,HEX,DEC
@@ -117,7 +117,20 @@ static bool make_token(char *e) {
 
 	return true; 
 }
-
+bool check_parentheses(int p,int q)
+{
+	if (tokens[p].type!='('||tokens[q].type!=')') 
+		return false;
+	int count=0,i;
+	for(i=0;i<=q;i++){
+		if (tokens[i].type=='(')
+			count++;
+		else if(tokens[i].type==')')
+			count--;
+		if (count<=0 && i<q)return false;
+	}
+	return true;
+}
 uint32_t eval(int p, int q)
 {
 	if (p>q){
@@ -131,14 +144,14 @@ uint32_t eval(int p, int q)
 		 *For now this token should be a number.
 		 *Return the value of the number.
 		 */
-	};
-	/*else if (check_parentheses(p,q)==true){
-		
+	}
+	else if (check_parentheses(p,q)==true){
+		printf("ok\n");
 		return eval(p+1,q-1);
 	}
 	else{
 	
-	}*/
+	}
 	return 0;
 }
 
@@ -156,7 +169,7 @@ uint32_t expr(char *e, bool *success) {
 #endif
 	/* TODO: Insert codes to evaluate the expression. */
 	//int p=0,q=nr_token;
-	return eval(0,nr_token);
+	return eval(0,nr_token-1);
 	panic("please implement me");
 	return 0;
 }
