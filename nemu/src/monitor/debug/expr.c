@@ -129,7 +129,8 @@ bool check_parentheses(int p,int q)
 			count--;
 		if (count<=0 && i<q)return false;
 	}
-	return true;
+	if (count==0)return true;
+	return false;
 }
 uint32_t eval(int p, int q)
 {
@@ -146,7 +147,7 @@ uint32_t eval(int p, int q)
 		 */
 	}
 	else if (check_parentheses(p,q)==true){
-		printf("ok\n");
+		//printf("ok\n");
 		return eval(p+1,q-1);
 	}
 	else{
