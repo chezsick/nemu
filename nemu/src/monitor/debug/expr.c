@@ -6,6 +6,10 @@
 #include <sys/types.h>
 #include <regex.h>
 
+
+#define DDEBUG
+
+bool valid=true;
 enum {
 	NOTYPE = 256, EQ,HEX,DEC
 
@@ -130,11 +134,13 @@ bool check_parentheses(int p,int q)
 		if (count==0 && i<q)result=false;
 		if (count<0) {
 			printf("Brackets not match.\n");
+			valid=false;
 			return false;
 		}
 	}
 	if (count>0) {
 		printf("Brackets not match\n");
+		valid=false;
 		return false;
 	}
 	return result;
@@ -176,12 +182,13 @@ int locate_domin(int p,int q)
 			}
 		}
 	}
-	if (now_prec==32767) {printf("Invaild Expression!\nCannot locate dominant operator.\n");return 0;}
+	if (now_prec==32767) {printf("Invaild Expression!\nCannot locate dominant operator.\n");valid=false;return 0;}
 	return loc;
 }
 
 uint32_t eval(int p, int q)
 {
+	if (!valid) return 0;
 	printf("p=%d\tq=%d\n",p,q);
 	if (p>q){
 		/* Bad expression */
@@ -201,7 +208,8 @@ uint32_t eval(int p, int q)
 			sscanf(tokens[p].str,"%x",&num);
 		}else{
 			printf("Invaild Expression!\nNot a number.\n");
-			assert(0);
+			//assert(0);
+			return 0;
 		}
 		return num;
 	}
