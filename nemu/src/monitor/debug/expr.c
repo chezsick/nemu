@@ -183,6 +183,7 @@ int locate_domin(int p,int q)
 
 uint32_t eval(int p, int q)
 {
+	printf("%d\t%d\n",p,q);
 	if (p>q){
 		/* Bad expression */
 		Assert(p<q,"Bad expression");
