@@ -92,7 +92,7 @@ static int cmd_p(char *args)
 {
 	bool success=true;
 	//*success=true;
-	int output=expr(args,&success);
+	uint32_t output=expr(args,&success);
 	if (success)
 		printf("%d\n",output);
 	else    

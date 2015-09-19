@@ -228,8 +228,8 @@ uint32_t eval(int p, int q)
 	else{
 		int op=0;
 		op=locate_domin(p,q);
-		int val1=eval(p,op-1);
-		int val2=eval(op+1,q);
+		uint32_t val1=eval(p,op-1);
+		uint32_t val2=eval(op+1,q);
 
 		switch (tokens[op].type){
 			case '+':return val1+val2;
@@ -257,7 +257,7 @@ uint32_t expr(char *e, bool *success) {
 #endif
 	/* TODO: Insert codes to evaluate the expression. */
 	//int p=0,q=nr_token;
-	int result=eval(0,nr_token-1);
+	uint32_t result=eval(0,nr_token-1);
 	if (!valid) *success=false;
 	return result;
 	panic("please implement me");
