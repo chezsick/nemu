@@ -232,12 +232,12 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
 	}
-#ifdef DEBUG/*
+#ifdef DDEBUG
 	int i;
 	printf("%d\n",nr_token);
 	for (i=0;i<nr_token;i++)
 		printf("%d\t",tokens[i].type);
-	*/
+	
 #endif
 	/* TODO: Insert codes to evaluate the expression. */
 	//int p=0,q=nr_token;
