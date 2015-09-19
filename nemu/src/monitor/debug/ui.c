@@ -92,7 +92,11 @@ static int cmd_p(char *args)
 {
 	bool success=true;
 	//*success=true;
-	printf("%d\n",expr(args,&success));
+	int output=expr(args,&success);
+	if (success)
+		printf("%d\n",output);
+	else    
+		printf("please try again.");
 	return 0;
 }
 static int cmd_help(char *args);
