@@ -1,5 +1,5 @@
 #include "nemu.h"
-
+#include "stdlib.h"
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
@@ -119,19 +119,68 @@ static bool make_token(char *e) {
 }
 bool check_parentheses(int p,int q)
 {
+	bool result=true;
 	if (tokens[p].type!='('||tokens[q].type!=')') 
-		return false;
+		result=false;
 	int count=0,i;
 	for(i=0;i<=q;i++){
 		if (tokens[i].type=='(')
 			count++;
 		else if(tokens[i].type==')')
 			count--;
-		if (count<=0 && i<q)return false;
+		if (count==0 && i<q)result=false;
+		if (count<0) {
+			printf("Brackets not match.");
+			return false;
+		}
 	}
-	if (count==0)return true;
-	return false;
+	if (count>0) {
+		printf("Brackets not match");
+		return false;
+	}
+	return result;
 }
+
+static struct Operator{
+	int oper;
+	int prec;
+}Operators[]={
+	{'+',0},
+	{'-',0},
+	{'*',1},
+	{'/',1}
+};
+#define NR_OP (sizeof(Operators) / sizeof(Operators[0]) )
+
+
+int locate_domin(int p,int q)
+{
+	int loc=p;
+	int now_prec=32767;
+	int ct_par=0;
+	int i;
+	for (i=p;i<=q;i++){
+		if (tokens[i].type=='(') ct_par++;
+		else if (tokens[i].type==')')ct_par--;
+		else {
+			int ii;
+			if (ct_par!=0) continue;
+			for (ii=0;ii<NR_OP;ii++){
+				if (Operators[ii].oper==tokens[i].type){
+					if(Operators[ii].prec<=now_prec){
+						now_prec=Operators[ii].prec;
+						loc=i;
+					}
+					continue;
+
+				}
+			}
+		}
+	}
+	if (now_prec==32767) {printf("Invaild Expression!\nCannot locate dominant operator.\n");return 0;}
+	return loc;
+}
+
 uint32_t eval(int p, int q)
 {
 	if (p>q){
@@ -145,12 +194,32 @@ uint32_t eval(int p, int q)
 		 *For now this token should be a number.
 		 *Return the value of the number.
 		 */
+		int num=0;
+		if (tokens[p].type==DEC){
+			num=atoi(tokens[p].str);
+		}else if (tokens[p].type==HEX){
+			sscanf(tokens[p].str,"%x",&num);
+		}else
+		printf("Invaild Expression!\nNot a number.\n");
+		assert(0);
 	}
 	else if (check_parentheses(p,q)==true){
 		printf("ok\n");
 		return eval(p+1,q-1);
 	}
 	else{
+		int op=0;
+		op=locate_domin(p,q);
+		int val1=eval(p,op-1);
+		int val2=eval(op+1,q);
+
+		switch (tokens[op].type){
+			case '+':return val1+val2;
+			case '-':return val1-val2;
+			case '*':return val1*val2;
+			case '/':if (val2==0) {printf("Devided by zero!");return 0;}
+				 return val1/val2;
+		}
 	
 	}
 	return 0;
