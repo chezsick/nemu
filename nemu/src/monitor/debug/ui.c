@@ -96,7 +96,7 @@ static int cmd_p(char *args)
 	if (success)
 		printf("%d\n",output);
 	else    
-		printf("please try again.");
+		printf("please try again:\n");
 	return 0;
 }
 static int cmd_help(char *args);
