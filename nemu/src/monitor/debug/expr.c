@@ -200,9 +200,10 @@ uint32_t eval(int p, int q)
 			num=atoi(tokens[p].str);
 		}else if (tokens[p].type==HEX){
 			sscanf(tokens[p].str,"%x",&num);
-		}else
-		printf("Invaild Expression!\nNot a number.\n");
-		assert(0);
+		}else{
+			printf("Invaild Expression!\nNot a number.\n");
+			assert(0);
+		}
 	}
 	else if (check_parentheses(p,q)==true){
 		printf("ok\n");
