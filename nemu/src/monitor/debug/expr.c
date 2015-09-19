@@ -31,8 +31,8 @@ static struct rule {
 	{"==", EQ},					// equal
 	{"0[xX][0-9a-fA-F]+",HEX},			//hex
 	{"[0-9]+",DEC},					//decimal
-	{"(",'('},					//left bracket
-	{")",')'}					//right bracket
+	{"\\(",'('},					//left bracket
+	{"\\)",')'}					//right bracket
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
