@@ -120,22 +120,22 @@ static bool make_token(char *e) {
 bool check_parentheses(int p,int q)
 {
 	bool result=true;
-	if (tokens[p].type!='('||tokens[q].type!=')') 
+	if ((tokens[p].type!='(')||(tokens[q].type!=')')) 
 		result=false;
 	int count=0,i;
-	for(i=0;i<=q;i++){
+	for(i=p;i<=q;i++){
 		if (tokens[i].type=='(')
 			count++;
 		else if(tokens[i].type==')')
 			count--;
 		if (count==0 && i<q)result=false;
 		if (count<0) {
-			printf("Brackets not match.");
+			printf("Brackets not match.\n");
 			return false;
 		}
 	}
 	if (count>0) {
-		printf("Brackets not match");
+		printf("Brackets not match\n");
 		return false;
 	}
 	return result;
