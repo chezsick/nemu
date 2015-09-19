@@ -204,6 +204,7 @@ uint32_t eval(int p, int q)
 			printf("Invaild Expression!\nNot a number.\n");
 			assert(0);
 		}
+		return num;
 	}
 	else if (check_parentheses(p,q)==true){
 		printf("ok\n");
