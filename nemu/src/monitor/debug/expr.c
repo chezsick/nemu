@@ -7,7 +7,9 @@
 #include <regex.h>
 
 
-#define DDEBUG
+//#define DDEBUG
+#define RED "\33[0;32;31m"
+#define NONE "\33[m"
 
 bool valid=true;
 enum {
@@ -133,13 +135,13 @@ bool check_parentheses(int p,int q)
 			count--;
 		if (count==0 && i<q)result=false;
 		if (count<0) {
-			printf("Brackets not match.\n");
+			printf(RED"Brackets not match.\n"NONE);
 			valid=false;
 			return false;
 		}
 	}
 	if (count>0) {
-		printf("Brackets not match\n");
+		printf(RED"Brackets not match\n"NONE);
 		valid=false;
 		return false;
 	}
@@ -182,7 +184,7 @@ int locate_domin(int p,int q)
 			}
 		}
 	}
-	if (now_prec==32767) {printf("Invaild Expression!\nCannot locate dominant operator.\n");valid=false;return 0;}
+	if (now_prec==32767) {printf(RED"Invaild Expression!\nCannot locate dominant operator.\n"NONE);valid=false;return 0;}
 	return loc;
 }
 
@@ -193,7 +195,7 @@ uint32_t eval(int p, int q)
 	if (p>q){
 		/* Bad expression */
 		//Assert(p<q,"Bad expression");
-		printf("Bad expression.");
+		printf(RED"Bad expression.\n"NONE);
 		valid=false;
 		return 0;
 
@@ -210,7 +212,7 @@ uint32_t eval(int p, int q)
 		}else if (tokens[p].type==HEX){
 			sscanf(tokens[p].str,"%x",&num);
 		}else{
-			printf("Invaild Expression!\nNot a number.\n");
+			printf(RED"Invaild Expression!\nNot a number.\n"NONE);
 			//assert(0);
 			valid=false;
 			return 0;
@@ -232,7 +234,7 @@ uint32_t eval(int p, int q)
 			case '+':return val1+val2;
 			case '-':return val1-val2;
 			case '*':return val1*val2;
-			case '/':if (val2==0) {printf("Devided by zero!");return 0;}
+			case '/':if (val2==0) {printf(RED"Devided by zero!\n"NONE);valid=false;return 0;}
 				 return val1/val2;
 		}
 	
