@@ -192,7 +192,10 @@ uint32_t eval(int p, int q)
 	printf("p=%d\tq=%d\n",p,q);
 	if (p>q){
 		/* Bad expression */
-		Assert(p<q,"Bad expression");
+		//Assert(p<q,"Bad expression");
+		printf("Bad expression.");
+		valid=false;
+		return 0;
 
 
 	}
@@ -209,6 +212,7 @@ uint32_t eval(int p, int q)
 		}else{
 			printf("Invaild Expression!\nNot a number.\n");
 			//assert(0);
+			valid=false;
 			return 0;
 		}
 		return num;
