@@ -13,7 +13,7 @@
 
 bool valid=true;
 enum {
-	NOTYPE = 256, EQ,HEX,DEC
+	NOTYPE = 256, EQ,HEX,DEC,POINT,NEG,AND,OR
 
 	/* TODO: Add more token types */
 
@@ -33,7 +33,11 @@ static struct rule {
 	{"\\-", '-'},					//minus
 	{"\\*", '*'},					//mulitipy
 	{"\\/", '/'},					//divide
+	{"\\%", '%'},					//mod
+	{"!",   '!'},					//not equal
 	{"==", EQ},					// equal
+	{"&&",AND},					//and
+	{"||",OR},					//or
 	{"0[xX][0-9a-fA-F]+",HEX},			//hex
 	{"[0-9]+",DEC},					//decimal
 	{"\\(",'('},					//left bracket
@@ -103,7 +107,9 @@ static bool make_token(char *e) {
 					case '(':case ')':
 					case '+':case '-':
 					case '*':case '/':
-					case EQ :{
+					case '%':case '!':
+					case EQ :case AND:
+					case OR :{
 						tokens[nr_token].type=rules[i].token_type;
 						nr_token++;
 						break; 
@@ -152,21 +158,27 @@ bool check_parentheses(int p,int q)
 static struct Operator{
 	int oper;
 	int prec;
+	int is_bin;
 }Operators[]={
-	{'+',0},
-	{'-',0},
-	{'*',1},
-	{'/',1}
+	{'+',0,1},
+	{'-',0,1},
+	{'*',1,1},
+	{'/',1,1},
+	{'%',1,1},
+	{'!',2,0},
+	{POINT,2,0},
+	{NEG,2,0}
 };
 #define NR_OP (sizeof(Operators) / sizeof(Operators[0]) )
 
 
-int locate_domin(int p,int q)
+int locate_domin(int p,int q,bool *is_binary)
 {
 	int loc=p;
 	int now_prec=32767;
 	int ct_par=0;
 	int i;
+	*is_binary=true;
 	for (i=p;i<=q;i++){
 		if (tokens[i].type=='(') ct_par++;
 		else if (tokens[i].type==')')ct_par--;
@@ -178,9 +190,8 @@ int locate_domin(int p,int q)
 					if(Operators[ii].prec<=now_prec){
 						now_prec=Operators[ii].prec;
 						loc=i;
+						*is_binary=Operators[ii].is_bin;
 					}
-					continue;
-
 				}
 			}
 		}
@@ -226,10 +237,13 @@ uint32_t eval(int p, int q)
 		return eval(p+1,q-1);
 	}
 	else{
-		int op=0;
-		op=locate_domin(p,q);
-		uint32_t val1=eval(p,op-1);
+		int op=0;bool is_binary;
+		op=locate_domin(p,q,&is_binary);
+		uint32_t val1=0;
 		uint32_t val2=eval(op+1,q);
+		if (is_binary){
+			val1=eval(p,op-1);
+		}
 
 		switch (tokens[op].type){
 			case '+':return val1+val2;
@@ -237,6 +251,10 @@ uint32_t eval(int p, int q)
 			case '*':return val1*val2;
 			case '/':if (val2==0) {printf(RED"Devided by zero!\n"NONE);valid=false;return 0;}
 				 return val1/val2;
+			case '%':return val1%val2;
+			case '!':return !val2;
+			case POINT:return swaddr_read(val2,4);
+			case NEG:return -val2;
 		}
 	
 	}
@@ -248,8 +266,8 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
 	}
-#ifdef DDEBUG
 	int i;
+#ifdef DDEBUG
 	printf("%d\n",nr_token);
 	for (i=0;i<nr_token;i++)
 		printf("%d\t",tokens[i].type);
@@ -257,6 +275,14 @@ uint32_t expr(char *e, bool *success) {
 #endif
 	/* TODO: Insert codes to evaluate the expression. */
 	//int p=0,q=nr_token;
+	for (i=0;i<nr_token;i++){
+		if(tokens[i].type=='*'&&(i==0||(tokens[i-1].type!=DEC&&tokens[i-1].type!=HEX&&tokens[i-1].type!=')')))
+			tokens[i].type=POINT;
+	}
+	for (i=0;i<nr_token;i++){
+		if(tokens[i].type=='-'&&(i==0||(tokens[i-1].type!=DEC&&tokens[i-1].type!=HEX&&tokens[i-1].type!=')')))
+			tokens[i].type=NEG;
+	}
 	uint32_t result=eval(0,nr_token-1);
 	if (!valid) *success=false;
 	return result;
