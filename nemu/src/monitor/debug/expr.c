@@ -13,7 +13,7 @@
 
 bool valid=true;
 enum {
-	NOTYPE = 256, EQ,HEX,DEC,POINT,NEG,AND,OR
+	NOTYPE = 256, EQ,HEX,DEC,POINT,NEG,AND,OR,NEQ
 
 	/* TODO: Add more token types */
 
@@ -34,7 +34,8 @@ static struct rule {
 	{"\\*", '*'},					//mulitipy
 	{"\\/", '/'},					//divide
 	{"\\%", '%'},					//mod
-	{"\\!",   '!'},					//not equal
+	{"\\!=",NEQ},					//not equal
+	{"\\!",   '!'},					//not
 	{"==", EQ},					// equal
 	{"\\&\\&",AND},					//and
 	{"\\|\\|",OR},					//or
@@ -109,7 +110,7 @@ static bool make_token(char *e) {
 					case '*':case '/':
 					case '%':case '!':
 					case EQ :case AND:
-					case OR :{
+					case OR :case NEQ:{
 						tokens[nr_token].type=rules[i].token_type;
 						nr_token++;
 						break; 
@@ -168,8 +169,10 @@ static struct Operator{
 	{'!',2,0},
 	{POINT,2,0},
 	{NEG,2,0},
-	{AND,-1,1},
-	{OR,-2,1}
+	{AND,-2,1},
+	{OR,-3,1},
+	{NEQ,-1,1},
+	{EQ,-1,1}
 };
 #define NR_OP (sizeof(Operators) / sizeof(Operators[0]) )
 
@@ -260,6 +263,9 @@ uint32_t eval(int p, int q)
 			case NEG:return -val2;
 			case AND:return val1&&val2;
 			case OR :return val1||val2;
+			case EQ :return val1==val2;
+			case NEQ:return val1!=val2;
+			
 		}
 	
 	}
