@@ -232,7 +232,7 @@ uint32_t eval(int p, int q)
 		return num;
 	}
 	else if (check_parentheses(p,q)==true){
-		printf("ok\n");
+		//printf("ok\n");
 		if (!valid)return 0;
 		return eval(p+1,q-1);
 	}
@@ -248,11 +248,11 @@ uint32_t eval(int p, int q)
 		switch (tokens[op].type){
 			case '+':return val1+val2;
 			case '-':return val1-val2;
-			case '*':return val1*val2;
+			case '*':printf("v1:%d*v2:%d\n",val1,val2);return val1*val2;
 			case '/':if (val2==0) {printf(RED"Devided by zero!\n"NONE);valid=false;return 0;}
 				 return val1/val2;
 			case '%':return val1%val2;
-			case '!':printf("%d\n",val2);return !val2;
+			case '!':return !val2;
 			case POINT:return swaddr_read(val2,4);
 			case NEG:return -val2;
 		}
