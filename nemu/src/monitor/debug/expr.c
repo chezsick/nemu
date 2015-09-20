@@ -34,10 +34,10 @@ static struct rule {
 	{"\\*", '*'},					//mulitipy
 	{"\\/", '/'},					//divide
 	{"\\%", '%'},					//mod
-	{"!",   '!'},					//not equal
+	{"\\!",   '!'},					//not equal
 	{"==", EQ},					// equal
-	{"&&",AND},					//and
-	{"||",OR},					//or
+	{"\\&\\&",AND},					//and
+	{"\\|\\|",OR},					//or
 	{"0[xX][0-9a-fA-F]+",HEX},			//hex
 	{"[0-9]+",DEC},					//decimal
 	{"\\(",'('},					//left bracket
