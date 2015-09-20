@@ -1,5 +1,6 @@
 #include "nemu.h"
 #include "stdlib.h"
+#include <stdio.h>
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
@@ -11,9 +12,10 @@
 #define RED "\33[0;32;31m"
 #define NONE "\33[m"
 
+extern CPU_state cpu;
 bool valid=true;
 enum {
-	NOTYPE = 256, EQ,HEX,DEC,POINT,NEG,AND,OR,NEQ
+	NOTYPE = 256, EQ,HEX,DEC,POINT,NEG,AND,OR,NEQ,GE,LE,G,L,REG,REG_32,REG_16,REG_8
 
 	/* TODO: Add more token types */
 
@@ -37,12 +39,19 @@ static struct rule {
 	{"\\!=",NEQ},					//not equal
 	{"\\!",   '!'},					//not
 	{"==", EQ},					// equal
+	{">=",GE},					//greater equal
+	{"<=",LE},					//less equal
+	{">",G},					//great
+	{"<",L},					//less
 	{"\\&\\&",AND},					//and
 	{"\\|\\|",OR},					//or
 	{"0[xX][0-9a-fA-F]+",HEX},			//hex
 	{"[0-9]+",DEC},					//decimal
 	{"\\(",'('},					//left bracket
-	{"\\)",')'}					//right bracket
+	{"\\)",')'},					//right bracket
+	{"$e[a-d]x|esi|edi|ebp|esp|eip",REG_32},	//register 32
+	{"$[a-d]x|sp|bp|si|di",REG_16},			//register 16
+	{"$[a-d][lh]",REG_8}				//register 8
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -110,10 +119,21 @@ static bool make_token(char *e) {
 					case '*':case '/':
 					case '%':case '!':
 					case EQ :case AND:
-					case OR :case NEQ:{
+					case OR :case NEQ:
+					case GE :case LE :
+					case G  :case L  :
+					{
 						tokens[nr_token].type=rules[i].token_type;
 						nr_token++;
 						break; 
+					}
+					case REG_32:
+					case REG_16:
+					case REG_8 :{
+						tokens[nr_token].type=REG;
+						strncpy(tokens[nr_token].str,e+position-substr_len,substr_len);
+				    		nr_token++;
+						break;
 					}
 					default: panic("please implement me");
 				}
@@ -230,10 +250,24 @@ uint32_t eval(int p, int q)
 		}else if (tokens[p].type==HEX){
 			sscanf(tokens[p].str,"%x",&num);
 		}else{
+			tokens[nr_token].type=DEC; 
+			char *s=tokens[nr_token].str;
+			//int reg;
+			if (strcmp(s,"eax")==0) num=cpu.eax;
+			else if (strcmp(s,"ebx")==0) num=cpu.ebx;
+			else if (strcmp(s,"ecx")==0) num=cpu.ecx;
+			else if (strcmp(s,"edx")==0) num=cpu.edx;
+			else if (strcmp(s,"esp")==0) num=cpu.esp;
+			else if (strcmp(s,"ebp")==0) num=cpu.ebp;
+			else if (strcmp(s,"esi")==0) num=cpu.esi;
+			else if (strcmp(s,"edi")==0) num=cpu.edi;
+			else if (strcmp(s,"eip")==0) num=cpu.eip;
+			else{	
 			printf(RED"Invaild Expression!\nNot a number.\n"NONE);
 			//assert(0);
 			valid=false;
 			return 0;
+		}
 		}
 		return num;
 	}
