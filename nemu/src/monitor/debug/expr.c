@@ -258,6 +258,8 @@ uint32_t eval(int p, int q)
 			case '!':return !val2;
 			case POINT:return swaddr_read(val2,4);
 			case NEG:return -val2;
+			case AND:return val1&&val2;
+			case OR :return val1||val2;
 		}
 	
 	}
