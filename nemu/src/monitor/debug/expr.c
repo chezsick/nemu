@@ -252,7 +252,7 @@ uint32_t eval(int p, int q)
 			case '/':if (val2==0) {printf(RED"Devided by zero!\n"NONE);valid=false;return 0;}
 				 return val1/val2;
 			case '%':return val1%val2;
-			case '!':return !val2;
+			case '!':printf("%d\n",val2);return !val2;
 			case POINT:return swaddr_read(val2,4);
 			case NEG:return -val2;
 		}
