@@ -7,7 +7,7 @@
 #include <regex.h>
 
 
-//#define DDEBUG
+#define DDEBUG
 #define RED "\33[0;32;31m"
 #define NONE "\33[m"
 
@@ -221,6 +221,7 @@ uint32_t eval(int p, int q)
 		int num=0;
 		if (tokens[p].type==DEC){
 			num=atoi(tokens[p].str);
+			printf("%d:%d\t%s\n",p,num,tokens[p].str);
 		}else if (tokens[p].type==HEX){
 			sscanf(tokens[p].str,"%x",&num);
 		}else{
