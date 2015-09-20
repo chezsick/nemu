@@ -321,11 +321,11 @@ uint32_t expr(char *e, bool *success) {
 	/* TODO: Insert codes to evaluate the expression. */
 	//int p=0,q=nr_token;
 	for (i=0;i<nr_token;i++){
-		if(tokens[i].type=='*'&&(i==0||(tokens[i-1].type!=DEC&&tokens[i-1].type!=HEX&&tokens[i-1].type!=')')))
+		if(tokens[i].type=='*'&&(i==0||(tokens[i-1].type!=DEC&&tokens[i-1].type!=HEX&&tokens[i-1].type!=REG&&tokens[i-1].type!=')')))
 			tokens[i].type=POINT;
 	}
 	for (i=0;i<nr_token;i++){
-		if(tokens[i].type=='-'&&(i==0||(tokens[i-1].type!=DEC&&tokens[i-1].type!=HEX&&tokens[i-1].type!=')')))
+		if(tokens[i].type=='-'&&(i==0||(tokens[i-1].type!=DEC&&tokens[i-1].type!=HEX&&tokens[i-1].type!=REG&&tokens[i-1].type!=')')))
 			tokens[i].type=NEG;
 	}
 	uint32_t result=eval(0,nr_token-1);
