@@ -192,7 +192,7 @@ int locate_domin(int p,int q,bool *is_binary)
 			if (ct_par!=0) continue;
 			for (ii=0;ii<NR_OP;ii++){
 				if (Operators[ii].oper==tokens[i].type){
-					if(Operators[ii].prec<=now_prec){
+					if((Operators[ii].prec<now_prec)||((Operators[ii].prec==now_prec)&&(Operators[ii].is_bin==1))){
 						now_prec=Operators[ii].prec;
 						loc=i;
 						*is_binary=Operators[ii].is_bin;
