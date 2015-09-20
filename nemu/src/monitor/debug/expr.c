@@ -167,7 +167,9 @@ static struct Operator{
 	{'%',1,1},
 	{'!',2,0},
 	{POINT,2,0},
-	{NEG,2,0}
+	{NEG,2,0},
+	{AND,-1,1},
+	{OR,-2,1}
 };
 #define NR_OP (sizeof(Operators) / sizeof(Operators[0]) )
 
