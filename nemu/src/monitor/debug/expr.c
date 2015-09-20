@@ -253,15 +253,15 @@ uint32_t eval(int p, int q)
 			tokens[nr_token].type=DEC; 
 			char *s=tokens[nr_token].str;
 			//int reg;
-			if (strcmp(s,"eax")==0) num=cpu.eax;
-			else if (strcmp(s,"ebx")==0) num=cpu.ebx;
-			else if (strcmp(s,"ecx")==0) num=cpu.ecx;
-			else if (strcmp(s,"edx")==0) num=cpu.edx;
-			else if (strcmp(s,"esp")==0) num=cpu.esp;
-			else if (strcmp(s,"ebp")==0) num=cpu.ebp;
-			else if (strcmp(s,"esi")==0) num=cpu.esi;
-			else if (strcmp(s,"edi")==0) num=cpu.edi;
-			else if (strcmp(s,"eip")==0) num=cpu.eip;
+			if (strcmp(s,"$eax")==0) num=cpu.eax;
+			else if (strcmp(s,"$ebx")==0) num=cpu.ebx;
+			else if (strcmp(s,"$ecx")==0) num=cpu.ecx;
+			else if (strcmp(s,"$edx")==0) num=cpu.edx;
+			else if (strcmp(s,"$esp")==0) num=cpu.esp;
+			else if (strcmp(s,"$ebp")==0) num=cpu.ebp;
+			else if (strcmp(s,"$esi")==0) num=cpu.esi;
+			else if (strcmp(s,"$edi")==0) num=cpu.edi;
+			else if (strcmp(s,"$eip")==0) num=cpu.eip;
 			else{	
 			printf(RED"Invaild Expression!\nNot a number.\n"NONE);
 			//assert(0);
