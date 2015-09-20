@@ -255,7 +255,7 @@ uint32_t eval(int p, int q)
 			//int reg;
 			if (strcmp(s,"$eax")==0) num=cpu.eax;
 			else if (strcmp(s,"$ebx")==0) num=cpu.ebx;
-			else if (strcmp(s,"$ecx")==0) num=cpu.ecx;
+			else if (strcmp(s,"$ecx")==0) {num=cpu.ecx;printf("**%d\n",num);}
 			else if (strcmp(s,"$edx")==0) num=cpu.edx;
 			else if (strcmp(s,"$esp")==0) num=cpu.esp;
 			else if (strcmp(s,"$ebp")==0) num=cpu.ebp;
