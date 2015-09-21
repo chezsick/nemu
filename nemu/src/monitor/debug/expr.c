@@ -49,8 +49,8 @@ static struct rule {
 	{"[0-9]+",DEC},					//decimal
 	{"\\(",'('},					//left bracket
 	{"\\)",')'},					//right bracket
-	{"\\$e[a-d]x\\|esi\\|edi\\|ebp\\|esp\\|eip",REG_32},	//register 32
-	{"\\$[a-d]x\\|sp\\|bp\\|si\\|di",REG_16},		//register 16
+	{"\\$e[a-d]x|$esi|$edi|$ebp|$esp|$eip",REG_32},	//register 32
+	{"\\$[a-d]x|$sp|$bp|$si|$di",REG_16},		//register 16
 	{"\\$[a-d][lh]",REG_8}				//register 8
 };
 
