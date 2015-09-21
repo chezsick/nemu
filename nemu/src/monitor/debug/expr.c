@@ -255,13 +255,29 @@ uint32_t eval(int p, int q)
 			//int reg;
 			if (strcmp(s,"$eax")==0) num=cpu.eax;
 			else if (strcmp(s,"$ebx")==0) num=cpu.ebx;
-			else if (strcmp(s,"$ecx")==0) {num=cpu.ecx;printf("**%d\n",num);}
+			else if (strcmp(s,"$ecx")==0) num=cpu.ecx;
 			else if (strcmp(s,"$edx")==0) num=cpu.edx;
 			else if (strcmp(s,"$esp")==0) num=cpu.esp;
 			else if (strcmp(s,"$ebp")==0) num=cpu.ebp;
 			else if (strcmp(s,"$esi")==0) num=cpu.esi;
 			else if (strcmp(s,"$edi")==0) num=cpu.edi;
 			else if (strcmp(s,"$eip")==0) num=cpu.eip;
+			else if (strcmp(s,"$ax") ==0) num=cpu.gpr[0]._16;
+			else if (strcmp(s,"$cx") ==0) num=cpu.gpr[1]._16;
+			else if (strcmp(s,"$dx") ==0) num=cpu.gpr[2]._16;
+			else if (strcmp(s,"$bx") ==0) num=cpu.gpr[3]._16;
+			else if (strcmp(s,"$sp") ==0) num=cpu.gpr[4]._16;
+			else if (strcmp(s,"$bp") ==0) num=cpu.gpr[5]._16;
+			else if (strcmp(s,"$si") ==0) num=cpu.gpr[6]._16;
+			else if (strcmp(s,"$di") ==0) num=cpu.gpr[7]._16;
+			else if (strcmp(s,"$al") ==0) num=cpu.gpr[0]._8[0];
+			else if (strcmp(s,"$cl") ==0) num=cpu.gpr[1]._8[0];
+			else if (strcmp(s,"$dl") ==0) num=cpu.gpr[2]._8[0];
+			else if (strcmp(s,"$bl") ==0) num=cpu.gpr[3]._8[0];
+			else if (strcmp(s,"$ah") ==0) num=cpu.gpr[4]._8[1];
+			else if (strcmp(s,"$ch") ==0) num=cpu.gpr[5]._8[1];
+			else if (strcmp(s,"$dh") ==0) num=cpu.gpr[6]._8[1];
+			else if (strcmp(s,"$bh") ==0) num=cpu.gpr[7]._8[1];
 			else{	
 			printf(RED"Invaild Expression!\nNot a number.\n"NONE);
 			//assert(0);
