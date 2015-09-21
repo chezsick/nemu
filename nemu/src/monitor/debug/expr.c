@@ -8,7 +8,7 @@
 #include <regex.h>
 
 
-#define DDEBUG
+//#define DDEBUG
 #define RED "\33[0;32;31m"
 #define NONE "\33[m"
 
@@ -228,7 +228,9 @@ int locate_domin(int p,int q,bool *is_binary)
 uint32_t eval(int p, int q)
 {
 	if (!valid) return 0;
+#ifdef DDEBUG
 	printf("p=%d\tq=%d\n",p,q);
+#endif
 	if (p>q){
 		/* Bad expression */
 		//Assert(p<q,"Bad expression");
