@@ -302,7 +302,7 @@ uint32_t eval(int p, int q)
 		if (is_binary){
 			val1=eval(p,op-1);
 		}
-		printf("v1:%d\tv2:%d\n",val1,val2);
+		//printf("v1:%d\tv2:%d\n",val1,val2);
 		switch (tokens[op].type){
 			case '+':return val1+val2;
 			case '-':return val1-val2;
