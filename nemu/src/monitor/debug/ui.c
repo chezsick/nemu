@@ -101,6 +101,7 @@ static int cmd_p(char *args)
 }
 static int cmd_w(char *args)
 {
+	init_wp_list();
 	bool success=true;
 	uint32_t output=expr(args,&success);
 	if (success)
