@@ -94,8 +94,12 @@ void free_wp(int no)
 }
 int display_wp()
 {
-	printf("NUM\tTYPE\t\tDisp\tEnb\tADRESS\tWHAT\n");
 	WP* p=head;
+	if (p==NULL){
+		printf("No watchpoints.\n");
+		return 0;
+	}
+	printf("NUM\tTYPE\t\tDisp\tEnb\tADRESS\tWHAT\n");
 	while (p!=NULL)
 	{
 		printf("%d\twatchpoint\tkeep\ty%d\t\t%s\n",p->NO,p->val,p->exp);
@@ -106,10 +110,6 @@ int display_wp()
 bool if_changes_wp()
 {
 	WP* p=head;
-	if (p==NULL) {
-		printf("No watchpoints.\n");
-		return false;
-	}
 	bool flag=false,temp;
 	while (p!=NULL){
 
