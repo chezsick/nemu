@@ -86,6 +86,16 @@ void free_wp(int no)
 	ftail->next->next=NULL;
 
 }
+int display_wp()
+{
+	printf("NUM\tTYPE\tDISP\tADRESS\tWHAT\n");
+	WP* p=head;
+	while (p!=NULL)
+	{
+		printf("%d\twatchpoint\t%d\t\t%s\n",p->NO,p->val,p->exp);
+	}
+	return 0;
+}
 
 
 

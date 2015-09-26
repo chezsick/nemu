@@ -67,6 +67,9 @@ static int cmd_info(char *args) {
 			printf("%s\t\t%p\t0x%x\t%d\n",regsb[i],&cpu.gpr[i]._8[0],cpu.gpr[i]._8[0],cpu.gpr[i]._8[0]);
 			printf("%s\t\t%p\t0x%x\t%d\n",regsb[i+4],&cpu.gpr[i]._8[1],cpu.gpr[i]._8[1],cpu.gpr[i]._8[1]);
 		}
+	}else
+	if (strcmp(args,"w")==0){
+		display_wp();
 	}
 	return 0;
 }
