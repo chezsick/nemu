@@ -103,6 +103,24 @@ int display_wp()
 	}
 	return 0;
 }
+bool if_changes_wp()
+{
+	WP* p=head;
+	bool flag=false,temp;
+	while (p!=NULL){
+		int nw_val=expr(p->exp,&temp);
+		if (nw_val==p->val)
+			flag=false;
+		else{
+			flag=true;
+			printf("watchpoint %d: %s\n",p->NO,p->exp);
+			printf("Old value= %d:\n",p->val);
+			printf("New value= %d:\n",nw_val);
+			p->val=nw_val;	
+		}
+	}
+	return flag;
+}
 
 
 
