@@ -19,5 +19,54 @@ void init_wp_list() {
 }
 
 /* TODO: Implement the functionality of watchpoint */
+WP* tail(WP* h)
+{
+	WP* p=h;
+	if (p==NULL) return h;
+	while (p->next!=NULL) p=p->next;
+	return p;
+}
+
+WP* new_wp(char* str,int res)
+{
+	
+	if (free_==NULL) assert(0);
+	WP* pre=free_;
+	WP* p=free_->next;
+	WP* new_=NULL;
+	if (p==NULL) {
+		new_=pre;	
+		free_=NULL;
+	}else {
+		while (p->next!=NULL){
+			pre=p;
+			p=p->next;	
+		}
+		new_=p;
+		pre->next=NULL;
+	}
+	strcpy(new_->exp,str);
+	new_->val=res;
+	return new_;
+}
+void free_wp(WP *wp)
+{
+		if (wp==head){			//wp is the first point
+		WP* f=tail(free_);
+		f->next=head;
+		head=head->next;
+	}
+	WP* p=head;			//in the middle
+	while (p->next!=wp){
+		p=p->next;
+		if (p==NULL) assert(0);
+	}
+	WP* ftail=tail(free_);
+	ftail->next=p->next;
+	p->next=p->next->next;
+	ftail->next->next=NULL;
+
+}
+
 
 

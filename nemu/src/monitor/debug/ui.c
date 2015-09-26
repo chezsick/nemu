@@ -99,6 +99,16 @@ static int cmd_p(char *args)
 		printf("please try again:\n");
 	return 0;
 }
+static int cmd_w(char *args)
+{
+	bool success=true;
+	uint32_t output=expr(args,&success);
+	if (success)
+		new_wp(args,output);
+	else
+	      	printf("please try again:\n"); 
+	return 0;		
+}
 static int cmd_help(char *args);
 
 static struct {
@@ -113,6 +123,7 @@ static struct {
 	{ "info", "Print register state", cmd_info},
 	{ "x", "Examine memory", cmd_x},
 	{ "p", "Print the value of expression EXP",cmd_p},
+	{ "w", "Set a watchpoint for an expression.",cmd_w}
 	/* TODO: Add more commands */
 
 };
