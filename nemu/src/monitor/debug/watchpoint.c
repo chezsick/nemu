@@ -59,7 +59,7 @@ int new_wp(char* str)
 	new_->val=res;
 	new_->next=head;
 	head=new_;
-	printf("**%s\n%d\n",head->exp,head->val);
+	printf("**%d\t%s\t%d\n",head->NO,head->exp,head->val);
 	return 0;
 }
 void free_wp(int no)

@@ -168,11 +168,11 @@ static int cmd_help(char *args) {
 }
 
 void ui_mainloop() {
+	init_wp_list();
 	while(1) {
 		char *str = rl_gets();
 		char *str_end = str + strlen(str);
 
-		init_wp_list();
 
 		/* extract the first token as the command */
 		char *cmd = strtok(str, " ");
