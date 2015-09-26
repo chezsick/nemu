@@ -46,7 +46,7 @@ WP* new_wp(char* str,int res)
 		pre->next=NULL;
 	}
 	//printf("**%s\n%d\n",str,res);
-	strcpy(new_->exp,str);
+	strncpy(new_->exp,str,strlen(str));
 	new_->val=res;
 	printf("**%s\n%d\n",str,res);
 	return new_;
