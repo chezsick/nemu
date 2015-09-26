@@ -2,11 +2,11 @@
 #define __WATCHPOINT_H__
 
 #include "common.h"
-
+#define NUM 100
 typedef struct watchpoint {
 	int NO;
 	int val;
-	char* exp;
+	char exp[NUM];
 	struct watchpoint *next;
 
 	/* TODO: Add more members if necessary */
