@@ -109,9 +109,7 @@ bool if_changes_wp()
 	bool flag=false,temp;
 	while (p!=NULL){
 		int nw_val=expr(p->exp,&temp);
-		if (nw_val==p->val)
-			flag=false;
-		else{
+		if (nw_val!=p->val){
 			flag=true;
 			printf("watchpoint %d: %s\n",p->NO,p->exp);
 			printf("Old value= %d:\n",p->val);
