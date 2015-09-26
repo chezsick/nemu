@@ -29,6 +29,7 @@ WP* tail(WP* h)
 
 WP* new_wp(char* str,int res)
 {	
+	printf("ok\n");
 	if (free_==NULL) assert(0);
 	WP* pre=free_;
 	WP* p=free_->next;
@@ -44,6 +45,7 @@ WP* new_wp(char* str,int res)
 		new_=p;
 		pre->next=NULL;
 	}
+	printf("ok\n");
 	strcpy(new_->exp,str);
 	new_->val=res;
 	return new_;
