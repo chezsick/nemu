@@ -61,7 +61,7 @@ int new_wp(char* str)
 	new_->val=res;
 	new_->next=head;
 	head=new_;
-	printf("**%d\t%s\t%d\n",head->NO,head->exp,head->val);
+	//printf("**%d\t%s\t%d\n",head->NO,head->exp,head->val);
 	return 0;
 }
 void free_wp(int no)
@@ -94,11 +94,11 @@ void free_wp(int no)
 }
 int display_wp()
 {
-	printf("NUM\tTYPE\tDISP\tADRESS\tWHAT\n");
+	printf("NUM\tTYPE\t\tDisp\tEnb\tADRESS\tWHAT\n");
 	WP* p=head;
 	while (p!=NULL)
 	{
-		printf("%d\twatchpoint\t%d\t\t%s\n",p->NO,p->val,p->exp);
+		printf("%d\twatchpoint\tkeep\ty%d\t\t%s\n",p->NO,p->val,p->exp);
 		p=p->next;
 	}
 	return 0;
