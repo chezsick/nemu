@@ -83,13 +83,13 @@ void free_wp(int no)
 		head->next=free_;
 		free_=head;
 		head=NULL;
+	}else{
+		WP* pre=head;
+		while(pre->next!=p) pre=pre->next;
+		pre->next=p->next;
+		p->next=free_;
+		free_=p;
 	}
-	WP* pre=head;
-	while(pre->next!=p) pre=pre->next;
-	pre->next=p->next;
-	p->next=free_;
-	free_=p;
-
 	return;
 }
 int display_wp()
