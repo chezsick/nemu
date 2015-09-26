@@ -33,11 +33,11 @@ int new_wp(char* str)
 	bool success=true;
 	uint32_t res=expr(str,&success);
 	if (!success){
-			printf("please try again:\n");
+			printf("Please try again:\n");
 			return -1;
 	}
 	if (free_==NULL) {
-		printf("no enough space\n");
+		printf("No enough space.\n");
 		return -1;
 	}
 	WP* new_=free_;
@@ -67,7 +67,7 @@ int new_wp(char* str)
 void free_wp(int no)
 {
 	if (head==NULL) {
-		printf("no watchpoint\n");
+		printf("No watchpoints\n");
 		return;
 	}
 
@@ -106,6 +106,10 @@ int display_wp()
 bool if_changes_wp()
 {
 	WP* p=head;
+	if (p==NULL) {
+		printf("No watchpoints.\n");
+		return false;
+	}
 	bool flag=false,temp;
 	while (p!=NULL){
 
