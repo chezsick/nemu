@@ -80,9 +80,9 @@ void free_wp(int no)
 		}
 	}
 	if (p==head){
-		head->next=free_;
-		free_=head;
-		head=p->next;
+		head=head->next;
+		p->next=free_;
+		free_=p;
 	}else{
 		WP* pre=head;
 		while(pre->next!=p) pre=pre->next;
