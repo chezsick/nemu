@@ -70,12 +70,7 @@ void free_wp(int no)
 		printf("no watchpoint\n");
 		return;
 	}
-	/*WP* wp=head;
-	if (wp==head){			//wp is the first point
-		WP* f=tail(free_);
-		f->next=head;
-		head=head->next;
-	}*/
+
 	WP* p=head;			//in the middle
 	while (p->NO!=no){
 		p=p->next;
@@ -84,11 +79,18 @@ void free_wp(int no)
 			return;
 		}
 	}
-	WP* ftail=tail(free_);
-	ftail->next=p->next;
-	p->next=p->next->next;
-	ftail->next->next=NULL;
+	if (p==head){
+		head->next=free_;
+		free_=head;
+		head=NULL;
+	}
+	WP* pre=head;
+	while(pre->next!=p) pre=pre->next;
+	pre->next=p->next;
+	p->next=free_;
+	free_=p;
 
+	return;
 }
 int display_wp()
 {
