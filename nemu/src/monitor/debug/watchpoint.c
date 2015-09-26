@@ -45,9 +45,10 @@ WP* new_wp(char* str,int res)
 		new_=p;
 		pre->next=NULL;
 	}
-	printf("**%s\n%d\n",str,res);
+	//printf("**%s\n%d\n",str,res);
 	strcpy(new_->exp,str);
 	new_->val=res;
+	printf("**%s\n%d\n",str,res);
 	return new_;
 }
 void free_wp(WP *wp)
