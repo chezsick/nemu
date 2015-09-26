@@ -27,10 +27,19 @@ WP* tail(WP* h)
 	return p;
 }
 
-WP* new_wp(char* str,int res)
+int new_wp(char* str)
 {	
-	printf("ok\n");
-	if (free_==NULL) assert(0);
+	//printf("ok\n");
+	bool success=true;
+	uint32_t res=expr(str,&success);
+	if (!success){
+			printf("please try again:\n");
+			return -1;
+	}
+	if (free_==NULL) {
+		printf("no enough space\n");
+		return -1;
+	}
 	WP* pre=free_;
 	WP* p=free_->next;
 	WP* new_=NULL;
@@ -46,22 +55,30 @@ WP* new_wp(char* str,int res)
 		pre->next=NULL;
 	}
 	//printf("**%s\n%d\n",str,res);
-	strncpy(new_->exp,str,1);
+	strcpy(new_->exp,str);
 	new_->val=res;
-	printf("**%s\n%d\n",str,res);
-	return new_;
+	//printf("**%s\n%d\n",str,res);
+	return 0;
 }
-void free_wp(WP *wp)
+void free_wp(int no)
 {
-		if (wp==head){			//wp is the first point
+	if (head==NULL) {
+		printf("no watchpoint\n");
+		return;
+	}
+	/*WP* wp=head;
+	if (wp==head){			//wp is the first point
 		WP* f=tail(free_);
 		f->next=head;
 		head=head->next;
-	}
+	}*/
 	WP* p=head;			//in the middle
-	while (p->next!=wp){
+	while (p->NO!=no){
 		p=p->next;
-		if (p==NULL) assert(0);
+		if (p==NULL) {
+			printf("NO.%d watchpoint is not exist.\n",no);
+			return;
+		}
 	}
 	WP* ftail=tail(free_);
 	ftail->next=p->next;

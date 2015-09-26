@@ -101,14 +101,23 @@ static int cmd_p(char *args)
 }
 static int cmd_w(char *args)
 {
-	init_wp_list();
+	/*init_wp_list();
 	bool success=true;
 	uint32_t output=expr(args,&success);
 	if (success)
 		new_wp(args,output);
 	else
 	      	printf("please try again:\n"); 
+	*/
+	new_wp(args);
 	return 0;		
+}
+
+static int cmd_d(char *args)
+{
+	int no=atoi(args);
+	free_wp(no);
+	return 0;
 }
 static int cmd_help(char *args);
 
@@ -124,7 +133,8 @@ static struct {
 	{ "info", "Print register state", cmd_info},
 	{ "x", "Examine memory", cmd_x},
 	{ "p", "Print the value of expression EXP",cmd_p},
-	{ "w", "Set a watchpoint for an expression.",cmd_w}
+	{ "w", "Set a watchpoint for an expression.",cmd_w},
+	{ "d", "Delete a watchpoint.",cmd_d}
 	/* TODO: Add more commands */
 
 };
@@ -158,7 +168,7 @@ void ui_mainloop() {
 	while(1) {
 		char *str = rl_gets();
 		char *str_end = str + strlen(str);
-
+		init_wp_list();
 		/* extract the first token as the command */
 		char *cmd = strtok(str, " ");
 		if(cmd == NULL) { continue; }
