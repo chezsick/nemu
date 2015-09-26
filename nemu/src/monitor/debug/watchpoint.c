@@ -108,6 +108,7 @@ bool if_changes_wp()
 	WP* p=head;
 	bool flag=false,temp;
 	while (p!=NULL){
+
 		int nw_val=expr(p->exp,&temp);
 		if (nw_val!=p->val){
 			flag=true;
@@ -116,6 +117,7 @@ bool if_changes_wp()
 			printf("New value= %d:\n",nw_val);
 			p->val=nw_val;	
 		}
+		p=p->next;
 	}
 	return flag;
 }
