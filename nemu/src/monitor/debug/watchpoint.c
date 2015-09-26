@@ -95,6 +95,7 @@ int display_wp()
 	while (p!=NULL)
 	{
 		printf("%d\twatchpoint\t%d\t\t%s\n",p->NO,p->val,p->exp);
+		p=p->next;
 	}
 	return 0;
 }
