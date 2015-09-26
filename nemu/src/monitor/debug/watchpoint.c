@@ -57,6 +57,8 @@ int new_wp(char* str)
 	//printf("**%s\n%d\n",str,res);
 	strcpy(new_->exp,str);
 	new_->val=res;
+	new_->next=head;
+	head=new_;
 	//printf("**%s\n%d\n",str,res);
 	return 0;
 }
