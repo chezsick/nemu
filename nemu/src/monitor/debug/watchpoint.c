@@ -40,7 +40,9 @@ int new_wp(char* str)
 		printf("no enough space\n");
 		return -1;
 	}
-	WP* pre=free_;
+	WP* new_=free_;
+	free_=free_->next;
+	/*WP* pre=free_;
 	WP* p=free_->next;
 	WP* new_=NULL;
 	if (p==NULL) {
@@ -53,7 +55,7 @@ int new_wp(char* str)
 		}
 		new_=p;
 		pre->next=NULL;
-	}
+	}*/
 	//printf("**%s\n%d\n",str,res);
 	strcpy(new_->exp,str);
 	new_->val=res;
