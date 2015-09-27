@@ -141,11 +141,11 @@ static int cmd_d(char *args)
 		char s[10];
 		fflush(stdin);
 		scanf("%s",s);
-		if (strcmp(s,"y")||strcmp(s,"Y")){
+		if (strcmp(s,"y")==0||strcmp(s,"Y")==0){
 			free_all_wp();
 			return 0;
 		}
-		else if (strcmp(s,"n")||strcmp(s,"N")){
+		else if (strcmp(s,"n")==0||strcmp(s,"N")==0){
 			return 0;	
 		}else{
 			printf("Pleas answer y or n.\n");
