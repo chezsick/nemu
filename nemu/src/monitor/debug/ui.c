@@ -50,6 +50,10 @@ static int cmd_si(char *args) {
 }
 
 static int cmd_info(char *args) {
+	if (args==NULL){
+		printf("Argument required.('w' or 'r')\n");
+		return -1;
+	}
 	if (strcmp(args,"r")==0){
 		printf("eax\t\t%p\t0x%x\t\t%d\n",&cpu.eax,cpu.eax,cpu.eax);
 		printf("ecx\t\t%p\t0x%x\t\t%d\n",&cpu.ecx,cpu.ecx,cpu.ecx);
@@ -76,6 +80,11 @@ static int cmd_info(char *args) {
 
 static int cmd_x(char *args)
 {
+	if (args==NULL){
+		printf("Arguement required.\n");
+		return -1;
+	}
+
 	char *num=strtok(args," ");
 	int n=atoi(num);
 	char *addr=num+strlen(num)+1;
@@ -93,6 +102,11 @@ static int cmd_x(char *args)
 }
 static int cmd_p(char *args)
 {
+	if (args==NULL){
+	     printf("Arguement required.\n");
+	     return -1;
+	}
+
 	bool success=true;
 	//*success=true;
 	uint32_t output=expr(args,&success);
@@ -104,6 +118,10 @@ static int cmd_p(char *args)
 }
 static int cmd_w(char *args)
 {
+	if (args==NULL){
+		printf("Arguement required.(expression to compute)\n");
+		return -1;
+	}
 	/*init_wp_list();
 	bool success=true;
 	uint32_t output=expr(args,&success);
@@ -118,6 +136,21 @@ static int cmd_w(char *args)
 
 static int cmd_d(char *args)
 {
+	if (args==NULL){
+		char c;
+		loop: printf("Delete all watchpoints? (y or n)");
+		scanf("%c",&c);
+		if (c=='y'||c=='Y'){
+			free_all_wp();
+			return 0;
+		}
+		else if (c=='n'||c=='N'){
+			return 0;	
+		}else{
+			printf("Pleas answer y or n.\n");
+			goto loop;
+		}
+	}
 	int no=atoi(args);
 	free_wp(no);
 	return 0;
