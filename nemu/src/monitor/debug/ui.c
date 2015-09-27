@@ -138,14 +138,14 @@ static int cmd_d(char *args)
 {
 	if (args==NULL){
 		loop: printf("Delete all watchpoints? (y or n)");
-		char c;
+		char s[10];
 		fflush(stdin);
-		scanf("%c",&c);
-		if (c=='y'||c=='Y'){
+		scanf("%s",s);
+		if (strcmp(s,"y")||strcmp(s,"Y")){
 			free_all_wp();
 			return 0;
 		}
-		else if (c=='n'||c=='N'){
+		else if (strcmp(s,"n")||strcmp(s,"N")){
 			return 0;	
 		}else{
 			printf("Pleas answer y or n.\n");
