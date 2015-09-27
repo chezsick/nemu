@@ -137,9 +137,9 @@ static int cmd_w(char *args)
 static int cmd_d(char *args)
 {
 	if (args==NULL){
-		char c;
 		loop: printf("Delete all watchpoints? (y or n)");
-		scanf("%c",&c);
+		char c;
+		scanf("%c\n",&c);
 		if (c=='y'||c=='Y'){
 			free_all_wp();
 			return 0;
