@@ -70,3 +70,9 @@ test: $(nemu_BIN) $(testcase_BIN) entry
 
 submit: clean
 	cd .. && tar cvj $(shell pwd | grep -o '[^/]*$$') > $(STU_ID).tar.bz2
+count: $(nemu_BIN) $(USERPROG) entry
+	git checkout b718
+	cd nemu && find . -name '*.[ch]'|xargs cat|wc -l
+	git checkout master
+	cd nemu && find . -name '*.[ch]'|xargs cat|wc -l
+
