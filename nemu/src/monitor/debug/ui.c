@@ -52,7 +52,7 @@ static int cmd_si(char *args) {
 static int cmd_info(char *args) {
 	if (args==NULL){
 		printf("Argument required.('w' or 'r')\n");
-		return -1;
+		return 0;
 	}
 	if (strcmp(args,"r")==0){
 		printf("eax\t\t%p\t0x%x\t\t%d\n",&cpu.eax,cpu.eax,cpu.eax);
@@ -82,7 +82,7 @@ static int cmd_x(char *args)
 {
 	if (args==NULL){
 		printf("Arguement required.\n");
-		return -1;
+		return 0;
 	}
 
 	char *num=strtok(args," ");
@@ -104,7 +104,7 @@ static int cmd_p(char *args)
 {
 	if (args==NULL){
 	     printf("Arguement required.\n");
-	     return -1;
+	     return 0;
 	}
 
 	bool success=true;
@@ -120,7 +120,7 @@ static int cmd_w(char *args)
 {
 	if (args==NULL){
 		printf("Arguement required.(expression to compute)\n");
-		return -1;
+		return 0;
 	}
 	/*init_wp_list();
 	bool success=true;
