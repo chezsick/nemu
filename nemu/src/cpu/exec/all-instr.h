@@ -27,5 +27,6 @@
 #include "string/rep.h"
 
 #include "misc/misc.h"
+#include "misc/push.h"
 
 #include "special/special.h"
