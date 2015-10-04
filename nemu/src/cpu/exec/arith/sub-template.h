@@ -3,7 +3,7 @@
 #define instr sub
 
 static void do_execute() {
-	DATA_TYPE result = op_src2->val - op_src->val;
+	DATA_TYPE result = op_dest->val - op_src->val;
 	OPERAND_W(op_dest, result);
 	DATA_TYPE p=result;
 	int i;
@@ -32,14 +32,14 @@ static void do_execute() {
 	for (i=0;i<4;i++){
 		DATA_TYPE a,b;
 		a=result>>(i*4)&0xf;
-		b=op_src2->val>>(i*4)&0xf;
+		b=op_dest->val>>(i*4)&0xf;
 		if (a>b) 
 			cpu.EFLAGS.AF=1;
 		else 
 			cpu.EFLAGS.AF=0;
 
 	}
-	if ((op_src->val>0&&op_src2->val<0&&result>0)||(op_src->val<0&&op_src2->val>0&&result<0))
+	if ((op_src->val>0&&op_dest->val<0&&result>0)||(op_src->val<0&&op_dest->val>0&&result<0))
 		cpu.EFLAGS.OF=1;
 	else 	
 		cpu.EFLAGS.OF=0;
