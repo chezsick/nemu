@@ -73,6 +73,9 @@ static void load_entry() {
 	assert(ret == 1);
 	fclose(fp);
 }
+static void init_EFLAGS() {
+	cpu.EFLAGS.eflags=0x00000002;
+}
 
 void restart() {
 	/* Perform some initialization to restart a program */
@@ -91,5 +94,6 @@ void restart() {
 	init_ddr3();
 
 	/* Initialize EFLAGS. */
-	EFLAGS.whole= 0x00000002;
+	//EFLAGS.whole= 0x00000002;
+	init_EFLAGS();
 }
