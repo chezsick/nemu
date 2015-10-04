@@ -89,4 +89,7 @@ void restart() {
 
 	/* Initialize DRAM. */
 	init_ddr3();
+
+	/* Initialize EFLAGS. */
+	EFLAGS.whole= 0x00000002;
 }

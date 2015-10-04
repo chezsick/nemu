@@ -49,7 +49,8 @@ extern const char* regsl[];
 extern const char* regsw[];
 extern const char* regsb[];
 
-struct{
+union{
+    struct{
 	unsigned int CF:1;
 	unsigned int   :1;
 	unsigned int PF:1;
@@ -68,7 +69,9 @@ struct{
 	unsigned int   :1;
 	unsigned int RF:1;
 	unsigned int VM:1;
-	unsigned int   :14;
+	unsigned int   :14;	
+    };
+	unsigned int whole;
 }EFLAGS;
 
 #endif
