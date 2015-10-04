@@ -49,4 +49,26 @@ extern const char* regsl[];
 extern const char* regsw[];
 extern const char* regsb[];
 
+struct{
+	unsigned int CF:1;
+	unsigned int   :1;
+	unsigned int PF:1;
+	unsigned int   :1;
+	unsigned int AF:1;
+	unsigned int   :1;
+	unsigned int ZF:1;
+	unsigned int SF:1;
+	unsigned int TF:1;
+	unsigned int IF:1;
+	unsigned int DF:1;
+	unsigned int OF:1;
+	unsigned int OL:1;
+	unsigned int IP:1;
+	unsigned int NT:1;
+	unsigned int   :1;
+	unsigned int RF:1;
+	unsigned int VM:1;
+	unsigned int   :14;
+}EFLAGS;
+
 #endif
