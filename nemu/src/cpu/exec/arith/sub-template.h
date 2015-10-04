@@ -16,7 +16,7 @@ static void do_execute() {
 		cpu.EFLAGS.SF=1;
 	else 	
 		cpu.EFLAGS.SF=0;
-	if (op_src->val>op_src2->val)
+	if (result>op_src2->val)
 		cpu.EFLAGS.CF=1;
 	else   
 		cpu.EFLAGS.CF=0;
@@ -31,7 +31,7 @@ static void do_execute() {
 	//DATA_TYPE af=0;
 	for (i=0;i<4;i++){
 		DATA_TYPE a,b;
-		a=op_src->val>>(i*4)&0xf;
+		a=result>>(i*4)&0xf;
 		b=op_src2->val>>(i*4)&0xf;
 		if (a>b) 
 			cpu.EFLAGS.AF=1;
