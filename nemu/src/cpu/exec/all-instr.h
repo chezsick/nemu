@@ -2,6 +2,7 @@
 
 #include "data-mov/mov.h"
 #include "data-mov/xchg.h"
+#include "data-mov/push.h"
 
 #include "arith/dec.h"
 #include "arith/inc.h"
@@ -12,8 +13,6 @@
 #include "arith/div.h"
 #include "arith/sub.h"
 #include "arith/cmp.h"
-//#include "arith/cmp.h"
-
 
 #include "logic/and.h"
 #include "logic/or.h"
@@ -27,6 +26,5 @@
 #include "string/rep.h"
 
 #include "misc/misc.h"
-#include "misc/push.h"
 
 #include "special/special.h"
