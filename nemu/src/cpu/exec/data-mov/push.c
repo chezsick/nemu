@@ -13,10 +13,10 @@
 #undef DATA_BYTE
 
 /* for instruction encoding overloading */
-make_helper_v(push_rm)
+//make_helper_v(push_i)
+make_helper_v(push_r)
+//make_helper_v(push_m)
 /*
-make_helper_v(sub_i2a)
-make_helper_v(sub_i2rm)
 make_helper_v(sub_si2rm)
 make_helper_v(sub_r2rm)
 make_helper_v(sub_rm2r)

@@ -8,8 +8,9 @@ static void do_execute() {
 	printf("ok\n");
 	cpu.esp-=n;
 	MEM_W(cpu.esp,op_src->val);
-	printf("monk\n");
 	print_asm_template1();
 }
-make_instr_helper(rm)
+//make_instr_helper(i)
+make_instr_helper(r)
+//make_instr_helper(m)
 #include "cpu/exec/template-end.h"
