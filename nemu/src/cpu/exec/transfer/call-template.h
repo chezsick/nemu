@@ -8,6 +8,7 @@ static void do_execute() {
 	cpu.esp-=n;
 	printf("ok\n");
 	MEM_W(cpu.esp,op_src->val);
+	assert(0);
 	cpu.eip+=op_src->val;	
 	print_asm_template1();
 }
