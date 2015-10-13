@@ -6,9 +6,8 @@ static void do_execute() {
 	DATA_TYPE result = op_dest->val - op_src->val;
 	OPERAND_W(op_dest, result);
 	DATA_TYPE p=result;
-	int i;
-	p^=p>>16;
-	p^=p>>8;
+	uint32_t i;
+	p=p&0xff;
 	p^=p>>4;
 	p^=p>>2;
 	p^=p>>1;
