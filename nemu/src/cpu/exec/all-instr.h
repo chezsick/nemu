@@ -25,6 +25,7 @@
 #include "logic/test.h"
 
 #include "transfer/call.h"
+#include "transfer/jcc.h"
 
 #include "string/rep.h"
 
