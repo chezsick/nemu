@@ -3,7 +3,7 @@
 #define instr je
 
 static void do_execute() {
-	if (cpu.EFLAGS.ZF==0){
+	if (cpu.EFLAGS.ZF==1){
 		cpu.eip+=(int)op_src->val;
 		if (ops_decoded.is_data_size_16)
 			cpu.eip&=0x0000ffff;
