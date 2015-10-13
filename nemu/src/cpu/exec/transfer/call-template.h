@@ -7,7 +7,6 @@ static void do_execute() {
 	if (ops_decoded.is_data_size_16) n=2;
 	cpu.esp-=n;
 	MEM_W(cpu.esp,op_src->val);
-	printf("ok\n");
 	cpu.eip+=op_src->val;	
 	print_asm_template1();
 }
