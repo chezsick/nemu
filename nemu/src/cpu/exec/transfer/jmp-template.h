@@ -20,7 +20,7 @@ make_helper(concat(jmp_i_,SUFFIX)){
 	if (ops_decoded.is_data_size_16)
                 REG(eip)&=0x0000ffff;
 	print_asm_template1();
-	return 5;
+	return 0;
 }
 make_helper(concat(jmp_rm_,SUFFIX)){
 	if (ops_decoded.is_data_size_16)
@@ -28,6 +28,6 @@ make_helper(concat(jmp_rm_,SUFFIX)){
 	else
 		REG(eip)=op_src->val;
 	print_asm_template1();
-	return 5;	
+	return 0;	
 }
 #include "cpu/exec/template-end.h"
