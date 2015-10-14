@@ -26,6 +26,7 @@
 
 #include "transfer/call.h"
 #include "transfer/jcc.h"
+#include "transfer/jmp.h"
 
 #include "string/rep.h"
 

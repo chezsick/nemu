@@ -8,7 +8,7 @@ static void do_execute() {
 		if (ops_decoded.is_data_size_16)
 			cpu.eip&=0x0000ffff;
 	}
-	print_asm_template2();
+	print_asm_template1();
 }
 
 //make_instr_helper(i)
