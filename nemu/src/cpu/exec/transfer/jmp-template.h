@@ -16,7 +16,7 @@ make_instr_helper(i)
 make_instr_helper(rm)
 */
 make_helper(concat(jmp_i_,SUFFIX)){
-	cpu.eip+=(int)op_src->val;
+	cpu.eip+=op_src->val;
 	if (ops_decoded.is_data_size_16)
                 cpu.eip&=0x0000ffff;
 	print_asm_template1();
