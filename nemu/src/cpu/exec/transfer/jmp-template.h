@@ -16,18 +16,18 @@ make_instr_helper(i)
 make_instr_helper(rm)
 */
 make_helper(concat(jmp_i_,SUFFIX)){
-	REG(eip)+=(int)op_src->val;
+	cpu.eip+=(int)op_src->val;
 	if (ops_decoded.is_data_size_16)
-                REG(eip)&=0x0000ffff;
+                cpu.eip&=0x0000ffff;
 	print_asm_template1();
-	return 0;
+	return 5;
 }
 make_helper(concat(jmp_rm_,SUFFIX)){
 	if (ops_decoded.is_data_size_16)
-		REG(eip)=op_src->val&0x0000ffff;
+		cpu.eip=op_src->val&0x0000ffff;
 	else
-		REG(eip)=op_src->val;
+		cpu.eip=op_src->val;
 	print_asm_template1();
-	return 0;	
+	return 5;	
 }
 #include "cpu/exec/template-end.h"
