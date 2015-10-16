@@ -45,10 +45,10 @@ static struct rule {
 	{"<",L},					//less
 	{"\\&\\&",AND},					//and
 	{"\\|\\|",OR},					//or
-	{"&",'&'},					//bit-wise and
-	{"|",'|'},					//bit-wise or
-	{"^",'^'},					//bit-wise xor
-	{"~",'~'},					//bit-wise not
+	{"\\&",'&'},					//bit-wise and
+	{"\\|",'|'},					//bit-wise or
+	{"\\^",'^'},					//bit-wise xor
+	{"\\~",'~'},					//bit-wise not
 	{"0[xX][0-9a-fA-F]+",HEX},			//hex
 	{"[0-9]+",DEC},					//decimal
 	{"\\(",'('},					//left bracket
