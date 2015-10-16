@@ -26,6 +26,7 @@ make_helper(ret){
 		reg_l(R_ESP)+=4;
 	}
 	print_asm("ret");
+	printf("%d\n",cpu.eip);
 	return 1;
 }
 /*
