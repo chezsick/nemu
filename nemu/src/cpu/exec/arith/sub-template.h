@@ -15,7 +15,7 @@ static void do_execute() {
 		cpu.EFLAGS.SF=1;
 	else 	
 		cpu.EFLAGS.SF=0;
-	if (result>op_src2->val)
+	if (result>op_dest->val)
 		cpu.EFLAGS.CF=1;
 	else   
 		cpu.EFLAGS.CF=0;
