@@ -3,6 +3,7 @@
 
 //make_helper(ret_i_v);
 make_helper(ret);
+make_helper(ret_i_v);
 /*
 make_helper(sub_i2rm_b);
 make_helper(sub_si2rm_b);

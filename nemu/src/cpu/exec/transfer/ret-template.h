@@ -1,13 +1,21 @@
 #include "cpu/exec/template-start.h"
 
-#define instr call
+#define instr ret
 
 static void do_execute() {
-	uint32_t n=4;
-	if (ops_decoded.is_data_size_16) n=2;
-	cpu.esp-=n;
-	MEM_W(cpu.esp,op_src->val);
-	cpu.eip+=op_src->val;	
+	if (ops_decoded.is_data_size_16){
+		cpu.eip&=0xffffff00;
+		cpu.eip|=swaddr_read(reg_l(R_ESP),2);
+		reg_l(R_ESP)+=2;
+		cpu.eip&=0x0000ffff;
+	}
+	else{
+		//printf("%x\n",cpu.eip);
+		cpu.eip=swaddr_read(reg_l(R_ESP),4);
+		reg_l(R_ESP)+=4;
+		//printf("%x\n",cpu.eip);
+	}
+	//print_asm("ret");
 	print_asm_template1();
 }
 
