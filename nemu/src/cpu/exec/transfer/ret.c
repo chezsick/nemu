@@ -24,7 +24,7 @@ make_helper(ret){
 	else{
 		cpu.eip=swaddr_read(reg_l(R_ESP),4);
 		reg_l(R_ESP)+=4;
-		printf("is 32");
+		printf("%x\n",cpu.eip);
 	}
 	print_asm("ret");
 	//printf("%d\n",cpu.eip);
