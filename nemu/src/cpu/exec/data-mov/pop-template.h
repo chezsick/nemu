@@ -4,6 +4,7 @@
 
 static void do_execute() {
 	uint32_t n=4;
+	REG(R_ESP)=REG(R_EBP);
 	if (ops_decoded.is_data_size_16) n=2;
 	op_dest->val=MEM_R(REG(R_ESP));
 	REG(R_ESP)+=n;
