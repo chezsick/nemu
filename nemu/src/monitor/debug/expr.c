@@ -45,6 +45,10 @@ static struct rule {
 	{"<",L},					//less
 	{"\\&\\&",AND},					//and
 	{"\\|\\|",OR},					//or
+	{"&",'&'},					//bit-wise and
+	{"|",'|'},					//bit-wise or
+	{"^",'^'},					//bit-wise xor
+	{"~",'~'},					//bit-wise not
 	{"0[xX][0-9a-fA-F]+",HEX},			//hex
 	{"[0-9]+",DEC},					//decimal
 	{"\\(",'('},					//left bracket
@@ -118,6 +122,8 @@ static bool make_token(char *e) {
 					case '+':case '-':
 					case '*':case '/':
 					case '%':case '!':
+					case '&':case '|':
+					case '^':case '~':
 					case EQ :case AND:
 					case OR :case NEQ:
 					case GE :case LE :
@@ -181,18 +187,22 @@ static struct Operator{
 	int prec;
 	int is_bin;
 }Operators[]={
-	{'+',0,1},
-	{'-',0,1},
-	{'*',1,1},
-	{'/',1,1},
-	{'%',1,1},
-	{'!',2,0},
-	{POINT,2,0},
-	{NEG,2,0},
-	{AND,-2,1},
-	{OR,-3,1},
-	{NEQ,-1,1},
-	{EQ,-1,1}
+	{'+',-4,1},
+	{'-',-4,1},
+	{'*',-3,1},
+	{'/',-3,1},
+	{'%',-3,1},
+	{'!',-2,0},
+	{POINT,-2,0},
+	{NEG,-2,0},
+	{AND,-11,1},
+	{OR,-12,1},
+	{NEQ,-7,1},
+	{EQ,-7,1},
+	{'&',-8,1},
+	{'^',-9,1},
+	{'|',-10,1},
+	{'~',-2,0}
 };
 #define NR_OP (sizeof(Operators) / sizeof(Operators[0]) )
 
@@ -311,6 +321,10 @@ uint32_t eval(int p, int q)
 				 return val1/val2;
 			case '%':return val1%val2;
 			case '!':return !val2;
+			case '&':return val1&val2;
+			case '|':return val1|val2;
+			case '^':return val1^val2;
+			case '~':return ~val2;
 			case POINT:return swaddr_read(val2,4);
 			case NEG:return -val2;
 			case AND:return val1&&val2;
