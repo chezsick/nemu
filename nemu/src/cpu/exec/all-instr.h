@@ -27,6 +27,7 @@
 #include "logic/shrd.h"
 #include "logic/test.h"
 
+#include "transfer/lea.h"
 #include "transfer/call.h"
 #include "transfer/ret.h"
 #include "transfer/jcc.h"
