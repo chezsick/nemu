@@ -11,11 +11,11 @@ static void do_execute() {
 	p^=p>>4;
 	p^=p>>2;
 	p^=p>>1;
-	if (!!(result>>31))
+	if (!!(result>>(8*DATA_BYTE-1)))
 		cpu.EFLAGS.SF=1;
 	else 	
 		cpu.EFLAGS.SF=0;
-	if (result>op_src2->val)
+	if (result>op_src->val)
 		cpu.EFLAGS.CF=1;
 	else   
 		cpu.EFLAGS.CF=0;
@@ -38,7 +38,7 @@ static void do_execute() {
 			cpu.EFLAGS.AF=0;
 
 	}
-	if ((op_src->val>0&&op_dest->val<0&&result>0)||(op_src->val<0&&op_dest->val>0&&result<0))
+	if ((op_src->val>>31!=op_dest->val>>31)&&(result>>31==op_src->val>>31))
 		cpu.EFLAGS.OF=1;
 	else 	
 		cpu.EFLAGS.OF=0;
