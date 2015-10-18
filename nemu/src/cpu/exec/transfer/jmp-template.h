@@ -18,7 +18,7 @@ make_instr_helper(rm)
 make_helper(concat(jmp_i_,SUFFIX)){
 	//cpu.eip+=op_src->val;
 	printf("%x\n",cpu.eip);
-	cpu.eip+=instr_fetch(eip + 1, DATA_BYTE*4);
+	cpu.eip+=instr_fetch(eip + 1, DATA_BYTE);
 	printf("%x\n",cpu.eip);
 	if (ops_decoded.is_data_size_16)
                 cpu.eip&=0x0000ffff;
