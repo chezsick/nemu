@@ -7,7 +7,8 @@ static void do_execute() {
 	}
 	else {
 		printf("before lea: %d,%d",cpu.eax,cpu.edx);
-		op_dest->val=op_src->val;
+		//op_dest->val=op_src->val;
+		OPERAND_W(op_dest,op_src->val);
 		printf("after lea: %d,%d",cpu.eax,cpu.edx);
 	}
 	print_asm_template2();
