@@ -8,9 +8,9 @@ static void do_execute() {
 	}
 	else {
 		//printf("before lea: %x, %x\n",op_src->val,op_src2->val);
-		//op_dest->val=op_src->val;
+		op_dest->val=op_src->val+mem;
 		//DATA_TYPE mem=instr_fetch(eip+1,DATA_BYTE);
-		OPERAND_W(op_dest,mem);
+		//OPERAND_W(op_dest,mem);
 		//printf("after lea: %x, %x\n",cpu.eax,cpu.edx);
 	}
 	print_asm_template2();
