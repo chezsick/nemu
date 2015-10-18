@@ -16,11 +16,12 @@ make_instr_helper(i)
 make_instr_helper(rm)
 */
 make_helper(concat(jmp_i_,SUFFIX)){
-	cpu.eip+=op_src->val;
-	printf("%x\n",op_src->val);
+	//cpu.eip+=op_src->val;
+	cpu.eip+=instr_fetch(eip+1,DATA_BYTE);
+	//printf("%x\n",cpu.eip);
 	if (ops_decoded.is_data_size_16)
                 cpu.eip&=0x0000ffff;
-	print_asm_template1();
+	print_asm("jmp" str(SUFFIX) " 0x%x",cpu.eip);
 	return 2;
 }
 make_helper(concat(jmp_rm_,SUFFIX)){
