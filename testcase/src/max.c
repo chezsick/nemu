@@ -16,8 +16,8 @@ int main() {
 	int i, j, ans_idx = 0;
 	for(i = 0; i < NR_DATA; i ++) {
 		for(j = 0; j < NR_DATA; j ++) {
+			if (j==4) set_bp();
 			nemu_assert(max(test_data[i], test_data[j]) == ans[ans_idx ++]);
-			set_bp();
 		}
 	}
 
