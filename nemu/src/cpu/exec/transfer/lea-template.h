@@ -2,13 +2,13 @@
 #define instr lea
 
 static void do_execute() {
-	DATA_TYPE mem=instr_fetch(cpu.eip + 1,DATA_BYTE);
-	printf("**%d\n",mem);
+	DATA_TYPE mem=instr_fetch(cpu.eip + 1, 4);
+	printf("**%x\n",mem);
 	if (DATA_BYTE==2){
 		OPERAND_W(op_dest,mem&0xffff);
 	}
 	else {
-		//printf("before lea: %x, %x\n",op_src->val,op_src2->val);
+		printf("before lea: %x, %x\n",op_src->val,op_src2->val);
 		op_dest->val=op_src->val+mem;
 		//DATA_TYPE mem=instr_fetch(eip+1,DATA_BYTE);
 		//OPERAND_W(op_dest,mem);
