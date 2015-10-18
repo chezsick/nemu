@@ -2,14 +2,16 @@
 #define instr lea
 
 static void do_execute() {
+	DATA_TYPE mem=instr_fetch(cpu.eip +1,DATA_BYTE);
 	if (DATA_BYTE==2){
-		op_dest->val=op_src->val&0xffff;
+		OPERAND_W(op_dest,mem&0xffff);
 	}
 	else {
-		printf("before lea: %x, %x\n",op_src->val,op_src2->val);
+		//printf("before lea: %x, %x\n",op_src->val,op_src2->val);
 		//op_dest->val=op_src->val;
-		OPERAND_W(op_dest,op_src->val+op_src2->val);
-		printf("after lea: %x, %x\n",cpu.eax,cpu.edx);
+		//DATA_TYPE mem=instr_fetch(eip+1,DATA_BYTE);
+		OPERAND_W(op_dest,mem);
+		//printf("after lea: %x, %x\n",cpu.eax,cpu.edx);
 	}
 	print_asm_template2();
 }
