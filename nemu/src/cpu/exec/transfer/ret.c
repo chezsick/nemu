@@ -22,7 +22,7 @@ make_helper(ret){
 		cpu.eip&=0x0000ffff;
 	}
 	else{
-		printf("%x\n",cpu.eip);
+		//printf("%x\n",cpu.eip);
 		cpu.eip=swaddr_read(reg_l(R_ESP),4);
 		reg_l(R_ESP)+=4;
 		//printf("%x\n",cpu.eip);
