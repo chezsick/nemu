@@ -3,7 +3,7 @@
 
 static void do_execute() {
 	if (DATA_BYTE==2){
-		OPERAND_W(op_dest,op_src->simm&0xffff);
+		OPERAND_W(op_dest,op_src->imm&0xffff);
 	}
 	else {
 		OPERAND_W(op_dest,op_src->simm);
