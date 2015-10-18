@@ -65,7 +65,7 @@ make_instr_helper(i)
 
 #define instr jg
 static void do_execute() {
-	if (cpu.EFLAGS.ZF==0&&cpu.EFLAGS.SF==cpu.EFLAGS.OF){
+	if (cpu.EFLAGS.ZF==0&&(cpu.EFLAGS.SF==cpu.EFLAGS.OF)){
 		cpu.eip+=sign_ext(op_src->val);
 		if (ops_decoded.is_data_size_16)
 			cpu.eip&=0x0000ffff;
@@ -101,7 +101,7 @@ make_instr_helper(i)
 
 #define instr jle
 static void do_execute() {
-	if (cpu.EFLAGS.ZF==1&&cpu.EFLAGS.SF!=cpu.EFLAGS.OF){
+	if (cpu.EFLAGS.ZF==1||(cpu.EFLAGS.SF!=cpu.EFLAGS.OF)){
 		cpu.eip+=sign_ext(op_src->val);
 		if (ops_decoded.is_data_size_16)
 			cpu.eip&=0x0000ffff;
