@@ -70,16 +70,17 @@ static int cmd_info(char *args) {
 		for (i=0;i<4;i++){
 			printf("%s\t\t%p\t0x%x\t%d\n",regsb[i],&cpu.gpr[i]._8[0],cpu.gpr[i]._8[0],cpu.gpr[i]._8[0]);
 			printf("%s\t\t%p\t0x%x\t%d\n",regsb[i+4],&cpu.gpr[i]._8[1],cpu.gpr[i]._8[1],cpu.gpr[i]._8[1]);
+		}
 		printf("EFLAGS:\n");
-		printf("CF:\t%d",cpu.EFLAGS.CF);
-		printf("PF:\t%d",cpu.EFLAGS.PF);
-		printf("AF:\t%d",cpu.EFLAGS.AF);
-		printf("ZF:\t%d",cpu.EFLAGS.ZF);
-		printf("SF:\t%d",cpu.EFLAGS.SF);
-		printf("TF:\t%d",cpu.EFLAGS.TF);
-		printf("IF:\t%d",cpu.EFLAGS.IF);
-		printf("DF:\t%d",cpu.EFLAGS.DF);
-		printf("OF:\t%d",cpu.EFLAGS.OF);
+		printf("CF:\t%d\n",cpu.EFLAGS.CF);
+		printf("PF:\t%d\n",cpu.EFLAGS.PF);
+		printf("AF:\t%d\n",cpu.EFLAGS.AF);
+		printf("ZF:\t%d\n",cpu.EFLAGS.ZF);
+		printf("SF:\t%d\n",cpu.EFLAGS.SF);
+		printf("TF:\t%d\n",cpu.EFLAGS.TF);
+		printf("IF:\t%d\n",cpu.EFLAGS.IF);
+		printf("DF:\t%d\n",cpu.EFLAGS.DF);
+		printf("OF:\t%d\n",cpu.EFLAGS.OF);
 		/*
 		printf("OL:\t%d",cpu.EFLAGS.OL);
 		printf("IP:\t%d",cpu.EFLAGS.IP);
@@ -87,7 +88,6 @@ static int cmd_info(char *args) {
 		printf("RF:\t%d",cpu.EFLAGS.RF);
 		printf("VM:\t%d",cpu.EFLAGS.VM);
 		*/
-		}
 	}else
 	if (strcmp(args,"w")==0){
 		display_wp();
