@@ -17,7 +17,7 @@ int main() {
 			//if (j==1) set_bp(); 
 			//nemu_assert(add(test_data[i], test_data[j]) == ans[ans_idx ++]);
 			int x=ans[ans_idx];
-			if (x!=0) set_bp();
+			if (x==0) set_bp();
 			nemu_assert(add(test_data[i],test_data[j])==add(test_data[i],test_data[j]));
 			//set_bp();
 		}
