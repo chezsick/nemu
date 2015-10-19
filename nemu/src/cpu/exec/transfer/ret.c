@@ -17,8 +17,8 @@ make_helper_v(ret_i)
 make_helper(ret){
 	if (ops_decoded.is_data_size_16){
 		cpu.eip&=0xffffff00;
-		cpu.eip|=swaddr_read(reg_l(R_ESP),2);
-		reg_l(R_ESP)+=2;
+		cpu.eip|=swaddr_read(cpu.esp,1);
+		cpu.esp+=2;
 		cpu.eip&=0x0000ffff;
 	}
 	else{
@@ -29,7 +29,7 @@ make_helper(ret){
 	}
 	print_asm("ret");
 	//printf("%d\n",cpu.eip);
-	return 1;
+	return 5;
 }
 /*
 make_helper_v(sub_i2rm)
