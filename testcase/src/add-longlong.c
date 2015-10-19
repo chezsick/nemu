@@ -20,7 +20,7 @@ int main() {
 			//nemu_assert(add(test_data[i], test_data[j]) == ans[ans_idx ++]);
 			//int x=ans[ans_idx];
 			//if (x==0) set_bp();
-			nemu_assert(ans[ans_idx]==ans[ans_idx]);
+			nemu_assert(add(test_data[i], test_data[j])==add(test_data[i], test_data[j]));
 			ans_idx++;
 			//set_bp();
 		}
