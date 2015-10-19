@@ -16,6 +16,7 @@ static void do_execute() {
 		//printf("%x\n",cpu.eip);
 	}
 	//print_asm("ret");
+	cpu.esp+=op_src->val;
 	print_asm_template1();
 }
 
