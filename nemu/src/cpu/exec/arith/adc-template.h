@@ -12,7 +12,7 @@ static void do_execute() {
 	p^=p>>2;
 	p^=p>>1;	
 	cpu.EFLAGS.SF=MSB(result);
-	if (result<op_src->val)
+	if (result<op_src->val||result<op_dest->val)
 		cpu.EFLAGS.CF=1;
 	else   
 		cpu.EFLAGS.CF=0;
