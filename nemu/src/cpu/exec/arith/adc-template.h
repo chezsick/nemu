@@ -12,7 +12,7 @@ static void do_execute() {
 	p^=p>>2;
 	p^=p>>1;	
 	cpu.EFLAGS.SF=MSB(result);
-	if (MSB(result)!=MSB(op_src->val))
+	if (result<op_src->val)
 		cpu.EFLAGS.CF=1;
 	else   
 		cpu.EFLAGS.CF=0;
@@ -35,7 +35,7 @@ static void do_execute() {
 			cpu.EFLAGS.AF=0;
 
 	}
-	if (((MSB(op_src->val)==MSB(op_dest->val))&&(MSB(op_src->val)!=MSB(result)))/*||((cpu.EFLAGS.CF==1)&&(result==(1<<(DATA_BYTE*8-1))))*/)
+	if (((MSB(op_src->val)==MSB(op_dest->val))&&(MSB(op_src->val)!=MSB(result)))||((cpu.EFLAGS.CF==1)&&(result==(1<<(DATA_BYTE*8-1)))))
 		cpu.EFLAGS.OF=1;
 	else 	
 		cpu.EFLAGS.OF=0;
