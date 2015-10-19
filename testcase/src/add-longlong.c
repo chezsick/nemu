@@ -14,8 +14,7 @@ int main() {
 	int i, j, ans_idx = 0;
 	for(i = 0; i < NR_DATA; i ++) {
 		for(j = 0; j < NR_DATA; j ++) {
-			//if (j==1) set_bp();
-			//set_bp(); 
+			set_bp(); 
 			//nemu_assert(j==(i+j));
 			//nemu_assert(add(test_data[i], test_data[j]) == ans[ans_idx ++]);
 			//int x=ans[ans_idx];
