@@ -7,7 +7,7 @@ static void do_execute() {
 	OPERAND_W(op_dest,result);
 	cpu.EFLAGS.OF=0;
 	cpu.EFLAGS.CF=0;
-	cpu.EFLAGS.SF=(!!(result>>31))?1:0;
+	cpu.EFLAGS.SF=MSB(result);
 	cpu.EFLAGS.ZF=(result==0)?1:0;
 	
 	DATA_TYPE p=result;
