@@ -12,7 +12,7 @@ static void do_execute() {
 	p^=p>>2;
 	p^=p>>1;	
 	cpu.EFLAGS.SF=MSB(result);
-	if (result<op_src->val)
+	if (MSB(result)!=MSB(op_src->val))
 		cpu.EFLAGS.CF=1;
 	else   
 		cpu.EFLAGS.CF=0;
@@ -25,7 +25,7 @@ static void do_execute() {
 	else 
 		cpu.EFLAGS.PF=0;
 	//DATA_TYPE af=0;
-	for (i=0;i<4;i++){
+	for (i=0;i<DATA_BYTE;i++){
 		DATA_TYPE a,b;
 		a=result>>(i*4)&0xf;
 		b=op_dest->val>>(i*4)&0xf;
