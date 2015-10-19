@@ -24,7 +24,7 @@ make_helper(concat(jmp_i_,SUFFIX)){
                 cpu.eip&=0x0000ffff;
 	print_asm("jmp" str(SUFFIX) " 0x%x",cpu.eip);
 	//print_asm_template1();
-	return 2;
+	return 1+DATA_BYTE;
 }
 make_helper(concat(jmp_rm_,SUFFIX)){
 	if (ops_decoded.is_data_size_16)
@@ -32,6 +32,6 @@ make_helper(concat(jmp_rm_,SUFFIX)){
 	else
 		cpu.eip=op_src->val;
 	print_asm_template1();
-	return 2;	
+	return 1+DATA_BYTE;	
 }
 #include "cpu/exec/template-end.h"
