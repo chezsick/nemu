@@ -11,16 +11,17 @@ long long ans[] = {0LL, 0x1LL, 0x2LL, 0x7fffffffffffffffLL, 0x8000000000000000LL
 #define NR_DATA (sizeof(test_data) / sizeof(test_data[0]))
 
 int main() {
-	int i, j;//, ans_idx = 0;
+	int i, j, ans_idx = 0;
 	for(i = 0; i < NR_DATA; i ++) {
 		for(j = 0; j < NR_DATA; j ++) {
 			//if (j==1) set_bp();
-			set_bp(); 
-			nemu_assert(j==(i+j));
+			//set_bp(); 
+			//nemu_assert(j==(i+j));
 			//nemu_assert(add(test_data[i], test_data[j]) == ans[ans_idx ++]);
 			//int x=ans[ans_idx];
 			//if (x==0) set_bp();
-			//nemu_assert(ans[ans_idx]==ans[ans_idx]);
+			nemu_assert(ans[ans_idx]==ans[ans_idx]);
+			ans_idx++;
 			//set_bp();
 		}
 	}
