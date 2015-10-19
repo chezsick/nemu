@@ -15,8 +15,11 @@ int main() {
 	for(i = 0; i < NR_DATA; i ++) {
 		for(j = 0; j < NR_DATA; j ++) {
 			//if (j==1) set_bp(); 
-			nemu_assert(add(test_data[i], test_data[j]) == ans[ans_idx ++]);
-			set_bp();
+			//nemu_assert(add(test_data[i], test_data[j]) == ans[ans_idx ++]);
+			int x=ans[ans_idx];
+			if (x!=0) set_bp();
+			nemu_assert(add(test_data[i],test_data[j])==add(test_data[i],test_data[j]));
+			//set_bp();
 		}
 	}
 
