@@ -4,7 +4,7 @@
 
 static void do_execute() {
 	DATA_TYPE result = op_dest->val + op_src->val+cpu.EFLAGS.CF;
-	printf("%x,\t%x,\t%x\n",op_dest->val,op_src->val,cpu.EFLAGS.CF);
+	//printf("%x,\t%x,\t%x\n",op_dest->val,op_src->val,cpu.EFLAGS.CF);
 	OPERAND_W(op_dest, result);
 	DATA_TYPE p=result;
 	uint32_t i;
