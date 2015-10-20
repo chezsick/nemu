@@ -16,8 +16,8 @@ make_helper_v(ret_i)
 #define instr ret
 make_helper(ret){
 	if (ops_decoded.is_data_size_16){
-		cpu.eip&=0xffffff00;
-		cpu.eip|=swaddr_read(cpu.esp,2);
+		//cpu.eip&=0xffffff00;
+		cpu.eip=swaddr_read(cpu.esp,2);
 		cpu.esp+=2;
 		cpu.eip&=0x0000ffff;
 	}
