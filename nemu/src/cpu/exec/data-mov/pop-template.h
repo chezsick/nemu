@@ -4,8 +4,7 @@
 
 static void do_execute() {
 	printf("old esp:%x\n",cpu.esp);
-	printf("%s:%x\n",op_dest->str,op_dest->addr);
-	OPERAND_W(op_dest,MEM_R(cpu.esp));
+	OPERAND_W(op_src,MEM_R(cpu.esp));
 	//printf("old esp:%x\n",cpu.esp);
 	cpu.esp+=DATA_BYTE;
 	printf("new esp:%x\n",cpu.esp);
