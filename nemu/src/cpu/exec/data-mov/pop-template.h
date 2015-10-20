@@ -4,7 +4,7 @@
 
 static void do_execute() {
 	uint32_t n=4;
-	REG(R_ESP)=REG(R_EBP);
+	//REG(R_ESP)=REG(R_EBP);
 	if (ops_decoded.is_data_size_16) n=2;
 	OPERAND_W(op_dest,MEM_R(cpu.esp));
 	cpu.esp+=n;
