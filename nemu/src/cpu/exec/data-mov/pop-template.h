@@ -3,11 +3,11 @@
 #define instr pop
 
 static void do_execute() {
-	printf("old esp:%x\n",cpu.esp);
+	//printf("old esp:%x\n",cpu.esp);
 	OPERAND_W(op_src,MEM_R(cpu.esp));
 	//printf("old esp:%x\n",cpu.esp);
 	cpu.esp+=DATA_BYTE;
-	printf("new esp:%x\n",cpu.esp);
+	//printf("new esp:%x\n",cpu.esp);
 	print_asm_template1();
 }
 //make_instr_helper(i)
