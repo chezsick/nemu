@@ -5,12 +5,12 @@
 static void do_execute() {
 	if (ops_decoded.is_data_size_16){ //n=2;
 		cpu.esp-=2;
-		MEM_W(cpu.esp,cpu.eip&0xff);
+		MEM_W(cpu.esp,(cpu.eip&0xff)+DATA_BYTE);
 		cpu.eip+=op_src->val&0xffff;	
 	}
 	else {
 		cpu.esp-=4;
-		MEM_W(cpu.esp,cpu.eip);
+		MEM_W(cpu.esp,cpu.eip+DATA_BYTE);
 		cpu.eip+=op_src->val;
 	}
 	print_asm_template1();
