@@ -7,7 +7,9 @@ static void do_execute() {
 	//REG(R_ESP)=REG(R_EBP);
 	if (ops_decoded.is_data_size_16) n=2;
 	OPERAND_W(op_dest,MEM_R(cpu.esp));
+	printf("old esp:%x\n",cpu.esp);
 	cpu.esp+=n;
+	printf("new esp:%x\n",cpu.esp);
 	print_asm_template1();
 }
 //make_instr_helper(i)
