@@ -8,6 +8,7 @@ int is_prime(int n) {
 		if(n % i == 0) {
 			return 0;
 		}
+		if (n==3)set_bp();
 	}
 
 	return 1;
@@ -21,7 +22,7 @@ int gotbaha(int n) {
 			return 1;
 			
 		}
-		if (n==8) set_bp();
+		//if (n==8) set_bp();
 	}
 
 	return 0;
