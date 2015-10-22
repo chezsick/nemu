@@ -27,6 +27,7 @@ int gotbaha(int n) {
 int main() {
 	int n;
 	for(n = 4; n <= 100; n += 2) {
+		set_bp();
 		nemu_assert(gotbaha(n) == 1);
 	}
 
