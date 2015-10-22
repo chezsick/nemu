@@ -15,6 +15,7 @@ int is_prime(int n) {
 
 int gotbaha(int n) {
 	int i;
+	if (n==8) set_bp();
 	for(i = 2; i < n; i ++) {
 		if(is_prime(i) && is_prime(n - i)) {
 			return 1;
@@ -27,7 +28,7 @@ int gotbaha(int n) {
 int main() {
 	int n;
 	for(n = 4; n <= 100; n += 2) {
-		set_bp();
+		//set_bp();
 		nemu_assert(gotbaha(n) == 1);
 	}
 
