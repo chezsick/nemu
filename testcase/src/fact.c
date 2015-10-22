@@ -14,7 +14,7 @@ int main() {
 		//if (i==8) set_bp();
 		f[i] = fact(i);
 		nemu_assert(f[i] == ans[i]);
-		if (i==7) set_bp();
+		if (i==6) set_bp();
 	}
 
 	HIT_GOOD_TRAP;
