@@ -31,7 +31,7 @@ make_helper(concat(decode_si_, SUFFIX)) {
 	 * it to op_src->simm.
 	 */
 	op_src->simm =(int)instr_fetch(eip,DATA_BYTE);
-	printf("%x:%d\n",instr_fetch(eip,DATA_BYTE),op_src->simm);
+	printf("%x:%d(%d)\n",instr_fetch(eip,DATA_BYTE),op_src->simm,DATA_BYTE);
 	//panic("please implement me");
 
 	op_src->val = op_src->simm;
