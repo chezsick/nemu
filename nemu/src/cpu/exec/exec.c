@@ -65,12 +65,12 @@ make_group(group2_cl_v,
 /* 0xf6 */
 make_group(group3_b,
 	test_i2rm_b, inv, inv, inv, 
-	inv, imul_rm2a_b, inv, inv)
+	inv, imul_rm2a_b, inv, idiv_rm_b)
 
 /* 0xf7 */
 make_group(group3_v,
 	test_i2rm_v, inv, inv, inv, 
-	inv, imul_rm2a_v, inv, inv)
+	inv, imul_rm2a_v, inv, idiv_rm_v)
 
 /* 0xfe */
 make_group(group4,
@@ -132,7 +132,7 @@ helper_fun opcode_table [256] = {
 /* 0x8c */	inv, lea, inv, pop_rm_v,
 /* 0x90 */	inv, inv, inv, inv,
 /* 0x94 */	inv, inv, inv, inv,
-/* 0x98 */	inv, inv, inv, inv,
+/* 0x98 */	inv, cwtlcltd, inv, inv,
 /* 0x9c */	inv, inv, inv, inv,
 /* 0xa0 */	mov_moffs2a_b, mov_moffs2a_v, mov_a2moffs_b, mov_a2moffs_v,
 /* 0xa4 */	inv, inv, inv, inv,
