@@ -2,12 +2,13 @@
 
 int is_prime(int n) {
 	if(n < 2) return 0;
-
+	
 	int i;
 	for(i = 2; i < n; i ++) {
 		if(n % i == 0) {
 			return 0;
 		}
+		if (n==8)set_bp();
 	}
 
 	return 1;
