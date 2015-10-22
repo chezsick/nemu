@@ -1,8 +1,8 @@
 #include "cpu/exec/template-start.h"
-
+/*
 #define sign_ext(name)  \
 	 (DATA_BYTE==4?(int)name:(DATA_BYTE==2?(short int)name:(signed char)name)) 
-
+*/
 #define instr je
 static void do_execute() {
 	if (cpu.EFLAGS.ZF==1){
