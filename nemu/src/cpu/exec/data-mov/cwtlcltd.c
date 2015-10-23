@@ -10,6 +10,7 @@ make_helper(cwtlcltd){
 	}
 	else{
 		reg_l(R_EDX)=(!!(reg_l(R_EAX)>>31))?0xffffffff:0;
+		printf("fuck u!\n");
 		print_asm("cltd");	
 	}
 	return 1;
