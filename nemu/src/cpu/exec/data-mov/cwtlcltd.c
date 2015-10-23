@@ -9,8 +9,11 @@ make_helper(cwtlcltd){
 		print_asm("cwtl");
 	}
 	else{
-		reg_l(R_EDX)=(!!(reg_l(R_EAX)>>31))?0xffffffff:0;
-		printf("fuck u!\n");
+		if (!!(reg_l(R_EAX)>>31))
+			reg_l(R_EDX)=0xffffffff;
+		else 
+			reg_l(R_EDX)=0;
+		printf("%x\n",reg_l(R_EDX));
 		print_asm("cltd");	
 	}
 	return 1;
