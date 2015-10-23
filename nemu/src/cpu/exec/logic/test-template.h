@@ -3,7 +3,7 @@
 #define instr test
 
 static void do_execute() {
-	DATA_TYPE result =op_src->val&op_src2->val;
+	DATA_TYPE result =op_src->val&op_dest->val;
 	OPERAND_W(op_dest,result);
 	cpu.EFLAGS.OF=0;
 	cpu.EFLAGS.CF=0;
