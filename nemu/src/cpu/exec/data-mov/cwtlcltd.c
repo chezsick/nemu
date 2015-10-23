@@ -13,7 +13,7 @@ make_helper(cwtlcltd){
 			reg_l(R_EDX)=0xffffffff;
 		else 
 			reg_l(R_EDX)=0;
-		printf("%x\n",reg_l(R_EDX));
+		printf("%x\n",reg_l(R_EAX));
 		print_asm("cltd");	
 	}
 	return 1;
