@@ -4,10 +4,10 @@
 
 static void do_execute() {
 	if (DATA_BYTE==2){
-		REG(R_DX)=(REG(R_AX)<0)?0xffff:0;
+		REG(R_DX)=((short)REG(R_AX)<0)?0xffff:0;
 	}
 	else{
-		REG(R_EDX)=(REG(R_EAX)<0)?0xffffffff:0;
+		REG(R_EDX)=((int)REG(R_EAX)<0)?0xffffffff:0;
 	}
 	
 	print_asm_template1();
