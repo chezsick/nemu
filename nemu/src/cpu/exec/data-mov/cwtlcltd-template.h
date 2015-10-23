@@ -9,7 +9,7 @@ static void do_execute() {
 	else{
 		REG(R_EDX)=(MSB(REG(R_EAX))==1)?0xffffffff:0;
 	}
-	
+;jfd	
 	print_asm_template1();
 }
 make_instr_helper(r)
