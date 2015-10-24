@@ -109,7 +109,7 @@ static int cmd_x(char *args)
 	int addr_int;
 	sscanf(addr,"%x",&addr_int);
 	while (n>0) {
-		printf("%d\n",swaddr_read(addr_int,4));
+		printf("0x%x\n",swaddr_read(addr_int,4));
 		addr_int+=4;
 		//printf("****%d\n",addr_int);
 		n--;
