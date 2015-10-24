@@ -1,17 +1,12 @@
 #include "cpu/exec/template-start.h"
 
-#define instr sub
+#define instr sbb
 
 static void do_execute() {
-	DATA_TYPE result;
-	if (op_src->size==1&&(op_dest->size==2||op_dest->size==4)){
-		result = op_dest->val - (DATA_TYPE_S)(op_src->val);
-	}
-	else{
-		result = op_dest->val-op_src->val;
-	}
+	panic("TODO\n");
+	DATA_TYPE_S result = op_dest->val - (DATA_TYPE_S)(op_src->val);
 	OPERAND_W(op_dest, result);
-	DATA_TYPE p=result;
+	DATA_TYPE_S p=result;
 	uint32_t i;
 	p=p&0xff;
 	p^=p>>4;
