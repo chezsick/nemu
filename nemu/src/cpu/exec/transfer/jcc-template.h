@@ -6,7 +6,9 @@
 #define instr je
 static void do_execute() {
 	if (cpu.EFLAGS.ZF==1){
+		printf("eip0:%x+%d\n",cpu.eip,sign_ext(op_src->val));
 		cpu.eip+=sign_ext(op_src->val);
+		printf("=eip1:%x\n",cpu.eip);
 		if (ops_decoded.is_data_size_16)
 			cpu.eip&=0x0000ffff;
 	}
