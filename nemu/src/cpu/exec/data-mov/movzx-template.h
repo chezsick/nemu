@@ -7,7 +7,7 @@ static void do_execute() {
 	//int shift=op_dest->type-op_src->type;
 	//result=(op_src<<shift)>>shift;
 	OPERAND_W(op_dest, result);
-	printf("%x movz %c(%d)\n",op_src->val,op_dest->val,result);
+	printf("%x movz %c(%d)\n",op_src->val,op_dest->val,op_dest->val);
 	print_asm_template2();
 }
 make_instr_helper(rm2r)
