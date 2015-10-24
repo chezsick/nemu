@@ -3,7 +3,7 @@
 #define instr sub
 
 static void do_execute() {
-	DATA_TYPE result = op_dest->val - (int)op_src->val;
+	DATA_TYPE result = op_dest->val - sign_ext(op_src->val);
 	OPERAND_W(op_dest, result);
 	DATA_TYPE p=result;
 	uint32_t i;
