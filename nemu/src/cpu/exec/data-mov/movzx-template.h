@@ -6,10 +6,10 @@ static void do_execute() {
 	DATA_TYPE result=0xff&op_src->val;
 	//int shift=op_dest->type-op_src->type;
 	//result=(op_src<<shift)>>shift;
-	printf("dest:%x\n",op_dest->val);
-	printf("res=%x\n",result);
+	//printf("dest:%x\n",op_dest->val);
+	//printf("res=%x\n",result);
 	OPERAND_W(op_dest, result);
-	printf("??%x\n",op_dest->val);
+	//printf("??%x\n",op_dest->val);
 	//printf("%x movz %c(%d)\n",op_src->reg,op_dest->reg,op_dest->reg);
 	print_asm_template2();
 }
