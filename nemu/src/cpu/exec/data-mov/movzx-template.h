@@ -10,7 +10,7 @@ static void do_execute() {
 	//printf("res=%x\n",result);
 	OPERAND_W(op_dest, result);
 	//printf("??%x\n",op_dest->val);
-	printf("***%c\n",result);
+	printf("addr:%x***%c\n",op_src->addr,result);
 	print_asm_template2();
 }
 make_instr_helper(rm2r)
