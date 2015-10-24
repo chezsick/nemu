@@ -5,6 +5,8 @@
 static void do_execute() {
 	//printf("in mov: %x, %x\n",op_dest->val,op_src->val);
 	OPERAND_W(op_dest, op_src->val);
+	if (DATA_BYTE==1) 
+		printf("%x to %x(%c)\n",op_src->val,op_dest->val,op_src->val);
 	print_asm_template2();
 }
 
