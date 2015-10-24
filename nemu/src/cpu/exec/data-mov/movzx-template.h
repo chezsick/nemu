@@ -8,7 +8,7 @@ static void do_execute() {
 	//result=(op_src<<shift)>>shift;
 	printf("res=%d\n",result);
 	OPERAND_W(op_dest, result);
-	printf("%d",op_dest->val);
+	printf("??%d",op_dest->val);
 	printf("%x movz %c(%d)\n",op_src->val,op_dest->val,op_dest->val);
 	print_asm_template2();
 }
