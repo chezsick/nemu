@@ -8,8 +8,8 @@ static void do_execute() {
 	//result=(op_src<<shift)>>shift;
 	printf("res=%x\n",result);
 	OPERAND_W(op_dest, result);
-	printf("??%x\n",op_dest->reg);
-	printf("%x movz %c(%d)\n",op_src->reg,op_dest->reg,op_dest->reg);
+	printf("??%x\n",op_dest->val);
+	//printf("%x movz %c(%d)\n",op_src->reg,op_dest->reg,op_dest->reg);
 	print_asm_template2();
 }
 make_instr_helper(rm2r)
