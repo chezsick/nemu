@@ -32,6 +32,6 @@ make_helper(concat(jmp_rm_,SUFFIX)){
 	else
 		cpu.eip=op_src->val;
 	print_asm_template1();
-	return 1+DATA_BYTE;	
+	return 2;	
 }
 #include "cpu/exec/template-end.h"
