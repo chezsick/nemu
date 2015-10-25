@@ -32,6 +32,7 @@ make_helper(concat(jmp_rm_,SUFFIX)){
 	else
 		cpu.eip=op_src->val;
 	print_asm_template1();
+	printf("in jmp\n");
 	return 0;	
 }
 #include "cpu/exec/template-end.h"

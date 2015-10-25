@@ -2,7 +2,7 @@
 
 //#define MSB(n) ((DATA_TYPE)(n) >> ((DATA_BYTE << 3) -1))
 /* for instruction encoding overloading */
-#define instr leave
+#define instr cwtlcltd
 make_helper(cwtlcltd){
 	if (ops_decoded.is_data_size_16){
 		reg_w(R_DX)=(!!(reg_w(R_AX)>>15))?0xffff:0;

@@ -26,7 +26,13 @@ make_helper(rep) {
 				);
 
 			/* TODO: Jump out of the while loop if necessary. */
-
+			/*if (	op_decoded.opcode ==	//cmpb
+				op_decoded.opcode ==	//cmpw
+				op_decoded.opcode ==    //
+				op_decoded.opcode ==    //
+				op_decoded.opcode ==    //
+				);
+			*/
 		}
 		len = 1;
 	}
