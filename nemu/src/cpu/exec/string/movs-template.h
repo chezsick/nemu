@@ -12,7 +12,8 @@ static void do_execute() {
 	if (DATA_BYTE==1){
 		MEM_W(des_index,MEM_R(src_index));
 		if (cpu.EFLAGS.DF==0) incdec=1;else incdec=-1;
-	}else {
+	}
+	else {
 		if (DATA_BYTE==2){
 			MEM_W(des_index,MEM_R(src_index));			
 			if (cpu.EFLAGS.DF==0) incdec=2;else incdec=-2;
