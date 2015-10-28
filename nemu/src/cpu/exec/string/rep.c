@@ -1,5 +1,5 @@
 #include "cpu/exec/helper.h"
-
+#define DEBUG
 make_helper(exec);
 
 make_helper(rep) {

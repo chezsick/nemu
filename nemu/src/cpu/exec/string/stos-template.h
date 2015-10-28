@@ -3,6 +3,7 @@
 #define instr stos
 
 static void do_execute() {
+	printf("eip=%x\n",cpu.eip);
 	uint32_t destreg=cpu.edi;
 	if (DATA_BYTE==1){
 		MEM_W(destreg,REG(R_AL));
@@ -21,6 +22,7 @@ static void do_execute() {
 	cpu.edi=destreg;
 	//print_asm_template2();
 	print_asm("stos %%esi,%%edi\n");
+	//return 1;
 }
 
 make_instr_helper(r2rm)
