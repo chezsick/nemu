@@ -1,5 +1,5 @@
 #include "cpu/exec/template-start.h"
-
+/*
 #define instr stos
 
 static void do_execute() {
@@ -26,6 +26,6 @@ static void do_execute() {
 }
 
 make_instr_helper(r2rm)
-
+*/
 
 #include "cpu/exec/template-end.h"
