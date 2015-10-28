@@ -33,6 +33,7 @@ make_helper(rep) {
 				op_decoded.opcode ==    //
 				);
 			*/
+			printf("%d\n",count);
 		}
 		len = 1;
 	}
