@@ -3,6 +3,7 @@
 make_helper(exec);
 
 make_helper(rep) {
+	printf("here\n");
 	int len;
 	int count = 0;
 	if(instr_fetch(eip + 1, 1) == 0xc3) {
