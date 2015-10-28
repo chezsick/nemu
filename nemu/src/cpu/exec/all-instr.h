@@ -38,7 +38,7 @@
 #include "transfer/jmp.h"
 
 #include "string/rep.h"
-
+#include "string/movs.h"
 #include "misc/misc.h"
 
 #include "special/special.h"
