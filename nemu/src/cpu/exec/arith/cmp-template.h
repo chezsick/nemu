@@ -5,7 +5,7 @@
 static void do_execute() {
 	DATA_TYPE_S result = op_dest->val - (DATA_TYPE_S)op_src->val;
 	//OPERAND_W(op_dest, result);
-	printf("%d-%d=%d\n",op_dest->val,op_src->val,result);
+	//printf("%d-%d=%d\n",op_dest->val,op_src->val,result);
 	DATA_TYPE p=result;
 	uint32_t i;
 	p=p&0xff;
