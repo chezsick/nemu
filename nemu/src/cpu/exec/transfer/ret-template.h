@@ -4,6 +4,7 @@
 
 static void do_execute() {
 	if (DATA_BYTE==2){
+		printf("DATA_BYTE=2\n");
 		cpu.eip&=0xffffff00;
 		cpu.eip|=swaddr_read(reg_l(R_ESP),2);
 		reg_l(R_ESP)+=2;
