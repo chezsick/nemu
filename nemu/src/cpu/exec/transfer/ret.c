@@ -30,7 +30,8 @@ make_helper(ret){
 		//printf("%x\n",cpu.eip);
 	}
 	if (ops_decoded.opcode==0xc2){
-		uint32_t imm16=swaddr_read(cpu.eip+1,2);
+		//printf("%x\n",cpu.eip);
+		uint32_t imm16=instr_fetch(cpu.eip+1,2);
 		cpu.esp+=imm16;
 		cpu.eip+=2;
 		print_asm("ret $0x%x", imm16);
