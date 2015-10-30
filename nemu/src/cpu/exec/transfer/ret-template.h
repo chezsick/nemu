@@ -17,6 +17,7 @@ static void do_execute() {
 		//printf("%x\n",cpu.eip);
 	}
 	//print_asm("ret");
+	printf("datasize:%d\n",DATA_BYTE);
 	cpu.esp+=op_src->val;
 	print_asm_template1();
 }
