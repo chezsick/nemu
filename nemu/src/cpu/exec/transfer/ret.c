@@ -1,5 +1,5 @@
 #include "cpu/exec/helper.h"
-
+/*
 #define DATA_BYTE 1
 #include "ret-template.h"
 #undef DATA_BYTE
@@ -11,9 +11,11 @@
 #define DATA_BYTE 4
 #include "ret-template.h"
 #undef DATA_BYTE
-make_helper_v(ret_i)
+make_helper_v(ret_i_w)
+*/
 /* for instruction encoding overloading */
-#define instr ret
+
+//#define instr ret
 make_helper(ret){
 	if (ops_decoded.is_data_size_16){
 		//cpu.eip&=0xffffff00;
@@ -27,7 +29,16 @@ make_helper(ret){
 		cpu.esp+=4;
 		//printf("%x\n",cpu.eip);
 	}
-	print_asm("ret");
+	if (ops_decoded.opcode==0xc2){
+		uint32_t imm16=swaddr_read(cpu.eip,2);
+		cpu.esp+=imm16;
+		cpu.eip+=2;
+		print_asm("ret $0x%x", imm16);
+		return 3;
+	}
+	else{
+		print_asm("ret");
+	}
 	//printf("%d\n",cpu.eip);
 	return 1;
 }

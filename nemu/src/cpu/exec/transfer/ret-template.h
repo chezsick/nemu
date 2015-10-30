@@ -2,7 +2,7 @@
 
 #define instr ret
 
-static void do_execute() {
+make_helper(ret_i_w) {
 	if (ops_decoded.is_data_size_16){
 		printf("DATA_BYTE=2\n");
 		cpu.eip&=0xffffff00;
@@ -17,10 +17,13 @@ static void do_execute() {
 		//printf("%x\n",cpu.eip);
 	}
 	//print_asm("ret");
-	printf("datasize:%d\n",DATA_BYTE);
+	//printf("datasize:%d\n",DATA_BYTE);
 	cpu.esp+=op_src->val;
-	print_asm_template1();
+	//print_asm_template1();
+	print_asm("retw $0x%x", op_src->val);
+	return 3;
 }
 
-make_instr_helper(i)
+//make_instr_helper(i)
+
 #include "cpu/exec/template-end.h"
