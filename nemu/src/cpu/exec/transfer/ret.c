@@ -36,7 +36,7 @@ make_helper(ret){
 		cpu.esp+=imm16;
 		//cpu.eip+=2;
 		print_asm("ret $0x%x", imm16);
-		return 3;
+		//return 3;
 	}
 	else{
 		print_asm("ret");
