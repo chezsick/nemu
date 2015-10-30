@@ -12,7 +12,7 @@ make_helper(rep) {
 	}
 	else {
 		while(cpu.ecx) {
-			printf("in rep while\n");
+			//printf("in rep while\n");
 			exec(eip + 1);
 			count ++;
 			cpu.ecx --;
@@ -34,7 +34,7 @@ make_helper(rep) {
 				op_decoded.opcode ==    //
 				);
 			*/
-			printf("%d\n",count);
+			//printf("%d\n",count);
 		}
 		len = 1;
 	}
