@@ -6,40 +6,31 @@ static void do_execute() {
 	DATA_TYPE_S result = op_dest->val - (DATA_TYPE_S)op_src->val;
 	//OPERAND_W(op_dest, result);
 	//printf("%d-%d=%d\n",op_dest->val,op_src->val,result);
+
+	cpu.EFLAGS.SF=MSB(result);
+	cpu.EFLAGS.CF=(result>op_dest->val)?1:0;
+	cpu.EFLAGS.ZF=(result==0)?1:0;
+
 	DATA_TYPE p=result;
-	uint32_t i;
 	p=p&0xff;
 	p^=p>>4;
 	p^=p>>2;
 	p^=p>>1;
-	cpu.EFLAGS.SF=MSB(result);
-	if (result>op_dest->val)
-		cpu.EFLAGS.CF=1;
-	else   
-		cpu.EFLAGS.CF=0;
-	if (result==0) 
-		cpu.EFLAGS.ZF=1;
-	else 
-		cpu.EFLAGS.ZF=0;
-	if (p==0)
-		cpu.EFLAGS.PF=1;
-	else 
-		cpu.EFLAGS.PF=0;
-	//DATA_TYPE af=0;
+	cpu.EFLAGS.PF=(p==0)?1:0;
+
+	uint32_t i;
 	for (i=0;i<DATA_BYTE;i++){
 		DATA_TYPE a,b;
 		a=result>>(i*4)&0xf;
 		b=op_dest->val>>(i*4)&0xf;
-		if (a>b) 
-			cpu.EFLAGS.AF=1;
-		else 
-			cpu.EFLAGS.AF=0;
+		cpu.EFLAGS.AF=(a>b)?1:0;
 
 	}
 	if (MSB(op_src->val)!=MSB(op_dest->val)&&MSB(result)==MSB(op_src->val))
 		cpu.EFLAGS.OF=1;
 	else 	
 		cpu.EFLAGS.OF=0;
+
 	print_asm_template2();
 }
 
