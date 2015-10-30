@@ -3,7 +3,7 @@
 #define instr ret
 
 static void do_execute() {
-	if (DATA_BYTE==2){
+	if (ops_decoded.is_data_size_16){
 		printf("DATA_BYTE=2\n");
 		cpu.eip&=0xffffff00;
 		cpu.eip|=swaddr_read(reg_l(R_ESP),2);
