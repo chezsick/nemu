@@ -4,7 +4,7 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 	//nemu_assert(0);
 	//return 0;
 	
-	int result=(a>>16)*b;
+	unsigned int result=(a>>16)*b;
 	result+=((a&0xffff)*b)>>16;
 	return (FLOAT)result;
 	//return (a*b)>>16;
@@ -28,7 +28,7 @@ FLOAT f2F(float a) {
 	//return 0;
 	void *f;
 	f=&a;
-	int x=*(int *)f;
+	unsigned int x=*(unsigned int *)f;
 	int sign=(x>>31)&1;
 	int expo=(x>>23)&0xff;
 	expo=(expo<<24)>>24;
@@ -53,7 +53,7 @@ FLOAT Fabs(FLOAT a) {
 	//nemu_assert(0);
 	//return 0;
 	void *f=&a;
-	int x=*(int*)f;
+	unsigned int x=*(unsigned int*)f;
 	if (!!(x>>31)) x=~x+1;
 	return x;
 
