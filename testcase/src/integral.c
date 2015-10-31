@@ -20,7 +20,7 @@ FLOAT computeT(int n, FLOAT a, FLOAT b, FLOAT (*fun)(FLOAT)) {
 	FLOAT m=f2F(0.2);
 	nemu_assert(m==0x3333);
 	m=fun(m);
-	nemu_assert(m==0x4000);
+	nemu_assert(m==0x8000);
 	FLOAT ans=0.5;
 	FLOAT abs=Fabs(m-ans);
 	nemu_assert(abs<f2F(1e-4));
