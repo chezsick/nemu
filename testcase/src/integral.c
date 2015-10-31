@@ -7,7 +7,7 @@ FLOAT f(FLOAT x) {
 }
 
 FLOAT computeT(int n, FLOAT a, FLOAT b, FLOAT (*fun)(FLOAT)) {
-	/*int k;
+	int k;
 	FLOAT s,h;
 	h = F_div_int((b - a), n);
 	s = F_div_int(fun(a) + fun(b), 2 );
@@ -16,14 +16,14 @@ FLOAT computeT(int n, FLOAT a, FLOAT b, FLOAT (*fun)(FLOAT)) {
 	}
 	s = F_mul_F(s, h);
 	return s;
-	*/
+	/*
 	
 	FLOAT m=f2F(-0.2);
 	m=fun(m);
 	FLOAT ans=f2F(0.5);
 	ans=Fabs(ans-m);
 	nemu_assert(ans<f2F(1e-4));
-	return 0;
+	return 0;*/
 }
 
 int main() { 
