@@ -3,8 +3,8 @@
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
 	//nemu_assert(0);
 	//return 0;
-	long long  result=a*b;
-	result>>=16;
+	unsigned  result=(a>>16)*b;
+	result+=((a&0xffff)*b)>>16;
 	return (FLOAT)result;
 }
 
