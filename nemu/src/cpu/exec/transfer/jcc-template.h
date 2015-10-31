@@ -123,6 +123,17 @@ static void do_execute(){
 make_instr_helper(i)
 #undef instr
 
+#define instr jns
+static void do_execute(){
+	if (cpu.EFLAGS.SF==0){
+		cpu.eip+=sign_ext(op_src->val);
+		if (ops_decoded.is_data_size_16)
+			cpu.eip&=0x0000ffff;
+	}
+	print_asm_template1();
+}
+make_instr_helper(i)
+#undef instr
 //make_instr_helper(i)
 //make_instr_helper(m)
 #include "cpu/exec/template-end.h"
