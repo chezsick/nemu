@@ -8,6 +8,7 @@ static void do_execute() {
 	cpu.esp-=n;
 	printf("push:%x(%d)\n",op_src->val,DATA_BYTE);
 	MEM_W(cpu.esp,op_src->val);
+	printf("+%x\n",MEM_R(cpu.esp));
 	print_asm_template1();
 }
 make_instr_helper(i)
