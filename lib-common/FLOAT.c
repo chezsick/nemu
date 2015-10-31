@@ -24,15 +24,25 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 FLOAT f2F(float a) {
 	//nemu_assert(0);
 	//return 0;
-	/*
-	int sign=(a>>31)&1;
-	signed char expo=(a>>23)&0xff;
-	int mant=(a<<9)>>9;
+	void *f;
+	f=&a;
+	unsigned int x=*(unsigned int *)f;
+	int sign=(x>>31)&1;
+	int expo=(x>>23)&0xff;
+	expo=(expo<<24)>>24;
+	int mant=(x<<9)>>9;
+	expo=expo-127-7;
+
 	FLOAT result;
+	result=(1<<23)|mant;
 	if (expo>0){
-		result=0;
-	}*/
-	return (FLOAT)(a*0x10000);
+		result<<=expo;
+	}
+	else{
+		result>>=-expo;
+	}
+	if (sign) result=-result;
+	return result;
 
 }
 
@@ -40,8 +50,10 @@ FLOAT Fabs(FLOAT a) {
 
 	//nemu_assert(0);
 	//return 0;
-	if (!!(a>>31)) a=~a+1;
-	return a;
+	void *f=&a;
+	unsigned int x=*(unsigned int*)f;
+	if (!!(x>>31)) x=(~x)+1;
+	return x;
 
 }
 
