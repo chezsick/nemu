@@ -17,10 +17,10 @@ FLOAT computeT(int n, FLOAT a, FLOAT b, FLOAT (*fun)(FLOAT)) {
 	s = F_mul_F(s, h);
 	return s;
 	*/
-	FLOAT m=f2F(5);
+	FLOAT m=f2F(2);
 	FLOAT m2=f2F(1);
 	m=F_div_F(m2,m);
-	nemu_assert(m==0x3333);
+	nemu_assert(m==32768);
 	FLOAT ans=0.5;
 	FLOAT abs=Fabs(m-ans);
 	nemu_assert(abs<f2F(1e-4));
