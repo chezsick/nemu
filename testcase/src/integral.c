@@ -17,8 +17,8 @@ FLOAT computeT(int n, FLOAT a, FLOAT b, FLOAT (*fun)(FLOAT)) {
 	s = F_mul_F(s, h);
 	return s;
 	*/
-	FLOAT m=f2F(0.2);
-	nemu_assert(m==0x3333);
+	FLOAT m=f2F(1.0);
+	nemu_assert(m==0x10000);
 	m=fun(m);
 	nemu_assert(m==0x8000);
 	FLOAT ans=0.5;
