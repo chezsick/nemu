@@ -53,7 +53,7 @@ FLOAT Fabs(FLOAT a) {
 	//nemu_assert(0);
 	//return 0;
 	void *f=&a;
-	unsigned int x=*(unsigned int*)f;
+	int x=*(int*)f;
 	if (!!(x>>31)) x=~x+1;
 	return x;
 
