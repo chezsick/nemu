@@ -10,7 +10,7 @@ static void do_execute() {
 			cpu.eip+=op_src->val&0xffff;	
 		}
 		if (ops_decoded.opcode==0xff){
-			cpu.eip=(op_src->val)&0xffff;
+			cpu.eip=((op_src->val)&0xffff)-2;
 		}
 	}
 	else {
@@ -20,7 +20,7 @@ static void do_execute() {
 			cpu.eip+=op_src->val;
 		}
 		if (ops_decoded.opcode==0xff){
-			cpu.eip=(op_src->val);
+			cpu.eip=(op_src->val)-2;
 		}
 	}
 	print_asm_template1();
