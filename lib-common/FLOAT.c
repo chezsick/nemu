@@ -17,8 +17,8 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 	FLOAT d=(a%b);
 	int i;
 	for(i=0;i<16;i++){
-		c+=(2*d/b)<<(16-i);
-		d=2*d%b;
+		c+=((d<<1)/b)<<(15-i);
+		d=(d<<1)%b;
 	}
 	return c;
 }
