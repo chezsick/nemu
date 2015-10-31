@@ -3,6 +3,7 @@
 #define instr movzb
 
 static void do_execute() {
+	printf("ok\n");
 	DATA_TYPE result=0xff&op_src->val;
 	//int shift=op_dest->type-op_src->type;
 	//result=(op_src<<shift)>>shift;
