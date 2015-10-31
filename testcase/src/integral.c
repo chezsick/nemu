@@ -21,7 +21,7 @@ FLOAT computeT(int n, FLOAT a, FLOAT b, FLOAT (*fun)(FLOAT)) {
 	FLOAT m1=f2F(0.5);
 	//FLOAT m2=f2F();
 	m1=fun(m1);
-	FLOAT ans=f2F(0.16);
+	FLOAT ans=f2F(0.1379);
 	ans=Fabs(ans-m1);
 	nemu_assert(ans<f2F(1e-4));
 	return 0;
