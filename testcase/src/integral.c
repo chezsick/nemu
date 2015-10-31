@@ -18,7 +18,7 @@ FLOAT computeT(int n, FLOAT a, FLOAT b, FLOAT (*fun)(FLOAT)) {
 	return s;
 	*/
 	
-	FLOAT m=f2F(0.2);
+	FLOAT m=f2F(-0.2);
 	m=fun(m);
 	FLOAT ans=f2F(0.5);
 	ans=Fabs(ans-m);
