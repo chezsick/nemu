@@ -52,7 +52,7 @@ FLOAT Fabs(FLOAT a) {
 	//return 0;
 	void *f=&a;
 	unsigned int x=*(unsigned int*)f;
-	if (!!(x>>31)) x=(~x)+1;
+	if (!!(x>>31)) x=~x+1;
 	return x;
 
 }

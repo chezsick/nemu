@@ -64,12 +64,12 @@ make_group(group2_cl_v,
 
 /* 0xf6 */
 make_group(group3_b,
-	test_i2rm_b, inv, not_rm_b, inv, 
+	test_i2rm_b, inv, not_rm_b, neg_rm_b, 
 	mul_rm_b, imul_rm2a_b, inv, idiv_rm_b)
 
 /* 0xf7 */
 make_group(group3_v,
-	test_i2rm_v, inv, not_rm_v, inv, 
+	test_i2rm_v, inv, not_rm_v, neg_rm_v, 
 	mul_rm_v, imul_rm2a_v, inv, idiv_rm_v)
 
 /* 0xfe */
@@ -198,9 +198,9 @@ helper_fun _2byte_opcode_table [256] = {
 /* 0x88 */	inv, inv, inv, inv, 
 /* 0x8c */	jl_i_v, jg_i_v, jle_i_v, jge_i_v, 
 /* 0x90 */	inv, inv, setb_rm_v, setae_rm_v,
-/* 0x94 */	inv, setne_rm_v, inv, seta_rm_v,
+/* 0x94 */	sete_rm_v, setne_rm_v, setbe_rm_v, seta_rm_v,
 /* 0x98 */	inv, inv, inv, inv, 
-/* 0x9c */	inv, inv, inv, inv, 
+/* 0x9c */	setl_rm_v, setge_rm_v, setle_rm_v, setg_rm_v, 
 /* 0xa0 */	inv, inv, inv, inv, 
 /* 0xa4 */	inv, inv, inv, inv,
 /* 0xa8 */	inv, inv, inv, inv,
