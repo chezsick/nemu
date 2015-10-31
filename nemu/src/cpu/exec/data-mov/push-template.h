@@ -6,7 +6,7 @@ static void do_execute() {
 	uint32_t n=4;
 	if (ops_decoded.is_data_size_16) n=2; 
 	cpu.esp-=n;
-	printf("push:%x\n(%d)",op_src->val,DATA_BYTE);
+	printf("push:%x(%d)\n",op_src->val,DATA_BYTE);
 	MEM_W(cpu.esp,op_src->val);
 	print_asm_template1();
 }
