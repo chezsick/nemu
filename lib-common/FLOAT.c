@@ -22,8 +22,8 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT f2F(float a) {
-	nemu_assert(0);
-	return 0;
+	//nemu_assert(0);
+	//return 0;
 	/*
 	int sign=(a>>31)&1;
 	signed char expo=(a>>23)&0xff;
@@ -31,13 +31,17 @@ FLOAT f2F(float a) {
 	FLOAT result;
 	if (expo>0){
 		result=0;
-	}
-	*/
+	}*/
+	return (FLOAT)(a*0x10000);
+
 }
 
 FLOAT Fabs(FLOAT a) {
-	nemu_assert(0);
-	return 0;
+
+	//nemu_assert(0);
+	//return 0;
+	if (!!(a>>31)) a=~a+1;
+	return a;
 
 }
 
