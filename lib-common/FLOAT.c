@@ -8,7 +8,7 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 	result+=((a&0xffff)*b)>>16;
 	return (FLOAT)result;
 	*/
-	return (a>>5)*(b>>5)>>6;
+	return (a>>3)*(b>>3)>>10;
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
