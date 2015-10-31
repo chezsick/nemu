@@ -64,6 +64,7 @@ static int cmd_info(char *args) {
 		printf("esi\t\t%p\t0x%x\t\t%d\n",&cpu.esi,cpu.esi,cpu.esi);
 		printf("edi\t\t%p\t0x%x\t\t%d\n",&cpu.edi,cpu.edi,cpu.edi);
 		printf("eip\t\t%p\t0x%x\t\t%d\n",&cpu.eip,cpu.eip,cpu.eip);
+		/*
 		int i;
 		for (i=0;i<8;i++)
 			printf("%s\t\t%p\t0x%x\t%d\n",regsw[i],&cpu.gpr[i]._16,cpu.gpr[i]._16,cpu.gpr[i]._16);
@@ -71,6 +72,7 @@ static int cmd_info(char *args) {
 			printf("%s\t\t%p\t0x%x\t%d\n",regsb[i],&cpu.gpr[i]._8[0],cpu.gpr[i]._8[0],cpu.gpr[i]._8[0]);
 			printf("%s\t\t%p\t0x%x\t%d\n",regsb[i+4],&cpu.gpr[i]._8[1],cpu.gpr[i]._8[1],cpu.gpr[i]._8[1]);
 		}
+		*/
 		printf("EFLAGS:\n");
 		printf("CF:\t%d\n",cpu.EFLAGS.CF);
 		printf("PF:\t%d\n",cpu.EFLAGS.PF);
