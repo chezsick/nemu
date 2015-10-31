@@ -7,6 +7,8 @@ static void do_execute () {
 	DATA_TYPE_S dest = op_dest->val;
 
 	uint8_t count = src & 0x1f;
+	uint32_t db=DATA_BYTE;
+	printf("%d\n",db);
 	printf("before sar:%x(%d)\n",dest,dest);
 	dest >>= count;
 	printf("after sar:%x\n",dest);
