@@ -21,7 +21,7 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 		a=b;
 		b=temp;
 	}
-	return (a>>5)*(b>>4)>>7;
+	return (a>>5)*(b>>3)>>8;
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
