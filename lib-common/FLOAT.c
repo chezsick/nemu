@@ -3,12 +3,12 @@
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
 	//nemu_assert(0);
 	//return 0;
-	
+	/*
 	unsigned int result=(a>>16)*b;
 	result+=((a&0xffff)*b)>>16;
 	return (FLOAT)result;
-	
-	//return (a>>8)*(b>>8);
+	*/
+	return (a>>8)*(b>>8);
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
