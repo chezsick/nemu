@@ -10,7 +10,7 @@ static void do_execute() {
 			cpu.eip+=op_src->val&0xffff;	
 		}
 		if (ops_decoded.opcode==0xff){
-			cpu.eip=op_src->val&0xffff;
+			cpu.eip=MEM_R(op_src->val)&0xffff;
 		}
 	}
 	else {
@@ -20,7 +20,7 @@ static void do_execute() {
 			cpu.eip+=op_src->val;
 		}
 		if (ops_decoded.opcode==0xff){
-			cpu.eip=op_src->val;
+			cpu.eip=MEM_R(op_src->val);
 		}
 	}
 	print_asm_template1();
