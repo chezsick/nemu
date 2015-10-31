@@ -11,7 +11,7 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 	unsigned int c3,c2,c1,c0;
 	c0=(a*(b&0xff))>>16;
 	c1=(a*((b&0xff00)>>8))>>8;
-	c2=(a*((b&0xff0000)))>>16;
+	c2=(a*((b&0xff0000)>>16));
 	c3=(a*((b&0xff000000)>>24))<<8;
 	return c0+c1+c2+c3;
 	//return (a>>4)*(b>>4)>>8;
