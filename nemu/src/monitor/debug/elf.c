@@ -7,7 +7,7 @@ char *exec_file = NULL;
 static char *strtab = NULL;
 static Elf32_Sym *symtab = NULL;
 static int nr_symtab_entry;
-
+static Elf32_Ehdr *myelf;
 void load_elf_tables(int argc, char *argv[]) {
 	int ret;
 	Assert(argc == 2, "run NEMU with format 'nemu [program]'");
@@ -22,6 +22,7 @@ void load_elf_tables(int argc, char *argv[]) {
 
 	/* The first several bytes contain the ELF header. */
 	Elf32_Ehdr *elf = (void *)buf;
+	myelf=elf;
 	char magic[] = {ELFMAG0, ELFMAG1, ELFMAG2, ELFMAG3};
 
 	/* Check ELF header */
@@ -82,10 +83,14 @@ void load_elf_tables(int argc, char *argv[]) {
  }
 void match_sym(char* strexp){
 	int i;
-	printf("nr_symtab:%d\n",nr_symtab_entry);
+	//printf("nr_symtab:%d\n",nr_symtab_entry);
 	for (i=0;i<nr_symtab_entry;i++){
 		if (symtab[i].st_info==17){
-			printf("name:%x\tval:%x\n",symtab[i].st_name,symtab[i].st_value);
+			//printf("name:%x\tval:%x\n",symtab[i].st_name,symtab[i].st_value);
+			char * name;
+			//strcpy(name,strtab+symtab[i].st_name);
+			name=strtab+symtab[i].st_name;
+			printf("%s\n",name);
 		}
 		//printf("%d\n",symtab[i].st_info);
 		
