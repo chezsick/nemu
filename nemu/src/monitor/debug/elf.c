@@ -103,6 +103,7 @@ void match_sym(char* strexp){
 				if(pre!=NULL){
 					sprintf(new_expr,"%s0x%08x\n",pre,symtab[i].st_value);	
 				}
+				printf("%s\n",new_expr);
 				strcat(new_expr,loc+strlen(name));
 				strcmp(strexp,new_expr);
 				printf("%s\n",strexp);
