@@ -57,7 +57,7 @@ static struct rule {
 	{"\\$e[a-d]x|\\$esi|\\$edi|\\$ebp|\\$esp|\\$eip",REG_32},	//register 32
 	{"\\$[a-d]x|\\$sp|\\$bp|\\$si|\\$di",REG_16},		//register 16
 	{"\\$[a-d][lh]",REG_8},				//register 8
-	{"[0-9a-zA-Z_]",VAR}				//variable
+	{"[0-9a-zA-Z_]+",VAR}				//variable
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
