@@ -95,7 +95,7 @@ static bool make_token(char *e) {
 	regmatch_t pmatch;
 	
 	//test:
-	match_sym(e);
+	//match_sym(e);
 	nr_token = 0;
 	memset(tokens,0,sizeof(tokens));
 	while(e[position] != '\0') {
@@ -155,8 +155,8 @@ static bool make_token(char *e) {
 			printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
 		}
-	}
-
+ 	}
+ 
 	return true; 
 }
 bool check_parentheses(int p,int q){
@@ -341,6 +341,7 @@ uint32_t eval(int p, int q)
 }
 
 uint32_t expr(char *e, bool *success) {
+	match_sym(e);
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
