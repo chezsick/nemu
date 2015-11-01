@@ -127,9 +127,10 @@ static bool make_token(char *e) {
 						strncpy(tokens[nr_token].str,e+position-substr_len,substr_len);
 						if (match_sym(tokens[nr_token].str)==false){
 							printf("'%s' is not a variable.\nAt position %d\n%s\n%*.s^\n", tokens[nr_token].str, position, e, position, "");
+							return false;
 						}
 						printf("after mt:%s\n",tokens[nr_token].str);
-
+						break;	
 					}
 					case '(':case ')':
 					case '+':case '-':
