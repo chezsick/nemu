@@ -108,7 +108,7 @@ int display_wp()
 	printf("NUM\tTYPE\t\tDisp\tEnb\tVALUE\tWHAT\n");
 	while (p!=NULL)
 	{
-		printf("%d\twatchpoint\tkeep\ty\t%d\t\t%s\n",p->NO,p->val,p->exp);
+		printf("%d\twatchpoint\tkeep\ty\t%x\t\t%s\n",p->NO,p->val,p->exp);
 		p=p->next;
 	}
 	return 0;
