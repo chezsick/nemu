@@ -12,6 +12,7 @@
 #define RED "\33[0;32;31m"
 #define NONE "\33[m"
 
+void match_sym(char* strexp);
 extern CPU_state cpu;
 bool valid=true;
 enum {
@@ -93,6 +94,8 @@ static bool make_token(char *e) {
 	valid=true;
 	regmatch_t pmatch;
 	
+	//test:
+	match_sym(e);
 	nr_token = 0;
 	memset(tokens,0,sizeof(tokens));
 	while(e[position] != '\0') {
@@ -156,8 +159,7 @@ static bool make_token(char *e) {
 
 	return true; 
 }
-bool check_parentheses(int p,int q)
-{
+bool check_parentheses(int p,int q){
 	bool result=true;
 	if ((tokens[p].type!='(')||(tokens[q].type!=')')) 
 		result=false;

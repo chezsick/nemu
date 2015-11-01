@@ -12,6 +12,7 @@ extern CPU_state cpu;
 extern const char* regsl[];
 extern const char* regsw[];
 extern const char* regsb[];
+
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
 	static char *line_read = NULL;
@@ -176,6 +177,11 @@ static int cmd_d(char *args)
 	free_wp(no);
 	return 0;
 }
+static int cmd_tab(char *args){
+	//printf("symtab:%x\n",symtab);
+	//printf("strtab:%x\n",strtab);
+	return 0;
+}
 static int cmd_help(char *args);
 
 static struct {
@@ -189,9 +195,10 @@ static struct {
 	{ "si", "Step In", cmd_si},
 	{ "info", "r:Print register state\n     - w:Print watchpoint state", cmd_info},
 	{ "x", "Examine memory", cmd_x},
-	{ "p", "Print the value of expression EXP",cmd_p},
-	{ "w", "Set a watchpoint for an expression.",cmd_w},
-	{ "d", "Delete a watchpoint.",cmd_d}
+	{ "p", "Print the value of expression EXP", cmd_p},
+	{ "w", "Set a watchpoint for an expression.", cmd_w},
+	{ "d", "Delete a watchpoint.", cmd_d},
+	{ "tab", "used while debug", cmd_tab}
 	/* TODO: Add more commands */
 
 };
