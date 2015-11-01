@@ -98,7 +98,7 @@ void match_sym(char* strexp){
 			//char new_expr[100];
 			loc=strstr(strexp,name);
 			if (loc!=NULL){
-				sprintf(strexp,"%s0x%8x%s\n",strtok(strexp,name),symtab[i].st_value,loc+strlen(name));
+				sprintf(strexp,"%s0x%08x%s\n",strtok(strexp,name),symtab[i].st_value,loc+strlen(name));
 				printf("%s\n",strexp);
 			}
 		}
