@@ -345,11 +345,16 @@ uint32_t eval(int p, int q)
 uint32_t expr(char *e, bool *success) {
 	match_sym(e);
 	printf("%s:%d\n",e,strlen(e));
+	int i;
+	for (i=0;i<strlen(e);i++){
+		printf("%x\t",e[i]);
+	}
+	printf("\n");
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
-	}
-	int i;
+ 	}
+
 #ifdef DDEBUG
 	printf("%d\n",nr_token);
 	for (i=0;i<nr_token;i++)
