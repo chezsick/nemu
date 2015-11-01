@@ -101,10 +101,10 @@ void match_sym(char* strexp){
 				strcmp(new_expr,strexp);	
 				char* pre=strtok(new_expr,name);
 				if(pre!=NULL){
-					sprintf(new_expr,"%s0x%08x\n",pre,symtab[i].st_value);	
+					sprintf(new_expr,"%s0x%08x",pre,symtab[i].st_value);	
 				}
 				else{
-					sprintf(new_expr,"0x%08x\n",symtab[i].st_value);
+					sprintf(new_expr,"0x%08x",symtab[i].st_value);
 				}
 				//printf("%s\n",new_expr);
 				strcat(new_expr,loc+strlen(name));
