@@ -177,10 +177,19 @@ static int cmd_d(char *args)
 	free_wp(no);
 	return 0;
 }
-static int cmd_tab(char *args){
-	//printf("symtab:%x\n",symtab);
-	//printf("strtab:%x\n",strtab);
+static int cmd_bt(char *args)
+{
+	swaddr_t prev_ebp=cpu.ebp;
+	swaddr_t ret_addr=swaddr_read(prev_ebp+4,4);
+	printf("prev_ebp:%x, addr:%x\n",prev_ebp,ret_addr);
+	while (prev_ebp!=0){
+		prev_ebp=swaddr_read(prev_ebp,4);
+		ret_addr=swaddr_read(prev_ebp+4,4);
+		printf("prev_ebp:%x, addr:%x\n",prev_ebp,ret_addr);
+	
+	}
 	return 0;
+
 }
 static int cmd_help(char *args);
 
@@ -198,7 +207,7 @@ static struct {
 	{ "p", "Print the value of expression EXP", cmd_p},
 	{ "w", "Set a watchpoint for an expression.", cmd_w},
 	{ "d", "Delete a watchpoint.", cmd_d},
-	{ "tab", "used while debug", cmd_tab}
+	{ "bt", "Print backtrace of all stack frames.", cmd_bt}
 	/* TODO: Add more commands */
 
 };
