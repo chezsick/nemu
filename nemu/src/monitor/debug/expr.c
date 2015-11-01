@@ -130,6 +130,7 @@ static bool make_token(char *e) {
 							return false;
 						}
 						printf("after mt:%s\n",tokens[nr_token].str);
+						nr_token++;
 						break;	
 					}
 					case '(':case ')':
