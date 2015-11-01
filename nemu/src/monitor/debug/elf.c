@@ -84,9 +84,10 @@ void match_sym(char* strexp){
 	int i;
 	printf("nr_symtab:%d\n",nr_symtab_entry);
 	for (i=0;i<nr_symtab_entry;i++){
-		if (symtab[i].st_info==STT_OBJECT){
-			printf("name:%x\tval:%x\n",symtab[i].st_name,symtab[i].st_value);
+		//if (symtab[i].st_info==STT_OBJECT){
+		//	printf("name:%x\tval:%x\n",symtab[i].st_name,symtab[i].st_value);
+		//}
 		printf("%d\n",symtab[i].st_size);
-		}
+		
 	}
 }
