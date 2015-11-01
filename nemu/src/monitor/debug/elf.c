@@ -95,11 +95,16 @@ void match_sym(char* strexp){
 
 			//printf("%s\n",name);
 			char* loc;
-			//char new_expr[100];
 			loc=strstr(strexp,name);
 			if (loc!=NULL){
-				sprintf(strexp,"%s0x%08x\n",strtok(strexp,name),symtab[i].st_value);	
-				strcat(strexp,loc+strlen(name));
+				char new_expr[100];
+				strcmp(new_expr,strexp);	
+				char* pre=strtok(new_expr,name);
+				if(pre!=NULL){
+					sprintf(new_expr,"%s0x%08x\n",pre,symtab[i].st_value);	
+				}
+				strcat(new_expr,loc+strlen(name));
+				strcmp(strexp,new_expr);
 				printf("%s\n",strexp);
 			}
 		}
