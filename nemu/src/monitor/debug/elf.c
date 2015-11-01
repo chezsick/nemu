@@ -90,4 +90,5 @@ void match_sym(char* strexp){
 		//printf("%d\n",symtab[i].st_info);
 		
 	}
+	printf("%d\n",STT_OBJECT);
 }
