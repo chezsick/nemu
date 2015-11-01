@@ -104,10 +104,8 @@ static bool make_token(char *e) {
 		/* Try all rules one by one. */
 		for(i = 0; i < NR_REGEX; i ++) {
 			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
-				printf("ok\n");
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
-				printf("ok\n");
 				Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
 				position += substr_len;
 
@@ -130,6 +128,8 @@ static bool make_token(char *e) {
 						if (match_sym(tokens[nr_token].str)==false){
 							printf("'%s' is not a variable.\nAt position %d\n%s\n%*.s^\n", tokens[nr_token].str, position, e, position, "");
 						}
+						printf("after mt:%s\n",tokens[nr_token].str);
+
 					}
 					case '(':case ')':
 					case '+':case '-':
