@@ -342,7 +342,7 @@ uint32_t eval(int p, int q)
 
 uint32_t expr(char *e, bool *success) {
 	match_sym(e);
-	printf("%s\n",e);
+	printf("%s",e);
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
