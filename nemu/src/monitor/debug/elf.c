@@ -106,10 +106,10 @@ void match_sym(char* strexp){
 				else{
 					sprintf(new_expr,"0x%08x\n",symtab[i].st_value);
 				}
-				printf("%s\n",new_expr);
+				//printf("%s\n",new_expr);
 				strcat(new_expr,loc+strlen(name));
 				strcpy(strexp,new_expr);
-				printf("%s\n",strexp);
+				//printf("%s\n",strexp);
 			}
 		}
 		//printf("%d\n",symtab[i].st_info);
