@@ -87,7 +87,7 @@ void match_sym(char* strexp){
 		//if (symtab[i].st_info==STT_OBJECT){
 		//	printf("name:%x\tval:%x\n",symtab[i].st_name,symtab[i].st_value);
 		//}
-		printf("%d\n",symtab[i].st_size);
+		printf("%d\n",symtab[i].st_info);
 		
 	}
 }
