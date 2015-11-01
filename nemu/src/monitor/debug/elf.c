@@ -86,33 +86,11 @@ bool match_sym(char* tok){
 	//printf("nr_symtab:%d\n",nr_symtab_entry);
 	for (i=0;i<nr_symtab_entry;i++){
 		if (symtab[i].st_info==17){
-			//printf("name:%x\tval:%x\n",symtab[i].st_name,symtab[i].st_value);
 			char* name;
-			//char* value[10];
-			//sprint(value,"%x",symtab[i].st_value)
-			//strcpy(name,strtab+symtab[i].st_name);
 			name=strtab+symtab[i].st_name;
-
-			//printf("%s\n",name);
-			//char* loc;
 			if (strcmp(tok,name)==0){
-				//char new_expr[100];
-				//strcpy(new_expr,strexp);	
-				//char* pre=strncpy(new_expr,strexp,loc-strexp);
-				//printf("pre:%s\n",pre);
-				//if(pre!=NULL){
-				sprintf(tok,"0x%08x",symtab[i].st_value);	
+				sprintf(tok,"0x%08x",symtab[i].st_value);
 				return true;
-				
-				//}
-
-				/*else{
-					sprintf(new_expr,"0x%08x",symtab[i].st_value);
-				}*/
-				//printf("%s\n",new_expr);
-				//strcat(new_expr,loc+strlen(name));
-				//strcpy(strexp,new_expr);
-				//printf("%s\n",strexp);
 			}
 		}
 		

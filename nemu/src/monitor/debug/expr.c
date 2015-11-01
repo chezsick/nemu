@@ -129,7 +129,7 @@ static bool make_token(char *e) {
 							printf("'%s' is not a variable.\nAt position %d\n%s\n%*.s^\n", tokens[nr_token].str, position, e, position, "");
 							return false;
 						}
-						printf("after mt:%s\n",tokens[nr_token].str);
+						//printf("after mt:%s\n",tokens[nr_token].str);
 						nr_token++;
 						break;	
 					}
