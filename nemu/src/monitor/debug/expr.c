@@ -351,8 +351,7 @@ uint32_t eval(int p, int q)
 }
 
 uint32_t expr(char *e, bool *success) {
-	match_sym(e);
-	printf("%s:%d\n",e,strlen(e));
+
 	int i;
 	for (i=0;i<strlen(e);i++){
 		printf("%x\t",e[i]);
