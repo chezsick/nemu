@@ -12,11 +12,11 @@
 #define RED "\33[0;32;31m"
 #define NONE "\33[m"
 
-void match_sym(char* strexp);
+bool match_sym(char* strexp);
 extern CPU_state cpu;
 bool valid=true;
 enum {
-	NOTYPE = 256, EQ,HEX,DEC,POINT,NEG,AND,OR,NEQ,GE,LE,G,L,REG,REG_32,REG_16,REG_8
+	NOTYPE = 256, EQ,HEX,DEC,POINT,NEG,AND,OR,NEQ,GE,LE,G,L,REG,REG_32,REG_16,REG_8,VAR
 
 	/* TODO: Add more token types */
 
@@ -56,7 +56,8 @@ static struct rule {
 	{"\\)",')'},					//right bracket
 	{"\\$e[a-d]x|\\$esi|\\$edi|\\$ebp|\\$esp|\\$eip",REG_32},	//register 32
 	{"\\$[a-d]x|\\$sp|\\$bp|\\$si|\\$di",REG_16},		//register 16
-	{"\\$[a-d][lh]",REG_8}				//register 8
+	{"\\$[a-d][lh]",REG_8},				//register 8
+	{"[0-9a-zA-Z_]",VAR}				//variable
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -95,7 +96,7 @@ static bool make_token(char *e) {
 	regmatch_t pmatch;
 	
 	//test:
-	printf("%s\n",e);
+	//printf("%s\n",e);
 	nr_token = 0;
 	memset(tokens,0,sizeof(tokens));
 	//if (e[position]=='\0') return false;
@@ -122,6 +123,13 @@ static bool make_token(char *e) {
 						strncpy(tokens[nr_token].str,e+position-substr_len,substr_len);
 						nr_token++;
 						break;
+					}
+					case VAR:{
+						tokens[nr_token].type=HEX;
+						strncpy(tokens[nr_token].str,e+position-substr_len,substr_len);
+						if (match_sym(tokens[nr_token].str)==false){
+							printf("'%s' is not a variable.\nAt position %d\n%s\n%*.s^\n", tokens[nr_token].str, position, e, position, "");
+						}
 					}
 					case '(':case ')':
 					case '+':case '-':
