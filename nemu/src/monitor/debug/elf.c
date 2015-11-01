@@ -82,7 +82,7 @@ void load_elf_tables(int argc, char *argv[]) {
  }
 void match_sym(char* strexp){
 	int i;
-	printf("ok\n");
+	printf("nr_symtab:%x\n",nr_symtab_entry);
 	for (i=0;i<nr_symtab_entry;i++){
 		if (symtab[i].st_info==STT_OBJECT){
 			printf("name:%x\tval:%x\n",symtab[i].st_name,symtab[i].st_value);
