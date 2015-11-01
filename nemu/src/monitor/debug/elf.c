@@ -87,13 +87,23 @@ void match_sym(char* strexp){
 	for (i=0;i<nr_symtab_entry;i++){
 		if (symtab[i].st_info==17){
 			//printf("name:%x\tval:%x\n",symtab[i].st_name,symtab[i].st_value);
-			char * name;
+			char* name;
+			//char* value[10];
+			//sprint(value,"%x",symtab[i].st_value)
 			//strcpy(name,strtab+symtab[i].st_name);
 			name=strtab+symtab[i].st_name;
+
 			printf("%s\n",name);
+			char* loc;
+			//char new_expr[100];
+			loc=strstr(strexp,name);
+			if (loc!=NULL){
+				sprintf(strexp,"%s0x%8x%s",strtok(strexp,name),symtab[i].st_value,loc+strlen(name));
+				printf("%s\n",strexp);
+			}
 		}
 		//printf("%d\n",symtab[i].st_info);
 		
 	}
-	printf("%d\n",STT_OBJECT);
+	//printf("%d\n",STT_OBJECT);
 }
