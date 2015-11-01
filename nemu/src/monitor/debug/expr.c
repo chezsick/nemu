@@ -98,6 +98,7 @@ static bool make_token(char *e) {
 	printf("%s\n",e);
 	nr_token = 0;
 	memset(tokens,0,sizeof(tokens));
+	if (e[position]=='\0') return false;
 	while(e[position] != '\0') {
 		/* Try all rules one by one. */
 		for(i = 0; i < NR_REGEX; i ++) {
@@ -111,11 +112,11 @@ static bool make_token(char *e) {
 				/* TODO: Now a new token is recognized with rules[i]. Add codes
 				 * to record the token in the array ``tokens''. For certain 
 				 * types of tokens, some extra actions should be performed.
-				 */
-
-				switch(rules[i].token_type) {
+ 				 */
+ 
+ 				switch(rules[i].token_type) {
 					case NOTYPE: break;
-					case DEC:case HEX:{
+ 					case DEC:case HEX:{
 						tokens[nr_token].type=rules[i].token_type;
 						strncpy(tokens[nr_token].str,e+position-substr_len,substr_len);
 						nr_token++;
@@ -148,14 +149,14 @@ static bool make_token(char *e) {
 				}
 
 				break;
-			}
-		}
+ 			}
+ 		}
 
 		if(i == NR_REGEX) {
 			printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
 		}
- 	}
+  	}
  
 	return true; 
 }
@@ -341,7 +342,7 @@ uint32_t eval(int p, int q)
 }
 
 uint32_t expr(char *e, bool *success) {
-	//match_sym(e);
+	match_sym(e);
 	printf("%s:%d\n",e,strlen(e));
 	if(!make_token(e)) {
 		*success = false;
