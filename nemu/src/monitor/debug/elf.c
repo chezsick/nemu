@@ -108,7 +108,7 @@ void match_sym(char* strexp){
 				}
 				printf("%s\n",new_expr);
 				strcat(new_expr,loc+strlen(name));
-				strcmp(strexp,new_expr);
+				strcpy(strexp,new_expr);
 				printf("%s\n",strexp);
 			}
 		}
