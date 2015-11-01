@@ -95,7 +95,7 @@ static bool make_token(char *e) {
 	regmatch_t pmatch;
 	
 	//test:
-	//match_sym(e);
+	printf("%s\n",e);
 	nr_token = 0;
 	memset(tokens,0,sizeof(tokens));
 	while(e[position] != '\0') {
