@@ -100,6 +100,7 @@ void match_sym(char* strexp){
 				char new_expr[100];
 				strcpy(new_expr,strexp);	
 				char* pre=strtok(new_expr,name);
+				printf("pre:%s\n",pre);
 				if(pre!=NULL){
 					sprintf(new_expr,"%s0x%08x",pre,symtab[i].st_value);	
 				}
