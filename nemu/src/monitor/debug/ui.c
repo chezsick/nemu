@@ -132,7 +132,7 @@ static int cmd_p(char *args)
 	//*success=true;
 	uint32_t output=expr(args,&success);
 	if (success)
-		printf("%d\n",output);
+		printf("%x\n",output);
 	else    
 		printf("please try again:\n");
 	return 0;
