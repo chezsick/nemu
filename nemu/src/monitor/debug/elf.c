@@ -97,3 +97,14 @@ bool match_sym(char* tok){
 	}
 	return false;
 }
+char* fun_name(swaddr_t addr){
+	int i;
+	for (i=0;i<nr_symtab_entry;i++){
+		swaddr_t val=symtab[i].st_value;
+		unsigned int size=symtab[i].st_size;
+		if ((addr>=val)&&(addr<=val+size)){
+			return strtab+symtab[i].st_name;
+		}
+	}
+	return NULL;
+}

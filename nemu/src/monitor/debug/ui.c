@@ -8,6 +8,7 @@
 #include <readline/history.h>
 
 void cpu_exec(uint32_t);
+char* fun_name(swaddr_t eip);
 extern CPU_state cpu;
 extern const char* regsl[];
 extern const char* regsw[];
@@ -180,13 +181,16 @@ static int cmd_d(char *args)
 static int cmd_bt(char *args)
 {
 	swaddr_t prev_ebp=cpu.ebp;
-	swaddr_t ret_addr=swaddr_read(prev_ebp+4,4);
+	swaddr_t ret_addr=swaddr_read(prev_ebp+4,4)+1;
 	printf("prev_ebp:%x, addr:%x\n",prev_ebp,ret_addr);
 	while (prev_ebp!=0){
+
 		prev_ebp=swaddr_read(prev_ebp,4);
-		ret_addr=swaddr_read(prev_ebp+4,4);
+		ret_addr=swaddr_read(prev_ebp+4,4)+1;
 		printf("prev_ebp:%x, addr:%x\n",prev_ebp,ret_addr);
-	
+		char* FunName=fun_name(cpu.eip);
+		printf("%s\n",FunName);
+		
 	}
 	return 0;
 
