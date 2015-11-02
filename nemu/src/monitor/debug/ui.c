@@ -186,7 +186,7 @@ static int cmd_bt(char *args)
 	int count=1;
 	int n=5;
 	char* NowName=fun_name(cpu.eip);
-	if (NowName!=NULL) printf("#0  %s(",NowName);
+	if (NowName!=NULL) printf("#0  0x%x  in %s(",ret_addr+1,NowName);
 	swaddr_t var_addr=prev_ebp+8;
 	while (n>0) {
 		printf("%d,",swaddr_read(var_addr,4));
