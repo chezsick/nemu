@@ -185,12 +185,19 @@ static int cmd_bt(char *args)
 	printf("prev_ebp:%x, addr:%x\n",prev_ebp,ret_addr);
 	int count=0;
 	while (prev_ebp!=0){
-		
 		prev_ebp=swaddr_read(prev_ebp,4);
 		ret_addr=swaddr_read(prev_ebp+4,4)+1;
 		printf("#%d  0x%x  in ",count++,ret_addr);
 		char* FunName=fun_name(cpu.eip);
-		printf("%s()\n",FunName);
+		printf("%s(",FunName);
+		swaddr_t var_addr=prev_ebp+8;
+		int n=4;
+		while (n>0) {
+		       printf("%x\t",swaddr_read(var_addr,4));
+		       var_addr+=4;
+		       n--;
+		}
+		printf(")\n");
 		
 	}
 	return 0;
