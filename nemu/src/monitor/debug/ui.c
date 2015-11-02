@@ -193,7 +193,7 @@ static int cmd_bt(char *args)
 		swaddr_t var_addr=prev_ebp+8;
 		int n=4;
 		while (n>0) {
-		       printf("%x\t",swaddr_read(var_addr,4));
+		       printf("%d\t",swaddr_read(var_addr,4));
 		       var_addr+=4;
 		       n--;
 		}
