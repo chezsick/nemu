@@ -187,6 +187,7 @@ static int cmd_bt(char *args)
 	while (prev_ebp!=0){
 		prev_ebp=swaddr_read(prev_ebp,4);
 		ret_addr=swaddr_read(prev_ebp+4,4);
+		if (prev_ebp==0) break;
 		printf("#%d  0x%x  in ",count++,ret_addr+1);
 		char* FunName=fun_name(ret_addr);
 		if (FunName!=NULL) printf("%s(",FunName);
