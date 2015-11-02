@@ -20,13 +20,13 @@ make_helper(ret){
 	uint32_t imm16=instr_fetch(cpu.eip+1,2);
 	if (ops_decoded.is_data_size_16){
 		//cpu.eip&=0xffffff00;
-		cpu.eip=swaddr_read(cpu.esp,2);
+		cpu.eip=swaddr_read(cpu.esp,2)+1;
 		cpu.esp+=2;
 		cpu.eip&=0x0000ffff;
 	}
 	else{
 		//printf("%x\n",cpu.eip);
-		cpu.eip=swaddr_read(reg_l(R_ESP),4);
+		cpu.eip=swaddr_read(reg_l(R_ESP),4)+1;
 		cpu.esp+=4;
 		//printf("%x\n",cpu.eip);
 	}
@@ -42,7 +42,7 @@ make_helper(ret){
 		print_asm("ret");
 	}
 	//printf("%d\n",cpu.eip);
-	return 1;
+	return 0;
 }
 /*
 make_helper_v(sub_i2rm)
