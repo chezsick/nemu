@@ -183,13 +183,14 @@ static int cmd_bt(char *args)
 	swaddr_t prev_ebp=cpu.ebp;
 	swaddr_t ret_addr=swaddr_read(prev_ebp+4,4)+1;
 	printf("prev_ebp:%x, addr:%x\n",prev_ebp,ret_addr);
+	int count=0;
 	while (prev_ebp!=0){
-
+		
 		prev_ebp=swaddr_read(prev_ebp,4);
 		ret_addr=swaddr_read(prev_ebp+4,4)+1;
-		printf("prev_ebp:%x, addr:%x\n",prev_ebp,ret_addr);
+		printf("#%d  0x%x  in ",count++,ret_addr);
 		char* FunName=fun_name(cpu.eip);
-		printf("%s\n",FunName);
+		printf("%s()\n",FunName);
 		
 	}
 	return 0;
