@@ -103,7 +103,7 @@ char* fun_name(swaddr_t addr){
 		swaddr_t val=symtab[i].st_value;
 		unsigned int size=symtab[i].st_size;
 		if ((addr>=val)&&(addr<=val+size)){
-			printf("%x:%d %x\n",addr,i,symtab[i].st_name);
+			//printf("%x:%d %x\n",addr,i,symtab[i].st_name);
 			return strtab+symtab[i].st_name;
 		}
 	}
