@@ -7,6 +7,7 @@ int a[N] = {81, 37, 64, 23, 38, 65, 56, 15, 8, 33, 85, 39, 71, 12, 77, 6, 82, 89
 int partition(int *a, int p, int q) {
 	int pivot = a[p];
 	int i = p, j = q;
+	set_bp();
 	while(i < j) {
 		while(i < j && a[j] > pivot) j --;
 		a[i] = a[j];
@@ -23,7 +24,7 @@ void quick_sort(int *a, int p, int q) {
 	if(p >= q) return;
 
 	int m = partition(a, p, q);
-	set_bp();
+	//set_bp();
 	quick_sort(a, p, m - 1);
 	quick_sort(a, m + 1, q);
 }
