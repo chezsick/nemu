@@ -29,7 +29,7 @@ void quick_sort(int *a, int p, int q) {
 }
 
 int main() {
-	quick_sort(a, 5, N - 1);
+	quick_sort(a, 0, N - 1);
 
 	int i;
 	for(i = 0; i < N; i ++) {
