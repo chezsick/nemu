@@ -185,7 +185,7 @@ static int cmd_bt(char *args)
 	//printf("prev_ebp:%x, addr:%x\n",prev_ebp,ret_addr);
 	int count=1;;
 	char* NowName=fun_name(cpu.eip);
-	if (NowName!=NULL) printf("#0  %s()",NowName);
+	if (NowName!=NULL) printf("#0  %s()\n",NowName);
 	while (prev_ebp!=0){
 		prev_ebp=swaddr_read(prev_ebp,4);
 		ret_addr=swaddr_read(prev_ebp+4,4);
