@@ -23,6 +23,7 @@ void quick_sort(int *a, int p, int q) {
 	if(p >= q) return;
 
 	int m = partition(a, p, q);
+	set_bp();
 	quick_sort(a, p, m - 1);
 	quick_sort(a, m + 1, q);
 }
