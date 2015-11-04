@@ -43,7 +43,7 @@ uint32_t loader() {
 	int i;
 	for(i=0; i < elf-> e_phnum; i++) { 
 		/* Scan the program header table, load each segment into memory */
-		//set_bp();
+		set_bp();
 		//continue;
 		ph=(void*)(buf+elf->e_phoff+(elf->e_phentsize)*i);
 		if(ph->p_type == PT_LOAD) {
@@ -52,7 +52,7 @@ uint32_t loader() {
 	 		/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
-			//set_bp();
+			set_bp();
 			ramdisk_read((void*)ph->p_vaddr, ph->p_offset, ph->p_filesz);
 			 
 	 		/* TODO: zero the memory region 
@@ -67,7 +67,7 @@ uint32_t loader() {
 			extern uint32_t brk;
 			uint32_t new_brk = ph->p_vaddr + ph->p_memsz - 1;
 			if(brk < new_brk) { brk = new_brk; }
-			
+			set_bp();
 #endif
 	 	}
 	}
