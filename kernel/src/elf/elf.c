@@ -43,11 +43,11 @@ uint32_t loader() {
 	int i;
 	for(i=0; i < elf-> e_phnum; i++) { 
 		/* Scan the program header table, load each segment into memory */
-		set_bp();
+		//set_bp();
 		//continue;
 		ph=(void*)(buf+elf->e_phoff+(elf->e_phentsize)*i);
 		if(ph->p_type == PT_LOAD) {
-			set_bp();
+			//set_bp();
 			//printf("virtaddr:%x\n",ph->p_vaddr);
 	 		/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
@@ -71,7 +71,7 @@ uint32_t loader() {
 #endif
 	 	}
 	}
-	set_bp();
+	//set_bp();
 	volatile uint32_t entry = elf->e_entry;
 
 #ifdef IA32_PAGE
