@@ -103,7 +103,7 @@ void init_cond() {
 
 	/* Here we go! */
 	((void(*)(void))eip)();
-	
+	set_bp();
 	panic("should not reach here");
 }
 
