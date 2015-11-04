@@ -8,5 +8,5 @@ make_helper(push_m_v);
 make_helper(push_i_v);
 */
 make_helper(jmp_i_b);
-//make_helper(jmp_rm_b);
+make_helper(jmp_rm_b);
 #endif
