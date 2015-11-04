@@ -9,6 +9,7 @@
 void ide_read(uint8_t *, uint32_t, uint32_t);
 #else
 void ramdisk_read(uint8_t *, uint32_t, uint32_t);
+void ramdisk_write(uint8_t *, uint32_t, uint32_t);
 #endif
 
 #define STACK_SIZE (1 << 20)
@@ -43,23 +44,23 @@ uint32_t loader() {
 	int i;
 	for(i=0; i < elf-> e_phnum; i++) { 
 		/* Scan the program header table, load each segment into memory */
-		set_bp();
+		//set_bp();
 		//continue;
 		ph=(void*)(buf+elf->e_phoff+(elf->e_phentsize)*i);
 		if(ph->p_type == PT_LOAD) {
-			//set_bp();
+			set_bp();
 			//printf("virtaddr:%x\n",ph->p_vaddr);
 	 		/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
-			set_bp();
+			//set_bp();
 			ramdisk_read((void*)ph->p_vaddr, ph->p_offset, ph->p_filesz);
 			 
 	 		/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
 			set_bp(); 
-			ramdisk_read((void*)(ph->p_vaddr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
+			ramdisk_write((void*)(ph->p_vaddr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
 		
 
 #ifdef IA32_PAGE
