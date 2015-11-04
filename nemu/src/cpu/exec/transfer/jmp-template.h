@@ -11,10 +11,10 @@ static void do_execute() {
 	}
 	else{
 		if (DATA_BYTE==2){
-			cpu.eip=MEM_R(op_src->val)&0x0000ffff;
+			cpu.eip=(op_src->val)&0x0000ffff;
 		}
 		else{
-			cpu.eip=MEM_R(op_src->val);
+			cpu.eip=(op_src->val);
 		}
 	}
 	print_asm_template1();
@@ -37,7 +37,8 @@ make_helper(concat(jmp_i_,SUFFIX)){
 }
 make_helper(concat(jmp_rm_,SUFFIX)){
 	
-	if (ops_decoded.is_data_size_16){
+	concat(decode_rm_,SUFFIX)(cpu.eip+1);
+	if (DATA_BYTE==2){
 		cpu.eip=MEM_R(op_dest->val)&0x0000ffff;
 	}
 	else{
