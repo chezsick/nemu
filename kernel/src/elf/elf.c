@@ -46,6 +46,7 @@ uint32_t loader() {
 		set_bp();
 		ph=(void*)(elf+elf->e_phoff+elf->e_phentsize*i);
 		if(ph->p_type == PT_LOAD) {
+			set_bp();
 			//printf("virtaddr:%x\n",ph->p_vaddr);
 	 		/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
