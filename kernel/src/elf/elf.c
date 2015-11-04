@@ -48,7 +48,7 @@ uint32_t loader() {
 		//continue;
 		ph=(void*)(buf+elf->e_phoff+(elf->e_phentsize)*i);
 		if(ph->p_type == PT_LOAD) {
-			set_bp();
+			//set_bp();
 			//printf("virtaddr:%x\n",ph->p_vaddr);
 	 		/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
@@ -59,7 +59,7 @@ uint32_t loader() {
 	 		/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
-			set_bp(); 
+			//set_bp(); 
 			ramdisk_write((void*)(ph->p_vaddr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
 		
 
