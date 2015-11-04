@@ -45,7 +45,7 @@ uint32_t loader() {
 		/* Scan the program header table, load each segment into memory */
 		//set_bp();
 		//continue;
-		ph=(void*)(elf->e_entry+elf->e_phoff+(elf->e_phentsize)*i);
+		ph=(void*)(buf+elf->e_phoff+(elf->e_phentsize)*i);
 		if(ph->p_type == PT_LOAD) {
 			//set_bp();
 			//printf("virtaddr:%x\n",ph->p_vaddr);
