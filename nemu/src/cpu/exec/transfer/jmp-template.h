@@ -27,12 +27,14 @@ make_helper(concat(jmp_i_,SUFFIX)){
 	return 1+DATA_BYTE;
 }
 make_helper(concat(jmp_rm_,SUFFIX)){
-	if (ops_decoded.is_data_size_16)
+	if (ops_decoded.is_data_size_16){
 		cpu.eip=MEM_R(op_src->val)&0x0000ffff;
-	else
+	}
+	else{
 		cpu.eip=MEM_R(op_src->val);
+	}
 	printf("%x(%d)\n",MEM_R(op_src->val),DATA_BYTE);
-	print_asm_template2();
+	print_asm_template1();
 	//print_asm("jmp" str(SUFFIX) " %s",op_src->str);
 	return 2;	
 }
