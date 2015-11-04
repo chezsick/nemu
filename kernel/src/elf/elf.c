@@ -31,7 +31,7 @@ uint32_t loader() {
 	elf = (void*)buf;
 
 	/* TODO: fix the magic number with the correct one */
-	const uint32_t elf_magic = 0x464c457f;
+	const uint32_t elf_magic = 0xffffffff;//0x464c457f;
 	uint32_t *p_magic = (void *)buf;
 	nemu_assert(*p_magic == elf_magic);
 	
@@ -43,7 +43,7 @@ uint32_t loader() {
 		/* Scan the program header table, load each segment into memory */
 		ph=(void*)(elf+elf->e_phoff+elf->e_phentsize*i);
 		if(ph->p_type == PT_LOAD) {
-
+			//printf("virtaddr:%x\n",ph->p_vaddr);
 	 		/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
