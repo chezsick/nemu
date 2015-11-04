@@ -39,17 +39,18 @@ uint32_t loader() {
 	/* Load each program segment */
 	//panic("please implement me");
 	//ph=elf+elf->e_phoff;
-	set_bp();
+	//set_bp();
 	int i;
 	for(i=0; i<elf->e_phnum; i++) { 
 		/* Scan the program header table, load each segment into memory */
+		set_bp();
 		ph=(void*)(elf+elf->e_phoff+elf->e_phentsize*i);
 		if(ph->p_type == PT_LOAD) {
 			//printf("virtaddr:%x\n",ph->p_vaddr);
 	 		/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
-			set_bp();
+			//set_bp();
 			ramdisk_read((void*)ph->p_vaddr, ph->p_offset, ph->p_memsz);
 			 
 	 		/* TODO: zero the memory region 
