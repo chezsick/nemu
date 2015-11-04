@@ -61,7 +61,7 @@ uint32_t loader() {
 			 */
 			//set_bp(); 
 			ramdisk_write((void*)(ph->p_vaddr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
-			set_bp();
+			
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
@@ -72,7 +72,7 @@ uint32_t loader() {
 #endif
 	 	}
 	}
-	//set_bp();
+	set_bp();
 	volatile uint32_t entry = elf->e_entry;
 #ifdef IA32_PAGE
 	mm_malloc(KOFFSET - STACK_SIZE, STACK_SIZE);
