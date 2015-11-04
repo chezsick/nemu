@@ -59,7 +59,7 @@ uint32_t loader() {
 	 		/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
-			//set_bp(); 
+			set_bp(); 
 			ramdisk_write((void*)(ph->p_vaddr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
 			
 
