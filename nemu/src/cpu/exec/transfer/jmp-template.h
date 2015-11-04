@@ -33,7 +33,7 @@ make_helper(concat(jmp_rm_,SUFFIX)){
 	else{
 		cpu.eip=MEM_R(op_dest->val);
 	}
-	printf("%s(%d)\n",op_dest->str,DATA_BYTE);
+	printf("%s(%d)\n",op_src->str,DATA_BYTE);
 	print_asm_template1();
 	//print_asm("jmp" str(SUFFIX) " %s",op_src->str);
 	return 2;	
