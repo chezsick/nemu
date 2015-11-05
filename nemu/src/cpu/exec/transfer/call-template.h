@@ -28,12 +28,12 @@ static void do_execute() {
 	if (ops_decoded.opcode==0xff){
 		if (ops_decoded.is_data_size_16){
 			cpu.esp-=2;
-			MEM_W(cpu.esp,(cpu.eip&0xff)+1);
+			MEM_W(cpu.esp,(cpu.eip&0xff)+2);
 			cpu.eip=((op_src->val)&0xffff)-2;
 		}
 		else{
 			cpu.esp-=4;
-			MEM_W(cpu.esp,cpu.eip+1);
+			MEM_W(cpu.esp,cpu.eip+2);
 			cpu.eip=(op_src->val)-2;	
 		}
 	}

@@ -21,7 +21,7 @@ make_helper(ret_i_w) {
 	cpu.esp+=op_src->val;
 	//print_asm_template1();
 	print_asm("retw $0x%x", op_src->val);
-	return 3;
+	return 0;
 }
 
 //make_instr_helper(i)
