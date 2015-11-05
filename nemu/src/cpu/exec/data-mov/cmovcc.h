@@ -16,8 +16,8 @@ make_helper(jns_i_v);
 make_helper(push_m_v);
 make_helper(push_i_v);
 */
-
-make_helper(cmova_rm2r_b);/*
+/*
+make_helper(cmova_rm2r_b);
 make_helper(jl_i_b);
 make_helper(jle_i_b);
 make_helper(jg_i_b);
