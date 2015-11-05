@@ -36,13 +36,13 @@ make_helper(ret){
 		cpu.esp+=imm16;
 		//cpu.eip+=2;
 		print_asm("ret $0x%x", imm16);
-		return 3;
+		//return 3;
 	}
  	else{
 		print_asm("ret");
 	}
 	//printf("%d\n",cpu.eip);
-	return 1;
+	return 0;
 }
 /*
 make_helper_v(sub_i2rm)
