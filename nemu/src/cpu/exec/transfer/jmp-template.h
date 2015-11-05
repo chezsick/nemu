@@ -11,10 +11,10 @@ static void do_execute() {
 	}
 	else{
 		if (DATA_BYTE==2){
-			cpu.eip=(op_src->val&0x0000ffff)+1;
+			cpu.eip=(op_src->val&0x0000ffff)-1;
 		}
 		else{
-			cpu.eip=(op_src->val)+1;
+			cpu.eip=(op_src->val)-1;
 		}
 	}
 	print_asm_template1();
