@@ -1,18 +1,18 @@
 #include "cpu/exec/template-start.h"
-/*
+
 #define cmov(name) {\
 	 if (name){ \
 	 	OPERAND_W(op_dest, op_src->val); \
 	 } \
 	print_asm_template2(); \
 }
-*/
+
 #define CF cpu.EFLAGS.CF
 #define ZF cpu.EFLAGS.ZF
 
 #define instr cmova
 static void do_execute() {
-	if (CF==0&&ZF==0);
+	cmov(CF==0&&ZF==0)
 }
 make_instr_helper(rm2r)
 #undef instr
