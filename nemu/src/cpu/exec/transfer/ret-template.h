@@ -4,7 +4,7 @@
 
 make_helper(ret_i_w) {
 	if (ops_decoded.is_data_size_16){
-		printf("DATA_BYTE=2\n");
+		//printf("DATA_BYTE=2\n");
 		cpu.eip&=0xffffff00;
 		cpu.eip|=swaddr_read(reg_l(R_ESP),2);
 		reg_l(R_ESP)+=2;
