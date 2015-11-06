@@ -3,26 +3,35 @@
 #define instr jmp
 
 static void do_execute() {
-	if (ops_decoded.opcode ==0xeb||ops_decoded.opcode==0xe9){
+	print_asm_template1();
+	if (ops_decoded.opcode ==0xeb||ops_decoded.opcode==0xe9){  //im
 		cpu.eip+=op_src->val;
 		if (DATA_BYTE==2){
 			cpu.eip&=0x0000ffff;
 		}
 	}
-	else{
+	else{				//rm
 		if (DATA_BYTE==2){
-			cpu.eip=(op_src->val&0x0000ffff)-2;
+			cpu.eip=(op_src->val&0x0000ffff);
 		}
 		else{
-			cpu.eip=(op_src->val)-2;
+			cpu.eip=(op_src->val);
+		}
+		if (op_src->type==OP_TYPE_REG){
+			cpu.eip-=2;
+		}
+		else if (op_src->type==OP_TYPE_MEM){
+			cpu.eip-=7;
 		}
 	}
-	print_asm_template1();
+	//print_asm_template1();
 }
 
 //make_instr_helper(i)
 make_instr_helper(i)
+#if DATA_BYTE==2 || DATA_BYTE==4
 make_instr_helper(rm)
+#endif
 /*
 make_helper(concat(jmp_i_,SUFFIX)){
 	//cpu.eip+=op_src->val;
