@@ -9,10 +9,23 @@
 
 #define CF cpu.EFLAGS.CF
 #define ZF cpu.EFLAGS.ZF
+#define SF cpu.EFLAGS.SF
 
 #define instr cmova
 static void do_execute() {
 	cmov(CF==0&&ZF==0)
+}
+make_instr_helper(rm2r)
+#undef instr
+
+#define instr cmovs
+static void do_execute() {
+	cmov(SF==1)
+	/*if (SF==1){
+		OPERAND_W(op_dest, op_src->val);
+	}
+	print_asm_template2();
+	*/
 }
 make_instr_helper(rm2r)
 #undef instr
