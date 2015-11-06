@@ -11,6 +11,7 @@ make_helper(jae_i_v);
 make_helper(jb_i_v);
 make_helper(jbe_i_v);
 make_helper(jne_i_v);
+make_helper(js_i_v);
 make_helper(jns_i_v);
 /*
 make_helper(push_m_v);
@@ -26,5 +27,6 @@ make_helper(jae_i_b);
 make_helper(jb_i_b);
 make_helper(jbe_i_b);
 make_helper(jne_i_b);
+make_helper(js_i_b);
 make_helper(jns_i_b);
 #endif
