@@ -5,7 +5,7 @@
 static void do_execute() {
 	print_asm_template1();
 	if (ops_decoded.opcode ==0xeb||ops_decoded.opcode==0xe9){  //im
-		cpu.eip+=op_src->val;
+		cpu.eip+=(DATA_TYPE_S)op_src->val;
 		if (DATA_BYTE==2){
 			cpu.eip&=0x0000ffff;
 		}
