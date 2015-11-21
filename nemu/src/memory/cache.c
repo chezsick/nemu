@@ -71,9 +71,11 @@ uint32_t dram2cache(hwaddr_t addr, uint32_t index){
  	if (rep) index+=addr&0x7;
 	for (i=0; i<BLOCK_SIZE;  i++){
 		cache[index].block[i]=dram_read(addr+i, 1);
-		cache[index].tag =(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&NR_TAG;
-		cache[index].valid=1;
+		printf("dram2cache: %x\n", cache[index].block[i]);
 	}
+	cache[index].tag =(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&NR_TAG;
+	cache[index].valid=1;
+
 	return index;
 }
 uint32_t cache_read(hwaddr_t addr, size_t len){
