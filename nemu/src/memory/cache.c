@@ -112,7 +112,7 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 }
 
 void cache_write(hwaddr_t addr, size_t len, uint32_t data){
-	printf("cache write %x-%x\n", addr, data);
+	//printf("cache write %x-%x\n", addr, data);
 	uint32_t hit_index;
 	uint32_t offset = addr & (BLOCK_SIZE-1);
 	uint8_t temp[2 * BLOCK_SIZE];
