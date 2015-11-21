@@ -223,7 +223,9 @@ static int cmd_cache(char *args){
 		print_hit_rate();
 	}
 	else{
-		hwaddr_t addr=(hwaddr_t)atoi(args);
+		uint32_t temp=atoi(args);
+		printf("%x\n",temp);
+		hwaddr_t addr=(hwaddr_t)temp;
 		print_hit(addr);
 	}
 	return 0;
