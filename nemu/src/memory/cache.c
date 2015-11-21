@@ -81,7 +81,7 @@ uint32_t dram2cache(hwaddr_t addr, uint32_t index){
 uint32_t cache_read(hwaddr_t addr, size_t len){
 	printf("cache read %x(%d)\n", addr, len);
 	uint32_t offset = addr & BLOCK_SIZE;
-	uint8_t temp[2 * BLOCK_WIDTH];
+	uint8_t temp[2 * BLOCK_SIZE];
 	uint32_t hit_index;
 	bool is_hit=hit(addr, &hit_index);
  	if (!is_hit){
@@ -90,16 +90,16 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	//now the dram block is in cache.
 	
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!(in cache)", addr);
-	memcpy(temp, cache[hit_index].block, BLOCK_WIDTH);
+	memcpy(temp, cache[hit_index].block, BLOCK_SIZE);
 	int i;
 	printf("temp:");
-	for (i=0;i<2*BLOCK_WIDTH;i+=4){
+	for (i=0;i<2*BLOCK_SIZE;i+=4){
 		printf("%x",temp[i]);
 	}
 	printf("\n");
- 	if (offset + len > BLOCK_WIDTH) {
+ 	if (offset + len > BLOCK_SIZE) {
 		/* data cross the burst boundary */
-		*(temp+BLOCK_WIDTH)=cache_read(addr -offset + BLOCK_WIDTH, offset + len - BLOCK_WIDTH);
+		*(temp+BLOCK_SIZE)=cache_read(addr -offset + BLOCK_SIZE, offset + len - BLOCK_SIZE);
 	}
 	return unalign_rw(temp + offset, 4);
 	
@@ -110,18 +110,18 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data){
 	printf("cache write %x-%x\n", addr, data);
 	uint32_t hit_index;
 	uint32_t offset = addr & BLOCK_SIZE;
-	uint8_t temp[2 * BLOCK_WIDTH];
-	uint8_t mask[2 * BLOCK_WIDTH];
-	memset(mask, 0, 2 * BLOCK_WIDTH);
+	uint8_t temp[2 * BLOCK_SIZE];
+	uint8_t mask[2 * BLOCK_SIZE];
+	memset(mask, 0, 2 * BLOCK_SIZE);
 	memset(mask + offset, 1, len);
 	bool is_hit;
 	is_hit=hit(addr, &hit_index);
 	if (is_hit==true){
 		*(uint32_t *)(temp + offset)=data;
-		memcpy_with_mask(cache[hit_index].block, temp, BLOCK_WIDTH, mask);
-		if (offset + len >BLOCK_WIDTH) {
+		memcpy_with_mask(cache[hit_index].block, temp, BLOCK_SIZE, mask);
+		if (offset + len >BLOCK_SIZE) {
 			/* data cross the burst boundary */
-			cache_write(addr -offset + BLOCK_WIDTH, offset + len - BLOCK_WIDTH, *(uint32_t *)(temp + BLOCK_WIDTH));
+			cache_write(addr -offset + BLOCK_SIZE, offset + len - BLOCK_SIZE, *(uint32_t *)(temp + BLOCK_SIZE));
  		}   
 		
  	}
