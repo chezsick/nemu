@@ -50,11 +50,11 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 		if ((cache[index+i].valid) && (cache[index+i].tag==addr_tag)){
 			is_hit=true;
 			*hit_index=index+i;
-			Log("hit! in %x\n", addr);
+			Log("hit! in %x", addr);
 			break;
 	 	}
 	}
-	if (!is_hit) Log("%x: miss!\n", addr);
+	if (!is_hit) Log("%x: miss!", addr);
 	return is_hit;
 }
 
@@ -98,7 +98,8 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	}
 	printf("\n");
  	if (offset + len > BLOCK_SIZE) {
-		/* data cross the burst boundary */
+		/* data cross the slot boundary */
+		Log("cross the boundary!");
 		*(temp+BLOCK_SIZE)=cache_read(addr -offset + BLOCK_SIZE, offset + len - BLOCK_SIZE);
 	}
 	return unalign_rw(temp + offset, 4);
@@ -120,7 +121,7 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data){
 		*(uint32_t *)(temp + offset)=data;
 		memcpy_with_mask(cache[hit_index].block, temp, BLOCK_SIZE, mask);
 		if (offset + len >BLOCK_SIZE) {
-			/* data cross the burst boundary */
+			/* data cross the slot boundary */
 			cache_write(addr -offset + BLOCK_SIZE, offset + len - BLOCK_SIZE, *(uint32_t *)(temp + BLOCK_SIZE));
  		}   
 		
