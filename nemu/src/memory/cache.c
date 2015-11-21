@@ -93,8 +93,8 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	memcpy(temp, cache[hit_index].block, BLOCK_SIZE);
 	int i;
 	printf("temp:");
-	for (i=0;i<2*BLOCK_SIZE;i+=4){
-		printf("%0x",temp[i]);
+	for (i=0;i<2*BLOCK_SIZE;i++){
+		printf("%0x",temp[i]&0xff);
 	}
 	printf("\n");
  	if (offset + len > BLOCK_SIZE) {
