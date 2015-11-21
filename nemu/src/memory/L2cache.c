@@ -87,7 +87,7 @@ uint32_t dram2L2cache(hwaddr_t addr, uint32_t index){
 	}
 	L2cache[index].tag =(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&(NR_TAG-1);
 	L2cache[index].valid=1;
-	L2cache[index].dirty=0;
+	//L2cache[index].dirty=0;
 	return index;
 }
 uint32_t L2cache_read(hwaddr_t addr, size_t len){
@@ -137,7 +137,7 @@ void L2cache_write(hwaddr_t addr, size_t len, uint32_t data){
 	}
 	*(uint32_t *)(temp + offset)=data;
 	memcpy_with_mask(L2cache[hit_index].block, temp, BLOCK_SIZE, mask);
-	L2cache[hit_index].dirty=true;
+	L2cache[hit_index].dirty=1;
 	if (offset + len >BLOCK_SIZE) {
 		/* data cross the slot boundary */
 		//Log("cross the boundary!");
