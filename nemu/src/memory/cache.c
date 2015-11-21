@@ -120,6 +120,7 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data){
 	memset(mask, 0, 2 * BLOCK_SIZE);
 	memset(mask + offset, 1, len);
 	bool is_hit;
+	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!(in cache    )", addr);
 	is_hit=hit(addr, &hit_index);
 	if (is_hit==true){
 		*(uint32_t *)(temp + offset)=data;
