@@ -50,11 +50,11 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 		if ((cache[index+i].valid) && (cache[index+i].tag==addr_tag)){
 			is_hit=true;
 			*hit_index=index+i;
-			//Log("hit! in set:%d, No.%d slot,%x", index/WAY, i, addr);
+			Log("hit! in set:%d, No.%d slot,%x", index/WAY, i, addr);
 			break;
 	 	}
 	}
-	//if (!is_hit) Log("%x: miss!", addr);
+	if (!is_hit) Log("%x: miss!", addr);
 	return is_hit;
 }
 
@@ -127,7 +127,7 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data){
 		memcpy_with_mask(cache[hit_index].block, temp, BLOCK_SIZE, mask);
 		if (offset + len >BLOCK_SIZE) {
 			/* data cross the slot boundary */
-			Log("cross the boundary!");
+			//Log("cross the boundary!");
 			cache_write(addr - offset + BLOCK_SIZE, offset + len - BLOCK_SIZE, *(uint32_t *)(temp + BLOCK_SIZE));
  		}   
 		
