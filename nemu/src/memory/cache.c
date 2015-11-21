@@ -27,6 +27,13 @@ typedef struct{
 
 CacheSlot cache[NR_SLOT];
 
+void init_cache() {
+	int i;
+	for (i=0; i<NR_SLOT; i++){
+		cache[i].valid=false;
+	}
+}
+
 uint32_t set_ass(hwaddr_t addr){
 	uint32_t set_index=(addr>>BLOCK_WIDTH)&NR_INDEX;
 	uint32_t slot_index=set_index*WAY;
