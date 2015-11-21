@@ -35,7 +35,9 @@ void init_cache() {
 }
 
 uint32_t set_ass(hwaddr_t addr){
+	if (addr==0x100091) printf("block_width:%x,nr_index:%x",BLOCK_WIDTH, NR_INDEX);
 	uint32_t set_index=(addr>>BLOCK_WIDTH)&NR_INDEX;
+	printf("set_index:%x\n",set_index);
 	uint32_t slot_index=set_index*WAY;
 	return slot_index;
 }
@@ -43,7 +45,6 @@ uint32_t set_ass(hwaddr_t addr){
 bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else return set address
 	bool is_hit=false;
 	uint32_t index=set_ass(addr);
-	if (addr==0x100091) printf("fuck index:%x\n",index);
 	*hit_index=index;
 	int i;
 	uint32_t addr_tag=(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&NR_TAG;
