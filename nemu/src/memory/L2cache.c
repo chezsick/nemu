@@ -72,7 +72,7 @@ uint32_t dram2L2cache(hwaddr_t addr, uint32_t index){
   	}
  	if (rep) index+=addr&(WAY-1);
 	if (rep&&L2cache[index].dirty){		//dirty write back
-		printf("dirty back.\n");
+		Log("dirty back.\n");
 		hwaddr_t addr_rb=(L2cache[index].tag<<(INDEX_WIDTH))+index/WAY;
 		addr_rb=addr_rb<<BLOCK_WIDTH;
 		for (i=0; i<BLOCK_SIZE; i++){
