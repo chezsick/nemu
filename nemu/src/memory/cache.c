@@ -14,7 +14,7 @@
 #define NR_SLOT (1<<SLOT_WIDTH)			
 #define NR_INDEX (1<<INDEX_WIDTH)
 
-#define HW_MEM_SIZE (1 << 27)
+#define HW_MEM_SIZE (1 << 31)
 
 uint32_t dram_read(hwaddr_t, size_t);
 
