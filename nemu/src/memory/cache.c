@@ -50,11 +50,11 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 		if ((cache[index+i].valid) && (cache[index+i].tag==addr_tag)){
 			is_hit=true;
 			*hit_index=index+i;
-			printf("hit! in %x\n", addr);
+			Log("hit! in %x\n", addr);
 			break;
 	 	}
 	}
-	if (!is_hit) printf("%x: miss!\n", addr);
+	if (!is_hit) Log("%x: miss!\n", addr);
 	return is_hit;
 }
 
@@ -92,9 +92,9 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!(in cache)", addr);
 	memcpy(temp, cache[hit_index].block, BLOCK_SIZE);
 	int i;
-	Log("temp:");
+	printf("temp:");
 	for (i=0;i<2*BLOCK_SIZE;i+=4){
-		Log("%x",temp[i]);
+		printf("%x",temp[i]);
 	}
 	printf("\n");
  	if (offset + len > BLOCK_SIZE) {
