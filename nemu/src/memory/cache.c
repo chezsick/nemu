@@ -49,12 +49,12 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 	for (i=0;i<WAY;i++){
 		if ((cache[index+i].valid) && (cache[index+i].tag==addr_tag)){
 			is_hit=true;
-			*hit_index=index+i;
+			//*hit_index=index+i;
 			Log("hit! in set:%d, No.%d slot,%x", index/WAY, i, addr);
 			break;
 	 	}
 	}
-	if (!is_hit) Log("%x: miss!", addr);
+	//if (!is_hit) Log("%x: miss!", addr);
 	return is_hit;
 }
 
@@ -93,23 +93,19 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!(in cache)", addr);
 	memcpy(temp, cache[hit_index].block, BLOCK_SIZE);
-	if (addr==0x100f40) {
+	/*
 	int i;
 	printf("temp:");
 	for (i=0;i<2*BLOCK_SIZE;i++){
 		printf("%0x",temp[i]&0xff);
 	}
 	printf("\n");
- 	}
+ 	*/
  	if (offset + len > BLOCK_SIZE) {
 		/* data cross the slot boundary */
-		Log("cross the boundary!");
-		printf("before cross:%x\n", unalign_rw(temp + offset, 2));
-		printf("addr:%x, beg:%x, len:%x\n",addr, addr-offset+BLOCK_SIZE, offset+len-BLOCK_SIZE);
+		//Log("cross the boundary!");
 		*(uint32_t *)(temp+BLOCK_SIZE)=cache_read(addr -offset + BLOCK_SIZE, offset + len - BLOCK_SIZE);
-		printf("after cross:%x\n", unalign_rw(temp + offset+2, 2));
 	}
-	if (addr==0x100f40) printf("inin:%x\n",unalign_rw(temp+offset,4));
 	return unalign_rw(temp + offset, 4);
 	
 
