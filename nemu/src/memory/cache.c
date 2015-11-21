@@ -76,7 +76,7 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 void print_hit(hwaddr_t addr){
 	uint32_t index;
 	if (hit(addr,&index)){
-		printf("hit! in set:%d, No.%d slot,%x\n", index/WAY, index%WAY, addr);
+		printf("hit! in set:%d, No.%d slot,\t0x%x\n", index/WAY, index%WAY, addr);
 		printf("tag:%x\n",cache[index].tag);
 		int i;
 		for (i=0;i<BLOCK_SIZE;i+=4){
