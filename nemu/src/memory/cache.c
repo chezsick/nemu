@@ -91,10 +91,15 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!(in cache)", addr);
 	memcpy(temp, cache[hit_index].block, BLOCK_WIDTH);
-	
+	int i;
+	printf("temp:");
+	for (i=0;i<2*BLOCK_WIDTH;i+=4){
+		printf("%x",temp[i]);
+	}
+	printf("\n");
  	if (offset + len > BLOCK_WIDTH) {
 		/* data cross the burst boundary */
-		//*(temp+BLOCK_WIDTH)=cache_read(addr -offset + BLOCK_WIDTH, offset + len - BLOCK_WIDTH);
+		*(temp+BLOCK_WIDTH)=cache_read(addr -offset + BLOCK_WIDTH, offset + len - BLOCK_WIDTH);
 	}
 	return unalign_rw(temp + offset, 4);
 	
