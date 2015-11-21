@@ -71,7 +71,7 @@ uint32_t dram2L2cache(hwaddr_t addr, uint32_t index){
  		}
   	}
  	if (rep) index+=addr&(WAY-1);
-	if (rep){		//dirty write back
+	if (rep&&L2cache[index].dirty){		//dirty write back
 		Log("dirty back.\n");
 		hwaddr_t addr_rb=(L2cache[index].tag<<(INDEX_WIDTH))+index/WAY;
 		addr_rb=addr_rb<<BLOCK_WIDTH;
