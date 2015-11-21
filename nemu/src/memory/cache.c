@@ -35,9 +35,7 @@ void init_cache() {
 }
 
 uint32_t set_ass(hwaddr_t addr){
-	if (addr==0x100091) printf("block_width:%x,nr_index:%x",BLOCK_WIDTH, NR_INDEX);
-	uint32_t set_index=(addr>>BLOCK_WIDTH)&NR_INDEX;
-	printf("set_index:%x\n",set_index);
+	uint32_t set_index=(addr>>BLOCK_WIDTH)&(NR_INDEX-1);
 	uint32_t slot_index=set_index*WAY;
 	return slot_index;
 }
@@ -47,7 +45,7 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 	uint32_t index=set_ass(addr);
 	*hit_index=index;
 	int i;
-	uint32_t addr_tag=(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&NR_TAG;
+	uint32_t addr_tag=(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&(NR_TAG-1);
 	for (i=0;i<WAY;i++){
 		if ((cache[index+i].valid) && (cache[index+i].tag==addr_tag)){
 			is_hit=true;
@@ -70,14 +68,14 @@ uint32_t dram2cache(hwaddr_t addr, uint32_t index){
 			break;
  		}
   	}
- 	if (rep) index+=addr&0x7;
+ 	if (rep) index+=addr&(WAY-1);
 	hwaddr_t addr_sta=(addr>>BLOCK_WIDTH)<<BLOCK_WIDTH;
 	for (i=0; i<BLOCK_SIZE;  i++){
 
 		cache[index].block[i]=dram_read(addr_sta+i, 1);
 		printf("dram2cache: %x\n", cache[index].block[i]);
 	}
-	cache[index].tag =(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&NR_TAG;
+	cache[index].tag =(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&(NR_TAG-1);
 	cache[index].valid=1;
 
 	return index;
