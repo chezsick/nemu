@@ -223,8 +223,8 @@ static int cmd_cache(char *args){
 		print_hit_rate();
 	}
 	else{
-		uint32_t temp=atoi(args);
-		printf("%x\n",temp);
+		unsigned int temp=0;
+		sscanf(args, "0x%x",&temp);
 		hwaddr_t addr=(hwaddr_t)temp;
 		print_hit(addr);
 	}
