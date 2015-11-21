@@ -81,7 +81,7 @@ void print_hit(hwaddr_t addr){
 		int i;
 		for (i=0;i<BLOCK_SIZE;i+=4){
 			printf("%x\t",cache[index].block[i]);
-			if (i%20==0) printf("\n");
+			if ((i+4)%16==0) printf("\n");
 		}
 	}
 	else {
