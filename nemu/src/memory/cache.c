@@ -124,7 +124,8 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data){
 		memcpy_with_mask(cache[hit_index].block, temp, BLOCK_SIZE, mask);
 		if (offset + len >BLOCK_SIZE) {
 			/* data cross the slot boundary */
-			cache_write(addr -offset + BLOCK_SIZE, offset + len - BLOCK_SIZE, *(uint32_t *)(temp + BLOCK_SIZE));
+			Log("cross the boundary!");
+			cache_write(addr - offset + BLOCK_SIZE, offset + len - BLOCK_SIZE, *(uint32_t *)(temp + BLOCK_SIZE));
  		}   
 		
  	}
