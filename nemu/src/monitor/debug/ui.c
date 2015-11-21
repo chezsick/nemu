@@ -1,6 +1,7 @@
 #include "monitor/monitor.h"
 #include "monitor/expr.h"
 #include "monitor/watchpoint.h"
+#include "memory/cache.h"
 #include "nemu.h"
 
 #include <stdlib.h>
@@ -216,6 +217,13 @@ static int cmd_bt(char *args)
 	return 0;
 
 }
+
+static int cmd_cache(char *args){
+	if (args==NULL){
+		print_hit_rate();
+	}
+	return 0;
+}
 static int cmd_help(char *args);
 
 static struct {
@@ -232,7 +240,8 @@ static struct {
 	{ "p", "Print the value of expression EXP", cmd_p},
 	{ "w", "Set a watchpoint for an expression.", cmd_w},
 	{ "d", "Delete a watchpoint.", cmd_d},
-	{ "bt", "Print backtrace of all stack frames.", cmd_bt}
+	{ "bt", "Print backtrace of all stack frames.", cmd_bt},
+	{ "cache", "Show the hit rate of cache.", cmd_cache}
 	/* TODO: Add more commands */
 
 };

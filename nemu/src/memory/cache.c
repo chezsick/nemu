@@ -1,6 +1,7 @@
 #include "common.h"
 #include "burst.h"
 #include "misc.h"
+#include "memory/cache.h"
 
 //64b 64kb 1024line 
 #define TAG_WIDTH 14	//27-7-6
@@ -21,6 +22,15 @@
 uint32_t L2cache_read(hwaddr_t, size_t);
 void L2cache_write(hwaddr_t, size_t, uint32_t);
 
+struct{
+	uint32_t Hit;
+	uint32_t Miss;
+}hit_rate;
+
+void print_hit_rate(){
+	printf("hit:%d,\tmiss:%d\ttotal time:%ld\n", hit_rate.Hit, hit_rate.Miss, (long int)(hit_rate.Hit*2+hit_rate.Miss*100));
+	printf("rate:%f\n", (double)hit_rate.Hit/(hit_rate.Hit+hit_rate.Miss));
+}
 typedef struct{
 	uint32_t tag	:TAG_WIDTH;
 	uint8_t block[BLOCK_SIZE];
@@ -35,6 +45,8 @@ void init_cache() {
 	for (i=0; i<NR_SLOT; i++){
 		cache[i].valid=false;
 	}
+	hit_rate.Hit=0;
+	hit_rate.Miss=0;
 }
 
 uint32_t set_ass(hwaddr_t addr){
@@ -58,6 +70,7 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 	 	}
 	}
 	//if (!is_hit) Log("%x: miss!", addr);
+	if (is_hit) hit_rate.Hit++;else hit_rate.Miss++;
 	return is_hit;
 }
 /*
