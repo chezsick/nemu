@@ -73,6 +73,21 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 	if (is_hit) hit_rate.Hit++;else hit_rate.Miss++;
 	return is_hit;
 }
+void print_hit(hwaddr_t addr){
+	uint32_t index;
+	if (hit(addr,&index)){
+		printf("hit! in set:%d, No.%d slot,%x", index/WAY, index%WAY, addr);
+		printf("tag:%x\n",cache[index].tag);
+		int i;
+		for (i=0;i<BLOCK_SIZE;i+=4){
+			printf("%x\t",cache[index].block[i]);
+			if (i%20==0) printf("\n");
+		}
+	}
+	else {
+		printf("miss!\n");
+	}
+}
 /*
 uint32_t dram2cache(hwaddr_t addr, uint32_t index){
 	int i;
