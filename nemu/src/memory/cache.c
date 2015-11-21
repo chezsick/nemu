@@ -43,9 +43,11 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 		if ((cache[index+i].valid) && (cache[index+i].tag==addr_tag)){
 			is_hit=true;
 			*hit_index=index+i;
+			printf("hit! in %x\n", addr);
 			break;
 	 	}
-	} 
+	}
+	if (!is_hit) printf("%x: miss!\n", addr);
 	return is_hit;
 }
 
@@ -68,7 +70,7 @@ uint32_t dram2cache(hwaddr_t addr, uint32_t index){
 	return index;
 }
 uint32_t cache_read(hwaddr_t addr, size_t len){
-	printf("cache read %x\n",addr);
+	printf("cache read %x(%d)\n", addr, len);
 	uint32_t offset = addr & BLOCK_SIZE;
 	uint8_t temp[2 * BLOCK_WIDTH];
 	uint32_t hit_index;
