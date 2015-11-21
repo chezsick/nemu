@@ -50,11 +50,11 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 		if ((cache[index+i].valid) && (cache[index+i].tag==addr_tag)){
 			is_hit=true;
 			*hit_index=index+i;
-			Log("hit! in set:%d, No.%d slot,%x", index/WAY, i, addr);
+			//Log("hit! in set:%d, No.%d slot,%x", index/WAY, i, addr);
 			break;
 	 	}
 	}
-	if (!is_hit) Log("%x: miss!", addr);
+	//if (!is_hit) Log("%x: miss!", addr);
 	return is_hit;
 }
 
@@ -73,7 +73,7 @@ uint32_t dram2cache(hwaddr_t addr, uint32_t index){
 	for (i=0; i<BLOCK_SIZE;  i++){
 
 		cache[index].block[i]=dram_read(addr_sta+i, 1);
-		printf("dram2cache: %x\n", cache[index].block[i]);
+		//printf("dram2cache: %x\n", cache[index].block[i]);
 	}
 	cache[index].tag =(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&(NR_TAG-1);
 	cache[index].valid=1;
