@@ -18,6 +18,9 @@
 
 uint32_t dram_read(hwaddr_t, size_t);
 void dram_write(hwaddr_t, size_t, uint32_t);
+uint32_t L2cache_read(hwaddr_t, size_t);
+void L2cache_write(hwaddr_t, size_t, uint32_t);
+
 typedef struct{
 	uint32_t tag	:TAG_WIDTH;
 	uint8_t block[BLOCK_SIZE];
@@ -80,6 +83,25 @@ uint32_t dram2cache(hwaddr_t addr, uint32_t index){
 
 	return index;
 }
+uint32_t L2cache2cache(hwaddr_t addr, uint32_t index){
+	 int i;
+	 bool rep=true;
+	 for (i=0; i< WAY; i++){                 //have space
+		 if (cache[index+i].valid==0){
+			 rep=false;
+			 index+=i;
+			 break;
+		 }
+	 }
+	 if (rep) index+=addr&(WAY-1);
+	 hwaddr_t addr_sta=(addr>>BLOCK_WIDTH)<<BLOCK_WIDTH;
+	 for (i=0; i<BLOCK_SIZE;  i+=4){
+		 *(uint32_t *)(cache[index].block+i)=L2cache_read(addr_sta+i, 4);
+	 }
+	 cache[index].tag =(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&(NR_TAG-1);
+	 cache[index].valid=1;
+	 return index;
+}
 uint32_t cache_read(hwaddr_t addr, size_t len){
 	//printf("cache read %x(%d)\n", addr, len);
 	uint32_t offset = addr & (BLOCK_SIZE-1);
@@ -87,7 +109,8 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	uint32_t hit_index;
 	bool is_hit=hit(addr, &hit_index);
  	if (!is_hit){
-		hit_index=dram2cache(addr, hit_index);
+		//hit_index=dram2cache(addr, hit_index);
+		L2cache2cache(addr, hit_index);
 	}
 	//now the dram block is in cache.
 	
@@ -132,7 +155,8 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data){
  		}   
 		
  	}
-	dram_write(addr, len, data);
+	//dram_write(addr, len, data);
+	L2cache_write(addr, len, data);
 }
 
 
