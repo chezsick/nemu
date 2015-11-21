@@ -6,7 +6,7 @@
 #define TAG_WIDTH 14	//27-7-6
 #define BLOCK_WIDTH 6	//64B
 #define SLOT_WIDTH 10	//1K line
-#define INDEX_WIDTH 7
+#define INDEX_WIDTH 7	//128 set
 #define WAY 8
 
 #define BLOCK_SIZE (1<<BLOCK_WIDTH)
@@ -43,6 +43,7 @@ uint32_t set_ass(hwaddr_t addr){
 bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else return set address
 	bool is_hit=false;
 	uint32_t index=set_ass(addr);
+	if (addr==0x100091) printf("fuck index:%x\n",index);
 	*hit_index=index;
 	int i;
 	uint32_t addr_tag=(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&NR_TAG;
@@ -50,7 +51,7 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 		if ((cache[index+i].valid) && (cache[index+i].tag==addr_tag)){
 			is_hit=true;
 			*hit_index=index+i;
-			Log("hit! in set:%d, No.%d slot,%x", index, i, addr);
+			Log("hit! in set:%d, No.%d slot,%x", index/WAY, i, addr);
 			break;
 	 	}
 	}
