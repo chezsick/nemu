@@ -92,9 +92,9 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!(in cache)", addr);
 	memcpy(temp, cache[hit_index].block, BLOCK_SIZE);
 	int i;
-	printf("temp:");
+	Log("temp:");
 	for (i=0;i<2*BLOCK_SIZE;i+=4){
-		printf("%x",temp[i]);
+		Log("%x",temp[i]);
 	}
 	printf("\n");
  	if (offset + len > BLOCK_SIZE) {
