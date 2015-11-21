@@ -28,7 +28,7 @@ struct{
 }hit_rate;
 
 void print_hit_rate(){
-	printf("hit:%d,\tmiss:%d\ttotal time:%ld\n", hit_rate.Hit, hit_rate.Miss, (long int)(hit_rate.Hit*2+hit_rate.Miss*100));
+	printf("hit:%d,\tmiss:%d,\ttotal time:%ld\n", hit_rate.Hit, hit_rate.Miss, (long int)(hit_rate.Hit*2+hit_rate.Miss*100));
 	printf("rate:%f\n", (double)hit_rate.Hit/(hit_rate.Hit+hit_rate.Miss));
 }
 typedef struct{
