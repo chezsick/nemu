@@ -14,7 +14,7 @@
 #define NR_SLOT (1<<SLOT_WIDTH)			
 #define NR_INDEX (1<<INDEX_WIDTH)
 
-#define HW_MEM_SIZE (1<<27)
+#define HW_MEM_SIZE (1 << 27)
 
 uint32_t dram_read(hwaddr_t, size_t);
 
@@ -33,7 +33,7 @@ uint32_t set_ass(hwaddr_t addr){
 	return slot_index;
 }
 
-bool hit(hwaddr_t addr, uint32_t*  hit_index){ //if hit return hit address, else return set address
+bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else return set address
 	bool is_hit=false;
 	uint32_t index=set_ass(addr);
 	*hit_index=index;
@@ -44,8 +44,8 @@ bool hit(hwaddr_t addr, uint32_t*  hit_index){ //if hit return hit address, else
 			is_hit=true;
 			*hit_index=index+i;
 			break;
-		}
-	}
+	 	}
+	} 
 	return is_hit;
 }
 
@@ -57,10 +57,10 @@ uint32_t dram2cache(hwaddr_t addr, uint32_t index){
 			rep=false;
 			index+=i;
 			break;
-		}
-	}
-	if (rep) index+=(addr&0x7);
-	for (i=0; i<BLOCK_SIZE; i++){
+ 		}
+  	}
+ 	if (rep) index+=addr&0x7;
+	for (i=0; i<BLOCK_SIZE;  i++){
 		cache[index].block[i]=dram_read(addr+i, 1);
 		cache[index].tag =(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&NR_TAG;
 		cache[index].valid=1;
@@ -72,14 +72,14 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	uint8_t temp[2 * BLOCK_WIDTH];
 	uint32_t hit_index;
 	bool is_hit=hit(addr, &hit_index);
-	if (!is_hit){
+ 	if (!is_hit){
 		hit_index=dram2cache(addr, hit_index);
 	}
 	//now the dram block is in cache.
 	
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!(in cache)", addr);
 	memcpy(temp, cache[hit_index].block, BLOCK_WIDTH);
-	if (offset + len > BLOCK_WIDTH) {
+ 	if (offset + len > BLOCK_WIDTH) {
 		/* data cross the burst boundary */
 		*(temp+BLOCK_WIDTH)=cache_read(addr -offset + BLOCK_WIDTH, offset + len - BLOCK_WIDTH);
 	}
@@ -103,9 +103,9 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data){
 		if (offset + len >BLOCK_WIDTH) {
 			/* data cross the burst boundary */
 			cache_write(addr -offset + BLOCK_WIDTH, offset + len - BLOCK_WIDTH, *(uint32_t *)(temp + BLOCK_WIDTH));
-		}   
+ 		}   
 		
-	}
+ 	}
 }
 
 
