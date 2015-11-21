@@ -104,10 +104,10 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
  	if (offset + len > BLOCK_SIZE) {
 		/* data cross the slot boundary */
 		Log("cross the boundary!");
-		printf("before cross:%x\n", unalign_rw(temp + offset, 4));
+		printf("before cross:%x\n", unalign_rw(temp + offset, 2));
 		printf("addr:%x, beg:%x, len:%x\n",addr, addr-offset+BLOCK_SIZE, offset+len-BLOCK_SIZE);
 		*(temp+BLOCK_SIZE)=cache_read(addr -offset + BLOCK_SIZE, offset + len - BLOCK_SIZE);
-		printf("after cross:%x\n", unalign_rw(temp + offset, 4));
+		printf("after cross:%x\n", unalign_rw(temp + offset+2, 2));
 	}
 	return unalign_rw(temp + offset, 4);
 	
