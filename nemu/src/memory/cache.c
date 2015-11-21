@@ -16,8 +16,8 @@
 
 #define HW_MEM_SIZE (1 << 27)
 
-uint32_t dram_read(hwaddr_t, size_t);
-void dram_write(hwaddr_t, size_t, uint32_t);
+//uint32_t dram_read(hwaddr_t, size_t);
+//void dram_write(hwaddr_t, size_t, uint32_t);
 uint32_t L2cache_read(hwaddr_t, size_t);
 void L2cache_write(hwaddr_t, size_t, uint32_t);
 
@@ -60,7 +60,7 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 	//if (!is_hit) Log("%x: miss!", addr);
 	return is_hit;
 }
-
+/*
 uint32_t dram2cache(hwaddr_t addr, uint32_t index){
 	int i;
 	bool rep=true;
@@ -83,6 +83,7 @@ uint32_t dram2cache(hwaddr_t addr, uint32_t index){
 
 	return index;
 }
+*/
 uint32_t L2cache2cache(hwaddr_t addr, uint32_t index){
 	 int i;
 	 bool rep=true;
