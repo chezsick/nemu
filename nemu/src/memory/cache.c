@@ -107,7 +107,7 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 		printf("before cross:%x\n", unalign_rw(temp + offset, 2));
 		printf("addr:%x, beg:%x, len:%x\n",addr, addr-offset+BLOCK_SIZE, offset+len-BLOCK_SIZE);
 		*(temp+BLOCK_SIZE)=cache_read(addr -offset + BLOCK_SIZE, offset + len - BLOCK_SIZE);
-		printf("after cross:%x\n", unalign_rw(temp + offset+2, 1));
+		printf("after cross:%x\n", unalign_rw(temp + offset+3, 1));
 	}
 	return unalign_rw(temp + offset, 4);
 	
