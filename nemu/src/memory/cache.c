@@ -109,6 +109,7 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 		*(temp+BLOCK_SIZE)=cache_read(addr -offset + BLOCK_SIZE, offset + len - BLOCK_SIZE);
 		printf("after cross:%x\n", unalign_rw(temp + offset+2, 2));
 	}
+	if (addr==0x100f40) printf("inin:%x\n",unalign_rw(temp+offset,4));
 	return unalign_rw(temp + offset, 4);
 	
 
