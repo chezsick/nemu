@@ -50,11 +50,11 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 		if ((cache[index+i].valid) && (cache[index+i].tag==addr_tag)){
 			is_hit=true;
 			*hit_index=index+i;
-			//Log("hit! in set:%d, No.%d slot,%x", index/WAY, i, addr);
+			Log("hit! in set:%d, No.%d slot,%x", index/WAY, i, addr);
 			break;
 	 	}
 	}
-	//if (!is_hit) Log("%x: miss!", addr);
+	if (!is_hit) Log("%x: miss!", addr);
 	return is_hit;
 }
 
