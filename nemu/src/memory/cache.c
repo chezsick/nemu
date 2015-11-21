@@ -85,7 +85,7 @@ void print_hit(hwaddr_t addr){
 		}
 	}
 	else {
-		printf("miss!\n");
+		printf("Address 0x%0x miss!\n", addr);
 	}
 }
 /*
