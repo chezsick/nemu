@@ -222,6 +222,10 @@ static int cmd_cache(char *args){
 	if (args==NULL){
 		print_hit_rate();
 	}
+	else{
+		hwaddr_t addr=(hwaddr_t)atoi(args);
+		print_hit(addr);
+	}
 	return 0;
 }
 static int cmd_help(char *args);
