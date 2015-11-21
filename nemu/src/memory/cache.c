@@ -111,7 +111,7 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	bool is_hit=hit(addr, &hit_index);
  	if (!is_hit){
 		//hit_index=dram2cache(addr, hit_index);
-		L2cache2cache(addr, hit_index);
+		hit_index=L2cache2cache(addr, hit_index);
 	}
 	//now the dram block is in cache.
 	
