@@ -14,7 +14,7 @@
 #define NR_SLOT (1<<SLOT_WIDTH)			
 #define NR_INDEX (1<<INDEX_WIDTH)
 
-#define HW_MEM_SIZE (1 << 31)
+#define HW_MEM_SIZE (1 << 27)
 
 uint32_t dram_read(hwaddr_t, size_t);
 
@@ -93,14 +93,14 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!(in cache)", addr);
 	memcpy(temp, cache[hit_index].block, BLOCK_SIZE);
-	/*
+	
 	int i;
 	printf("temp:");
 	for (i=0;i<2*BLOCK_SIZE;i++){
 		printf("%0x",temp[i]&0xff);
 	}
 	printf("\n");
-	*/
+	
  	if (offset + len > BLOCK_SIZE) {
 		/* data cross the slot boundary */
 		Log("cross the boundary!");
