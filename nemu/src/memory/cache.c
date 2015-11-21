@@ -93,20 +93,20 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!(in cache)", addr);
 	memcpy(temp, cache[hit_index].block, BLOCK_SIZE);
-	if (addr==0x100f3c) {
+	/*if (addr==0x100f3c) {
 	int i;
 	printf("temp:");
 	for (i=0;i<2*BLOCK_SIZE;i++){
 		printf("%0x",temp[i]&0xff);
 	}
 	printf("\n");
- 	}
+ 	}*/
  	if (offset + len > BLOCK_SIZE) {
 		/* data cross the slot boundary */
 		Log("cross the boundary!");
 		printf("before cross:%x\n", unalign_rw(temp + offset, 4));
 		printf("addr:%x, beg:%x, len:%x\n",addr, addr-offset+BLOCK_SIZE, offset+len-BLOCK_SIZE);
-		*(temp+BLOCK_SIZE)=cache_read(addr -offset + BLOCK_SIZE, offset + len - BLOCK_SIZE+1);
+		*(temp+BLOCK_SIZE)=cache_read(addr -offset + BLOCK_SIZE, offset + len - BLOCK_SIZE);
 		printf("after cross:%x\n", unalign_rw(temp + offset, 4));
 	}
 	return unalign_rw(temp + offset, 4);
