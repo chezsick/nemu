@@ -68,6 +68,7 @@ uint32_t dram2cache(hwaddr_t addr, uint32_t index){
 	return index;
 }
 uint32_t cache_read(hwaddr_t addr, size_t len){
+	printf("cache read %x\n",addr);
 	uint32_t offset = addr & BLOCK_SIZE;
 	uint8_t temp[2 * BLOCK_WIDTH];
 	uint32_t hit_index;
@@ -89,6 +90,7 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 }
 
 void cache_write(hwaddr_t addr, size_t len, uint32_t data){
+	printf("cache write %x-%x\n", addr, data);
 	uint32_t hit_index;
 	uint32_t offset = addr & BLOCK_SIZE;
 	uint8_t temp[2 * BLOCK_WIDTH];
