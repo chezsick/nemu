@@ -131,17 +131,19 @@ void L2cache_write(hwaddr_t addr, size_t len, uint32_t data){
 	bool is_hit;
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!(in L2cache)", addr);
 	is_hit=L2hit(addr, &hit_index);
-	if (is_hit==true){
-		*(uint32_t *)(temp + offset)=data;
-		memcpy_with_mask(L2cache[hit_index].block, temp, BLOCK_SIZE, mask);
-		L2cache[hit_index].dirty=true;
-		if (offset + len >BLOCK_SIZE) {
-			/* data cross the slot boundary */
-			//Log("cross the boundary!");
-			L2cache_write(addr - offset + BLOCK_SIZE, offset + len - BLOCK_SIZE, *(uint32_t *)(temp + BLOCK_SIZE));
-  		}   
-		
-  	}
+	if (!is_hit==true){			//miss
+		L2cache_read(addr, len);
+	}
+	*(uint32_t *)(temp + offset)=data;
+	memcpy_with_mask(L2cache[hit_index].block, temp, BLOCK_SIZE, mask);
+	L2cache[hit_index].dirty=true;
+	if (offset + len >BLOCK_SIZE) {
+		/* data cross the slot boundary */
+		//Log("cross the boundary!");
+		L2cache_write(addr - offset + BLOCK_SIZE, offset + len - BLOCK_SIZE, *(uint32_t *)(temp + BLOCK_SIZE));
+ 	}   
+	dram_write(addr, len, data);		
+ 
 }
 
 
