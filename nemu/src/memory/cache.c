@@ -73,7 +73,7 @@ uint32_t dram2cache(hwaddr_t addr, uint32_t index){
 	for (i=0; i<BLOCK_SIZE;  i++){
 
 		cache[index].block[i]=dram_read(addr_sta+i, 1);
-		//printf("dram2cache: %x\n", cache[index].block[i]);
+		printf("dram2cache: %x\n", cache[index].block[i]);
 	}
 	cache[index].tag =(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&NR_TAG;
 	cache[index].valid=1;
@@ -93,14 +93,14 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!(in cache)", addr);
 	memcpy(temp, cache[hit_index].block, BLOCK_SIZE);
-	
+	/*
 	int i;
 	printf("temp:");
 	for (i=0;i<2*BLOCK_SIZE;i++){
 		printf("%0x",temp[i]&0xff);
 	}
 	printf("\n");
-	
+	*/
  	if (offset + len > BLOCK_SIZE) {
 		/* data cross the slot boundary */
 		Log("cross the boundary!");
