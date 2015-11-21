@@ -17,7 +17,7 @@
 #define HW_MEM_SIZE (1 << 27)
 
 uint32_t dram_read(hwaddr_t, size_t);
-
+void dram_write(hwaddr_t, size_t, uint32_t);
 typedef struct{
 	uint32_t tag	:TAG_WIDTH;
 	uint8_t block[BLOCK_SIZE];
@@ -132,6 +132,7 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data){
  		}   
 		
  	}
+	dram_write(addr, len, data);
 }
 
 
