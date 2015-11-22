@@ -76,7 +76,6 @@ uint32_t dram2L2cache(hwaddr_t addr, uint32_t index){
 		Log("dirty back.\n");
 		hwaddr_t addr_rb=(L2cache[index].tag<<(INDEX_WIDTH))+index/WAY;
 		addr_rb=addr_rb<<BLOCK_WIDTH;
-		if(index/16==74||addr==0x101280) printf("fuck L2:79 change eip!!!\n");
 		for (i=0; i<BLOCK_SIZE; i+=4){
 			dram_write(addr_rb, 4, L2cache[index].block[i]);
 		}
@@ -138,6 +137,7 @@ void L2cache_write(hwaddr_t addr, size_t len, uint32_t data){
 		dram_write(addr, len, data); 			//miss
 		L2cache_read(addr, len);
 	}
+	else{
 	*(uint32_t *)(temp + offset)=data;
 	memcpy_with_mask(L2cache[hit_index].block, temp, BLOCK_SIZE, mask);
 	L2cache[hit_index].dirty=1;
@@ -146,6 +146,7 @@ void L2cache_write(hwaddr_t addr, size_t len, uint32_t data){
 		Log("cross the boundary!");
 		L2cache_write(addr - offset + BLOCK_SIZE, offset + len - BLOCK_SIZE, *(uint32_t *)(temp + BLOCK_SIZE));
  	}   
+	}
 	//dram_write(addr, len, data);		
  
 }
