@@ -187,7 +187,6 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data){
 	is_hit=hit(addr, &hit_index);
 	if (is_hit==true){
 		*(uint32_t *)(temp + offset)=data;
-		if(hit_index/8==74||addr==0x101280) printf("fuck here change eip!!!\n");
 		memcpy_with_mask(cache[hit_index].block, temp, BLOCK_SIZE, mask);
 		if (offset + len >BLOCK_SIZE) {
 			/* data cross the slot boundary */

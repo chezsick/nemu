@@ -70,10 +70,9 @@ uint32_t dram2L2cache(hwaddr_t addr, uint32_t index){
 			break;
  		}
   	}
- 	if(index/16==74||addr==0x101280) printf("fuck L2:73 change eip!!!\n");
-	if (rep) index+=addr&(WAY-1);
+ 	if (rep) index+=addr&(WAY-1);
 	if (rep&&L2cache[index].dirty){		//dirty write back
-		Log("dirty back.\n");
+		//Log("dirty back.\n");
 		hwaddr_t addr_rb=(L2cache[index].tag<<(INDEX_WIDTH))+index/WAY;
 		addr_rb=addr_rb<<BLOCK_WIDTH;
 		for (i=0; i<BLOCK_SIZE; i+=4){
@@ -84,7 +83,6 @@ uint32_t dram2L2cache(hwaddr_t addr, uint32_t index){
 	for (i=0; i<BLOCK_SIZE;  i+=4){
 
 		*(uint32_t *)(L2cache[index].block+i)=dram_read(addr_sta+i, 4);
-		if(index/16==74||addr==0x101280) printf("dram2L2cache: %x\n", L2cache[index].block[i]);
 	}
 	L2cache[index].tag =(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&(NR_TAG-1);
 	L2cache[index].valid=1;
@@ -114,7 +112,7 @@ uint32_t L2cache_read(hwaddr_t addr, size_t len){
  	*/
  	if (offset + len > BLOCK_SIZE) {
 		/* data cross the slot boundary */
-		Log("cross the boundary!");
+		//Log("cross the boundary!");
 		*(uint32_t *)(temp+BLOCK_SIZE)=L2cache_read(addr -offset + BLOCK_SIZE, offset + len - BLOCK_SIZE);
 	}
 	return unalign_rw(temp + offset, 4);
@@ -143,7 +141,7 @@ void L2cache_write(hwaddr_t addr, size_t len, uint32_t data){
 	L2cache[hit_index].dirty=1;
 	if (offset + len >BLOCK_SIZE) {
 		/* data cross the slot boundary */
-		Log("cross the boundary!");
+		//Log("cross the boundary!");
 		L2cache_write(addr - offset + BLOCK_SIZE, offset + len - BLOCK_SIZE, *(uint32_t *)(temp + BLOCK_SIZE));
  	}   
 	}
