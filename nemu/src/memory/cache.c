@@ -74,7 +74,7 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 			break;
 	 	}
 	}
-	if (!is_hit&&addr==0x7ffefc0) Log("%x: miss!", addr);
+	if (!is_hit&&((addr&(~0xff))==0x7ffef00)) Log("%x: miss!", addr);
 	if (is_hit) hit_rate.Hit++;else hit_rate.Miss++;
 	return is_hit;
 }
