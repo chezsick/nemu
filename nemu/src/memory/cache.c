@@ -17,11 +17,15 @@
 
 #define HW_MEM_SIZE (1 << 27)
 
+#define L2
+#ifdef L1
 uint32_t dram_read(hwaddr_t, size_t);
 void dram_write(hwaddr_t, size_t, uint32_t);
-//uint32_t L2cache_read(hwaddr_t, size_t);
-//void L2cache_write(hwaddr_t, size_t, uint32_t);
-
+#endif
+#ifdef L2
+uint32_t L2cache_read(hwaddr_t, size_t);
+void L2cache_write(hwaddr_t, size_t, uint32_t);
+#endif
 struct{
 	uint32_t Hit;
 	uint32_t Miss;
@@ -88,7 +92,7 @@ void print_hit(hwaddr_t addr){
 		printf("Address 0x%0x miss!\n", addr);
 	}
 }
-
+#ifdef L1
 uint32_t dram2cache(hwaddr_t addr, uint32_t index){
 	int i;
 	bool rep=true;
@@ -111,7 +115,8 @@ uint32_t dram2cache(hwaddr_t addr, uint32_t index){
 
 	return index;
 }
-/*
+#endif
+#ifdef L2
 uint32_t L2cache2cache(hwaddr_t addr, uint32_t index){
 	 int i;
 	 bool rep=true;
@@ -131,7 +136,7 @@ uint32_t L2cache2cache(hwaddr_t addr, uint32_t index){
 	 cache[index].valid=1;
 	 return index;
 }
-*/
+#endif
 uint32_t cache_read(hwaddr_t addr, size_t len){
 	//printf("cache read %x(%d)\n", addr, len);
 	uint32_t offset = addr & (BLOCK_SIZE-1);
@@ -139,8 +144,12 @@ uint32_t cache_read(hwaddr_t addr, size_t len){
 	uint32_t hit_index;
 	bool is_hit=hit(addr, &hit_index);
  	if (!is_hit){
+#ifdef L1
 		hit_index=dram2cache(addr, hit_index);
-		//hit_index=L2cache2cache(addr, hit_index);
+#endif
+#ifdef L2
+		hit_index=L2cache2cache(addr, hit_index);
+#endif
 	}
 	//now the dram block is in cache.
 	
@@ -185,8 +194,12 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data){
  		}   
 		
  	}
+#ifdef	L1
 	dram_write(addr, len, data);
-	//L2cache_write(addr, len, data);
+#endif
+#ifdef L2
+	L2cache_write(addr, len, data);
+#endif
 }
 
 
