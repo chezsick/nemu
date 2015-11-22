@@ -80,11 +80,11 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 void print_hit(hwaddr_t addr){
 	uint32_t index;
 	if (hit(addr,&index)){
-		printf("hit! in set:%d, No.%d slot,\t0x%x\n", index/WAY, index%WAY, addr);
+		printf("hit! in set:%d, No.%d slot,\t0x%x,\toffset:%d\n", index/WAY, index%WAY, addr,addr&(BLOCK_SIZE-1));
 		printf("tag:%x\n",cache[index].tag);
 		int i;
 		for (i=0;i<BLOCK_SIZE;i++){
-			printf("%x",cache[index].block[i]);
+			printf("%0x ",cache[index].block[i]);
 			if ((i+1)%16==0) printf("\n");
 		}
 	}
