@@ -130,8 +130,7 @@ uint32_t L2cache2cache(hwaddr_t addr, uint32_t index){
 	 }
 	 if (rep) index+=addr&(WAY-1);
 	 hwaddr_t addr_sta=(addr>>BLOCK_WIDTH)<<BLOCK_WIDTH;
-	 if (addr==0x7ffefc0) printf("fuck here!\n");
-	 for (i=0; i<BLOCK_SIZE;  i+=4){
+	  for (i=0; i<BLOCK_SIZE;  i+=4){
 		 *(uint32_t *)(cache[index].block+i)=L2cache_read(addr_sta+i, 4);
 	 }
 	 cache[index].tag =(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&(NR_TAG-1);
@@ -205,7 +204,6 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data){
 	dram_write(addr, len, data);
 #endif
 #ifdef L2
-	if (addr==0x7ffefc0) printf("fuck here!\n");
 	L2cache_write(addr, len, data);
 #endif
 }
