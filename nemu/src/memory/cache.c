@@ -17,7 +17,7 @@
 
 #define HW_MEM_SIZE (1 << 27)
 
-#define L2
+#define L1
 #ifdef L1
 uint32_t dram_read(hwaddr_t, size_t);
 void dram_write(hwaddr_t, size_t, uint32_t);
