@@ -205,6 +205,7 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data){
 	dram_write(addr, len, data);
 #endif
 #ifdef L2
+	if (addr==0x7ffefc0) printf("fuck here!\n");
 	L2cache_write(addr, len, data);
 #endif
 }
