@@ -42,6 +42,7 @@ make_helper(ret){
 		print_asm("ret");
 	}
 	//printf("%d\n",cpu.eip);
+	cpu.eip--;
 	return 1;
 }
 /*
