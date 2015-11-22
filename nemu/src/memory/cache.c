@@ -69,11 +69,12 @@ bool hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, else 
 		if ((cache[index+i].valid) && (cache[index+i].tag==addr_tag)){
 			is_hit=true;
 			*hit_index=index+i;
-			Log("hit! in set:%d, No.%d slot,%x", index/WAY, i, addr);
+			if(addr==0x101299)
+				Log("hit! in set:%d, No.%d slot,%x", index/WAY, i, addr);
 			break;
 	 	}
 	}
-	if (!is_hit) Log("%x: miss!", addr);
+	if (!is_hit&&addr==0x101299) Log("%x: miss!", addr);
 	if (is_hit) hit_rate.Hit++;else hit_rate.Miss++;
 	return is_hit;
 }
@@ -129,11 +130,17 @@ uint32_t L2cache2cache(hwaddr_t addr, uint32_t index){
 	 }
 	 if (rep) index+=addr&(WAY-1);
 	 hwaddr_t addr_sta=(addr>>BLOCK_WIDTH)<<BLOCK_WIDTH;
+
 	 for (i=0; i<BLOCK_SIZE;  i+=4){
 		 *(uint32_t *)(cache[index].block+i)=L2cache_read(addr_sta+i, 4);
 	 }
 	 cache[index].tag =(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&(NR_TAG-1);
 	 cache[index].valid=1;
+	 if (addr==0x101299){
+	 	for (i=0;i<BLOCK_SIZE;i++){
+			printf("%0x ", cache[index].block[i]);
+		}
+	 }
 	 return index;
 }
 #endif
