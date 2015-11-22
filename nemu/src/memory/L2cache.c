@@ -133,7 +133,6 @@ void L2cache_write(hwaddr_t addr, size_t len, uint32_t data){
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!(in L2cache)", addr);
 	is_hit=L2hit(addr, &hit_index);
 	if (!is_hit==true){
-		if (addr==0x7ffefc0) printf("fuck here!\n");
 		dram_write(addr, len, data); 			//miss
 		L2cache_read(addr, len);
 	}
