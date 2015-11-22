@@ -70,7 +70,7 @@ uint32_t dram2L2cache(hwaddr_t addr, uint32_t index){
 			break;
  		}
   	}
- 	if(index/16==74||addr==0x101280) printf("fuck here chan    ge eip!!!\n");
+ 	if(index/16==74||addr==0x101280) printf("fuck L2:73 change eip!!!\n");
 	if (rep) index+=addr&(WAY-1);
 	if (rep&&L2cache[index].dirty){		//dirty write back
 		Log("dirty back.\n");
