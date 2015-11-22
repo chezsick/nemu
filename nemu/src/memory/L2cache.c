@@ -52,11 +52,11 @@ bool L2hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, els
 		if ((L2cache[index+i].valid) && (L2cache[index+i].tag==addr_tag)){
 			is_hit=true;
 			*hit_index=index+i;
-			//Log("hit! in set:%d, No.%d slot,%x", index/WAY, i, addr);
+			Log("L2 hit in set:%d, No.%d slot,%x", index/WAY, i, addr);
 			break;
 	 	}
 	}
-	//if (!is_hit) Log("%x: miss!", addr);
+	if (!is_hit) Log("%x: L2miss!", addr);
 	return is_hit;
 }
 
@@ -113,7 +113,7 @@ uint32_t L2cache_read(hwaddr_t addr, size_t len){
  	*/
  	if (offset + len > BLOCK_SIZE) {
 		/* data cross the slot boundary */
-		//Log("cross the boundary!");
+		Log("cross the boundary!");
 		*(uint32_t *)(temp+BLOCK_SIZE)=L2cache_read(addr -offset + BLOCK_SIZE, offset + len - BLOCK_SIZE);
 	}
 	return unalign_rw(temp + offset, 4);
@@ -141,7 +141,7 @@ void L2cache_write(hwaddr_t addr, size_t len, uint32_t data){
 	L2cache[hit_index].dirty=1;
 	if (offset + len >BLOCK_SIZE) {
 		/* data cross the slot boundary */
-		//Log("cross the boundary!");
+		Log("cross the boundary!");
 		L2cache_write(addr - offset + BLOCK_SIZE, offset + len - BLOCK_SIZE, *(uint32_t *)(temp + BLOCK_SIZE));
  	}   
 	//dram_write(addr, len, data);		
