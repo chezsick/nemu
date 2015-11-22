@@ -3,7 +3,7 @@
 #include "misc.h"
 
 //64b 4M 64kline 
-#define TAG_WIDTH 14	//27-7-6
+#define TAG_WIDTH 9	//27-12-6
 #define BLOCK_WIDTH 6	//64B
 #define SLOT_WIDTH 16	//64k line
 #define INDEX_WIDTH 12	//4k set
@@ -70,7 +70,8 @@ uint32_t dram2L2cache(hwaddr_t addr, uint32_t index){
 			break;
  		}
   	}
- 	if (rep) index+=addr&(WAY-1);
+ 	
+	if (rep) index+=addr&(WAY-1);
 	if (rep&&L2cache[index].dirty){		//dirty write back
 		Log("dirty back.\n");
 		hwaddr_t addr_rb=(L2cache[index].tag<<(INDEX_WIDTH))+index/WAY;
