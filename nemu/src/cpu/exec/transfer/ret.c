@@ -42,7 +42,7 @@ make_helper(ret){
 		print_asm("ret");
 	}
 	//printf("%d\n",cpu.eip);
-	return 0;
+	return 1;
 }
 /*
 make_helper_v(sub_i2rm)
