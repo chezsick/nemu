@@ -52,11 +52,11 @@ bool L2hit(hwaddr_t addr, uint32_t* hit_index){ //if hit return hit address, els
 		if ((L2cache[index+i].valid) && (L2cache[index+i].tag==addr_tag)){
 			is_hit=true;
 			*hit_index=index+i;
-			Log("L2 hit in set:%d, No.%d slot,%x", index/WAY, i, addr);
+			//Log("L2 hit in set:%d, No.%d slot,%x", index/WAY, i, addr);
 			break;
 	 	}
 	}
-	if (!is_hit) Log("%x: L2miss!", addr);
+	//if (!is_hit) Log("%x: L2miss!", addr);
 	return is_hit;
 }
 
