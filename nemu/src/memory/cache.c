@@ -83,9 +83,9 @@ void print_hit(hwaddr_t addr){
 		printf("hit! in set:%d, No.%d slot,\t0x%x\n", index/WAY, index%WAY, addr);
 		printf("tag:%x\n",cache[index].tag);
 		int i;
-		for (i=0;i<BLOCK_SIZE;i+=4){
-			printf("%x\t",cache[index].block[i]);
-			if ((i+4)%16==0) printf("\n");
+		for (i=0;i<BLOCK_SIZE;i++){
+			printf("%x",cache[index].block[i]);
+			if ((i+1)%16==0) printf("\n");
 		}
 	}
 	else {
