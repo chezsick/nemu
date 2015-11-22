@@ -76,14 +76,14 @@ uint32_t dram2L2cache(hwaddr_t addr, uint32_t index){
 		Log("dirty back.\n");
 		hwaddr_t addr_rb=(L2cache[index].tag<<(INDEX_WIDTH))+index/WAY;
 		addr_rb=addr_rb<<BLOCK_WIDTH;
-		for (i=0; i<BLOCK_SIZE; i++){
-			dram_write(addr_rb, 1, L2cache[index].block[i]);
+		for (i=0; i<BLOCK_SIZE; i+=4){
+			dram_write(addr_rb, 4, L2cache[index].block[i]);
 		}
 	}
 	hwaddr_t addr_sta=(addr>>BLOCK_WIDTH)<<BLOCK_WIDTH;
-	for (i=0; i<BLOCK_SIZE;  i++){
+	for (i=0; i<BLOCK_SIZE;  i+=4){
 
-		L2cache[index].block[i]=dram_read(addr_sta+i, 1);
+		*(uint32_t *)(L2cache[index].block+i)=dram_read(addr_sta+i, 4);
 		//printf("dram2L2cache: %x\n", cache[index].block[i]);
 	}
 	L2cache[index].tag =(addr>>(INDEX_WIDTH+BLOCK_WIDTH))&(NR_TAG-1);
