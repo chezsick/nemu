@@ -83,7 +83,7 @@ static void init_sreg(){
 	for (i=0; i<6; i++){
 		cpu.sreg[i].valid=0;
 	}
-	cpu.cr0.val=0;
+	cpu.cr0.protect_enable=1;
 }
 void restart() {
 	/* Perform some initialization to restart a program */
