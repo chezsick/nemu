@@ -78,7 +78,13 @@ static void load_entry() {
 static void init_EFLAGS() {
 	cpu.EFLAGS.eflags=0x00000002;
 }
-
+static void init_sreg(){
+	int i;
+	for (i=0; i<6; i++){
+		cpu.sreg[i].valid=0;
+	}
+	cpu.cr0.val=0;
+}
 void restart() {
 	/* Perform some initialization to restart a program */
 #ifdef USE_RAMDISK
@@ -102,4 +108,6 @@ void restart() {
 	/* Initialize EFLAGS. */
 	//EFLAGS.whole= 0x00000002;
 	init_EFLAGS();
+	/* Initialize Segment Regiseter. */
+	init_sreg();
 }

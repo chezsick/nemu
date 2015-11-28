@@ -16,7 +16,7 @@ typedef struct {
 	union {
 		struct {
 			uint32_t RPL    : 2;
-		    	uint32_t TI             : 1;
+		    	uint32_t TI	: 1;
 			uint32_t index  : 13;
 		};
 		uint16_t val;
@@ -82,7 +82,7 @@ typedef struct {
 	DTR gdtr;
 	union	{
 		Sreg sreg[6];
-		struct{ Sreg CS, DS, ES, SS;};
+		struct{ Sreg CS, DS, ES, SS, GS, FS;};
 	};
 } CPU_state;
 
