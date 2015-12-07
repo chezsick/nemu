@@ -114,7 +114,7 @@ static int cmd_x(char *args)
 	int addr_int;
 	sscanf(addr,"%x",&addr_int);
 	while (n>0) {
-		printf("%x\t",swaddr_read(addr_int,4));
+		printf("%x\t",swaddr_read(addr_int, 4, R_DS));
 		addr_int+=4;
 		//printf("****%d\n",addr_int);
 		n--;
@@ -125,7 +125,7 @@ static int cmd_x(char *args)
 }
 static int cmd_p(char *args)
 {
-	if (args==NULL){
+ 	if (args==NULL){
 	     printf("Arguement required.\n");
 	     return 0;
 	}
@@ -182,7 +182,7 @@ static int cmd_d(char *args)
 static int cmd_bt(char *args)
 {
 	swaddr_t prev_ebp=cpu.ebp;
-	swaddr_t ret_addr=swaddr_read(prev_ebp+4,4);
+	swaddr_t ret_addr=swaddr_read(prev_ebp+4, 4, R_SS);
 	//printf("prev_ebp:%x, addr:%x\n",prev_ebp,ret_addr);
 	int count=1;
 	int n=4;
@@ -190,14 +190,14 @@ static int cmd_bt(char *args)
 	if (NowName!=NULL) printf("#0  0x%x  in %s(",ret_addr+1,NowName);
 	swaddr_t var_addr=prev_ebp+8;
 	while (n>0) {
-		printf("%d,",swaddr_read(var_addr,4));
+		printf("%d,",swaddr_read(var_addr, 4, R_SS));
 		var_addr+=4;
 		n--;
 	}
 	printf("\b)\n");
 
 	while (prev_ebp!=0){
-		prev_ebp=swaddr_read(prev_ebp,4);
+		prev_ebp=swaddr_read(prev_ebp, 4, R_SS);
 		//ret_addr=swaddr_read(prev_ebp+4,4);
 		if (prev_ebp==0) break;
 		printf("#%d  0x%x  in ",count++,ret_addr+1);
@@ -206,13 +206,13 @@ static int cmd_bt(char *args)
 		var_addr=prev_ebp+8;
 		n=5;
 		while (n>0) {
-		       printf("%d,",swaddr_read(var_addr,4));
+		       printf("%d,",swaddr_read(var_addr, 4, R_SS));
 		       var_addr+=4;
 		       n--;
-		}
+		} 
 		printf("\b)\n");
 		//prev_ebp=swaddr_read(prev_ebp,4);
-		ret_addr=swaddr_read(prev_ebp+4,4);
+		ret_addr=swaddr_read(prev_ebp+4, 4, R_SS);
 	}
 	return 0;
 

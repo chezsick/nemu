@@ -8,7 +8,7 @@ static void do_execute() {
 	cpu.esp-=n;
 	//printf("push:%x(%d)\n",op_src->val,n);
 	//MEM_W(cpu.esp,op_src->val);
-	swaddr_write(cpu.esp,n,op_src->val);
+	swaddr_write(cpu.esp,n,op_src->val, R_SS);
 	//printf("+%x\n",MEM_R(cpu.esp));
 	print_asm_template1();
 }

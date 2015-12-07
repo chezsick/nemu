@@ -339,7 +339,7 @@ uint32_t eval(int p, int q)
 			case '|':return val1|val2;
 			case '^':return val1^val2;
 			case '~':return ~val2;
-			case POINT:return swaddr_read(val2,4);
+			case POINT:return swaddr_read(val2, 4, R_DS);
 			case NEG:return -val2;
 			case AND:return val1&&val2;
 			case OR :return val1||val2;
