@@ -99,17 +99,17 @@ void restart() {
 
 	/* Read the entry code into memory. */
 	load_entry();
-
+	assert(0);
 	/* Set the initial instruction pointer. */
 	cpu.eip = ENTRY_START;
 
 	/* Initialize DRAM. */
 	init_ddr3();
-
+	assert(0);
 	/* Initialize CACHE. */
 	init_cache();
 	init_L2cache();
-
+	assert(0);
 	/* Initialize EFLAGS. */
 	//EFLAGS.whole= 0x00000002;
 	init_EFLAGS();
