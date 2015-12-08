@@ -91,7 +91,6 @@ static void init_sreg(){
 }
 #endif
 void restart() {
-	assert(0);
 	/* Perform some initialization to restart a program */
 #ifdef USE_RAMDISK
 	/* Read the file with name `argv[1]' into ramdisk. */
@@ -115,6 +114,7 @@ void restart() {
 	//EFLAGS.whole= 0x00000002;
 	init_EFLAGS();
 #ifdef IA32_SEG
+	assert(0);
 	/* Initialize Segment Regiseter. */
 	init_sreg();
 #endif
