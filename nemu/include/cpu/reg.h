@@ -21,7 +21,7 @@ typedef struct {
 			uint32_t index  : 13;
 		};
 		uint16_t val;
-	};
+	}Selector;
 	struct {
 	     lnaddr_t base;
 	     uint32_t limit;
