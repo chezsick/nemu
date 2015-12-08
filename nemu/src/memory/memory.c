@@ -33,9 +33,9 @@ uint32_t swaddr_read(swaddr_t addr, size_t len, uint8_t sreg) {
 #endif
 	lnaddr_t lnaddr=addr;
 #ifdef IA32_SEG
-	printf("read:%0x\n", addr);
 	lnaddr= seg_translate(addr, len, sreg);
 #endif
+	printf("read:%0x\n", lnaddr);
 	return lnaddr_read(lnaddr, len);
 }
 
