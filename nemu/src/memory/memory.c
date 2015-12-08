@@ -1,4 +1,5 @@
 #include "common.h"
+#include "cpu/reg.h"
 #define IA32_SEG
 uint32_t dram_read(hwaddr_t, size_t);
 void dram_write(hwaddr_t, size_t, uint32_t);
@@ -35,7 +36,7 @@ uint32_t swaddr_read(swaddr_t addr, size_t len, uint8_t sreg) {
 #ifdef IA32_SEG
 	lnaddr= seg_translate(addr, len, sreg);
 #endif
-	printf("read:%0x\n", lnaddr);
+	printf("read:%0x\n,eip:%x\n", lnaddr, cpu.eip);
 	return lnaddr_read(lnaddr, len);
 }
 
