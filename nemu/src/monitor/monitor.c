@@ -109,14 +109,15 @@ void restart() {
 	/* Initialize CACHE. */
 	init_cache();
 	init_L2cache();
-	//assert(0);	
+	
 	/* Initialize EFLAGS. */
 	//EFLAGS.whole= 0x00000002;
 	init_EFLAGS();
-	assert(0);
+	
 #ifdef IA32_SEG
 	assert(0);
 	/* Initialize Segment Regiseter. */
 	init_sreg();
+	fdsa
 #endif
 }
