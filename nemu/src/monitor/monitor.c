@@ -78,6 +78,7 @@ static void load_entry() {
 static void init_EFLAGS() {
 	cpu.EFLAGS.eflags=0x00000002;
 }
+#ifdef IA32_SEG
 static void init_sreg(){
 	int i;
 	for (i=0; i<6; i++){
@@ -88,6 +89,7 @@ static void init_sreg(){
 	cpu.sreg[R_CS].limit=0xffffffff;
 	cpu.sreg[R_CS].base=0x0;
 }
+#endif
 void restart() {
 	/* Perform some initialization to restart a program */
 #ifdef USE_RAMDISK
@@ -111,6 +113,8 @@ void restart() {
 	/* Initialize EFLAGS. */
 	//EFLAGS.whole= 0x00000002;
 	init_EFLAGS();
+#ifdef IA32_SEG
 	/* Initialize Segment Regiseter. */
 	init_sreg();
+#endif
 }
