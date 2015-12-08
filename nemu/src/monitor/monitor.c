@@ -115,6 +115,7 @@ void restart() {
 	init_EFLAGS();
 #ifdef IA32_SEG
 	/* Initialize Segment Regiseter. */
+	set_bp();
 	init_sreg();
 #endif
 }
