@@ -3,4 +3,5 @@
 
 make_helper(mov_cr2r);
 make_helper(mov_r2cr);
+make_helper(mov_rm2s);
 #endif

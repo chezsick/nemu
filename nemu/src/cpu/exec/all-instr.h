@@ -50,3 +50,5 @@
 #include "special/special.h"
 
 #include "seg/lgdt.h"
+#include "seg/mov-seg.h"
+#include "seg/ljmp.h"
