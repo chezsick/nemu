@@ -115,4 +115,5 @@ void restart() {
 	
 	/* Initialize Segment Regiseter. */
 	init_sreg();
+	assert(0);
 }
