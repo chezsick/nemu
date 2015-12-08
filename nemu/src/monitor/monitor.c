@@ -99,7 +99,7 @@ void restart() {
 
 	/* Read the entry code into memory. */
 	load_entry();
-	assert(0);
+	
 	/* Set the initial instruction pointer. */
 	cpu.eip = ENTRY_START;
 
