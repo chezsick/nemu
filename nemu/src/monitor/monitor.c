@@ -105,7 +105,7 @@ void restart() {
 
 	/* Initialize DRAM. */
 	init_ddr3();
-	assert(0);
+
 	/* Initialize CACHE. */
 	init_cache();
 	init_L2cache();
