@@ -61,7 +61,7 @@ void cpu_exec(volatile uint32_t n) {
 		/* Execute one instruction, including instruction fetch,
 		 * instruction decode, and the actual execution. */
 		int instr_len = exec(cpu.eip);
-		assert(0);
+		//assert(0);
 		printf("len: %x\n", instr_len);
 		cpu.eip += instr_len;
 
