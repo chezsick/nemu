@@ -16,8 +16,9 @@ int load_addr(swaddr_t eip, ModR_M *m, Operand *rm) {
 		disp_offset = 2;
 		scale = s.ss;
 
- 		/*
+ 		
 		if(s.index != R_ESP) { index_reg = s.index; }
+		/*
 		if (s.ss==0&&s.index==R_EBP){
 			rm->sreg=R_SS; 
 		}
