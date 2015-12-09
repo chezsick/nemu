@@ -25,7 +25,8 @@ lnaddr_t seg_translate(swaddr_t addr, size_t len, uint8_t sr_no){
 	SegDesc *des =(SegDesc *)buf;
 	lnaddr_t ln_addr;
 	uint32_t offset = 0;
-	offset = (des->base_31_24<<24) | (des->base_23_16 << 16) | des->base_15_0 ;offset=0;
+	offset = (des->base_31_24<<24) | (des->base_23_16 << 16) | des->base_15_0 ;
+	offset=0;
 	ln_addr=addr + offset;
 	return ln_addr;
 }
