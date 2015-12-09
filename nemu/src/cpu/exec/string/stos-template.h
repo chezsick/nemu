@@ -6,18 +6,18 @@ make_helper(concat(stos_, SUFFIX)) {
 	//printf("eip=%x\n",cpu.eip);
 	uint32_t destreg=cpu.edi;
 	if (DATA_BYTE==1){
-		MEM_W(destreg,REG(R_AL));
+		MEM_W(destreg,REG(R_AL), R_ES);
 		if (cpu.EFLAGS.DF==0) destreg+=1;else destreg-=1;
 	}
 	else{
 //make_helper(concat(stos_, SUFFIX)){
 		//uint32_t destreg=cpu.edi;
 		if (DATA_BYTE==2){
-			MEM_W(destreg,REG(R_AX));
+			MEM_W(destreg,REG(R_AX), R_ES);
 			if (cpu.EFLAGS.DF==0) destreg+=2;else destreg-=2;
 		}
 		else {
-			MEM_W(destreg,REG(R_EAX));
+			MEM_W(destreg,REG(R_EAX), R_ES);
 			if (cpu.EFLAGS.DF==0) destreg+=4;else destreg-=4;
 		}
 	}	

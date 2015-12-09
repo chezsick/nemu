@@ -6,11 +6,11 @@ make_helper(concat(cmps_, SUFFIX)) {
 	uint32_t src_index=cpu.esi;
 	uint32_t dest_index=cpu.edi;
 	uint32_t incdec=0;
-	uint32_t result=MEM_R(src_index)-MEM_R(dest_index);
+	uint32_t result=MEM_R(src_index, R_ES)-MEM_R(dest_index, R_DS);
 	if (cpu.EFLAGS.DF==0) incdec=DATA_BYTE;else incdec=-DATA_BYTE;
 	
 	cpu.EFLAGS.SF=MSB(result);
-	cpu.EFLAGS.CF=(result>MEM_R(dest_index))?1:0;
+	cpu.EFLAGS.CF=(result>MEM_R(dest_index, R_DS))?1:0;
 	cpu.EFLAGS.ZF=(result==0)?1:0;
 
 	DATA_TYPE p=result;
@@ -24,11 +24,11 @@ make_helper(concat(cmps_, SUFFIX)) {
 	for (i=0;i<DATA_BYTE;i++){
 		DATA_TYPE a,b;
 		a=result>>(i*4)&0xf;
-		b=MEM_R(dest_index)>>(i*4)&0xf;
+		b=MEM_R(dest_index, R_DS)>>(i*4)&0xf;
 		cpu.EFLAGS.AF=(a>b)?1:0;
 
 	}
-	if (MSB(MEM_R(src_index))!=MSB(MEM_R(dest_index))&&MSB(result)==MSB(MEM_R(src_index)))
+	if (MSB(MEM_R(src_index, R_ES))!=MSB(MEM_R(dest_index, R_DS))&&MSB(result)==MSB(MEM_R(src_index, R_ES)))
 		cpu.EFLAGS.OF=1;
 	else 	
 		cpu.EFLAGS.OF=0;

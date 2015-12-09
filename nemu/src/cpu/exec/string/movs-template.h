@@ -8,7 +8,7 @@ make_helper(concat(movs_, SUFFIX)) {
 	//edi for destination-index
 	uint32_t des_index=cpu.edi;
 	uint32_t incdec=0;
-	MEM_W(des_index,MEM_R(src_index));
+	MEM_W(des_index,MEM_R(src_index,R_DS), R_ES);
 	if (cpu.EFLAGS.DF==0) incdec=DATA_BYTE;else incdec=-DATA_BYTE;
 	cpu.esi=src_index+incdec;
 	cpu.edi=des_index+incdec;
