@@ -6,7 +6,7 @@
 enum { R_EAX, R_ECX, R_EDX, R_EBX, R_ESP, R_EBP, R_ESI, R_EDI };
 enum { R_AX, R_CX, R_DX, R_BX, R_SP, R_BP, R_SI, R_DI };
 enum { R_AL, R_CL, R_DL, R_BL, R_AH, R_CH, R_DH, R_BH };
-enum { R_CS, R_DS, R_ES, R_SS, R_GS, R_FS };
+enum { R_ES, R_CS, R_SS, R_DS, R_GS, R_FS };
 
 typedef struct {
 	uint16_t limit;
@@ -83,7 +83,7 @@ typedef struct {
 	DTR gdtr;
 	union	{
 		Sreg sreg[6];
-		struct{ Sreg CS, DS, ES, SS, GS, FS;};
+		struct{ Sreg ES, CS, SS, DS, GS, FS;};
 	};
 } CPU_state;
 

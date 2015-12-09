@@ -16,21 +16,25 @@ int load_addr(swaddr_t eip, ModR_M *m, Operand *rm) {
 		disp_offset = 2;
 		scale = s.ss;
 
- 		if(s.index != R_ESP) { index_reg = s.index; }
+ 		/*
+		if(s.index != R_ESP) { index_reg = s.index; }
 		if (s.ss==0&&s.index==R_EBP){
 			rm->sreg=R_SS; 
 		}
+		*/
 	}
 	else {
 		/* no SIB */
 		base_reg = m->R_M;
 		disp_offset = 1;
 	}
+	/*
 	if (base_reg==R_ESP||base_reg==R_EBP){
 		rm->sreg=R_SS;	
 	}else{
 		rm->sreg=R_DS;
-	}
+ 	}
+	*/
 	if(m->mod == 0) {
 		if(base_reg == R_EBP) { base_reg = -1; }
 		else { disp_size = 0; }
@@ -95,7 +99,11 @@ int read_ModR_M(swaddr_t eip, Operand *rm, Operand *reg) {
 	m.val = instr_fetch(eip, 1);
 	reg->type = OP_TYPE_REG;
 	reg->reg = m.reg;
-
+	if (m.reg==4 || m.reg==5){
+		rm->sreg=R_SS;
+	}else{
+		rm->sreg=R_DS;
+	}
 	if(m.mod == 3) {
 		rm->type = OP_TYPE_REG;
 		rm->reg = m.R_M;
