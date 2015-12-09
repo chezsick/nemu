@@ -14,7 +14,8 @@ lnaddr_t seg_translate(swaddr_t addr, size_t len, uint8_t sr_no){
 	cpu.sreg[sr_no].base= (sd.base_31_24<<24)|(sd.base_23_16<<16)|sd.base_15_0;
 	cpu.sreg[sr_no].limit=(sd.limit_19_16<<16)|sd.limit_15_0;
 	cpu.sreg[sr_no].valid=true;
-	return cpu.sreg[sr_no].base+addr;
+	//return cpu.sreg[sr_no].base+addr;
+	return addr;
 	/*
 	
 	uint16_t select = cpu.sreg[sr_no].Selector.index;
