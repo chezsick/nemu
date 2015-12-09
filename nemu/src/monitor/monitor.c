@@ -87,6 +87,7 @@ static void init_sreg(){
 		cpu.sreg[i].Selector.index=0;
 
  	}
+	cpu.gdtr.base=0;
 	cpu.cr0.protect_enable=1;
 	cpu.sreg[R_CS].limit=0xffffffff;
 	cpu.sreg[R_CS].base=0x0;
