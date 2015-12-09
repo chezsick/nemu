@@ -84,7 +84,7 @@ static void init_sreg(){
 		cpu.sreg[i].valid=0;
 		//cpu.sreg[i].limit=0xffffffff;
 		cpu.sreg[i].base=0;
-		cpu.sreg[i].Selector.val=0;
+		cpu.sreg[i].Selector.index=0;
 
  	}
 	cpu.cr0.protect_enable=1;
