@@ -15,6 +15,7 @@ lnaddr_t seg_translate(swaddr_t addr, size_t len, uint8_t sr_no){
 	return cpu.sreg[sreg].base+addr;
 	*/
 	uint16_t select = cpu.sreg[sr_no].Selector.index;
+	printf("select %x\n",select);
 	uint32_t buf[2];
 	lnaddr_t temp = cpu.gdtr.base + select*8;
 	buf[0]=lnaddr_read(temp, 4);
