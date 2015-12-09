@@ -29,11 +29,11 @@ int load_addr(swaddr_t eip, ModR_M *m, Operand *rm) {
 		disp_offset = 1;
 	}
 	
-	if (base_reg==R_ESP||base_reg==R_EBP){
+	/*if (base_reg==R_ESP||base_reg==R_EBP){
 		rm->sreg=R_SS;	
 	}else{
 		rm->sreg=R_DS;
- 	}
+ 	}*/
 	
 	 if(m->mod == 0) {
 		if(base_reg == R_EBP) { base_reg = -1; }
