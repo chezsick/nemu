@@ -49,8 +49,9 @@ void swaddr_write(swaddr_t addr, size_t len, uint32_t data, uint8_t sreg) {
 	lnaddr_t lnaddr=addr;
 #ifdef IA32_SEG
 	lnaddr= seg_translate(addr, len, sreg);
+	printf("error in swaddr_write!\t%x\n",lnaddr);
 #endif
-	//printf("error in swaddr_write!\t%x\n",lnaddr);
+
 	lnaddr_write(lnaddr, len, data);
 }
 
