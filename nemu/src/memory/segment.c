@@ -16,13 +16,14 @@ lnaddr_t seg_translate(swaddr_t addr, size_t len, uint8_t sr_no){
 	*/
 	uint16_t select = cpu.sreg[sr_no].Selector.index;
 	uint32_t buf[2];
-	lnaddr_t temp = /*cpu.gdtr.base +*/ select*8;
+	lnaddr_t temp = cpu.gdtr.base + select*8;
 	buf[0]=lnaddr_read(temp, 4);
 	buf[1]=lnaddr_read(temp+4, 4);
 	SegDesc *des =(SegDesc *)buf;
 	lnaddr_t ln_addr;
 	uint32_t base = 0;
 	base = (des->base_31_24<<24) | (des->base_23_16 << 16) | des->base_15_0;
+	base=0;
 	ln_addr=addr + base;
 	printf("of %x + base %x\n", addr, base);
 	return ln_addr;
