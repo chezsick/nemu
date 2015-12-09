@@ -7,7 +7,7 @@ void dram_write(hwaddr_t, size_t, uint32_t);
 
 uint32_t cache_read(hwaddr_t, size_t);
 void cache_write(hwaddr_t, size_t, uint32_t);
-#define IA32_SEG
+//#define IA32_SEG
 /* Memory accessing interfaces */
 
 uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
