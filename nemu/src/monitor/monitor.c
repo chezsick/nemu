@@ -82,6 +82,8 @@ static void init_sreg(){
 	int i;
 	for (i=0; i<6; i++){
 		cpu.sreg[i].valid=0;
+		cpu.sreg[i].limit=0xffffffff;
+		cpu.sreg[i].base=0;
 
  	}
 	cpu.cr0.protect_enable=1;
