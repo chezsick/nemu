@@ -6,10 +6,10 @@ lnaddr_t seg_translate(swaddr_t addr, size_t len, uint8_t sr_no){
 	if (cpu.sreg[sr_no].valid) return cpu.sreg[sr_no].base;
 	SegDesc sd;
 	int i;
-	printf("gdtrbase:%x",cpu.gdtr.base);
+	printf("gdtrbase:%x\n",cpu.gdtr.base);
 	for (i=0; i< sizeof(SegDesc); i++){
 		*((uint8_t *)(&sd)+i)= lnaddr_read(cpu.gdtr.base+cpu.sreg[sr_no].Selector.index*sizeof(SegDesc)+i, 1);
-		printf("%x index:%x",sr_no, cpu.sreg[sr_no].Selector.index);
+		printf("%x index:%x\n",sr_no, cpu.sreg[sr_no].Selector.index);
 
 	}
 	cpu.sreg[sr_no].base= (sd.base_31_24<<24)|(sd.base_23_16<<16)|sd.base_15_0;
