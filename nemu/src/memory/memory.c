@@ -1,6 +1,6 @@
 #include "common.h"
 #include "cpu/reg.h"
-//#define IA32_SEG
+#define IA32_SEG
 
 uint32_t dram_read(hwaddr_t, size_t);
 void dram_write(hwaddr_t, size_t, uint32_t);
@@ -34,10 +34,10 @@ uint32_t swaddr_read(swaddr_t addr, size_t len, uint8_t sreg) {
 	assert(len == 1 || len == 2 || len == 4);
 #endif
 	lnaddr_t lnaddr=addr;
-#ifdef IA32_SEG
+//#ifdef IA32_SEG
 	lnaddr= seg_translate(addr, len, sreg);
 	//assert(0);
-#endif
+//#endif
 	return lnaddr_read(lnaddr, len);
 }
 
@@ -46,9 +46,9 @@ void swaddr_write(swaddr_t addr, size_t len, uint32_t data, uint8_t sreg) {
 	assert(len == 1 || len == 2 || len == 4);
 #endif
 	lnaddr_t lnaddr=addr;
-#ifdef IA32_SEG
+//#ifdef IA32_SEG
 	lnaddr= seg_translate(addr, len, sreg);
-#endif
+//#endif
 	lnaddr_write(lnaddr, len, data);
 }
 
