@@ -77,13 +77,14 @@ static void load_entry() {
 }
 static void init_EFLAGS() {
 	cpu.EFLAGS.eflags=0x00000002;
-}
+ }
 static void init_sreg(){
 	int i;
 	for (i=0; i<6; i++){
 		cpu.sreg[i].valid=0;
-		cpu.sreg[i].limit=0xffffffff;
+		//cpu.sreg[i].limit=0xffffffff;
 		cpu.sreg[i].base=0;
+		cpu.sreg[i].Selector.val=0;
 
  	}
 	cpu.cr0.protect_enable=1;
