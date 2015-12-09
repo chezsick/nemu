@@ -228,14 +228,15 @@ helper_fun _2byte_opcode_table [256] = {
 };
 
 make_helper(exec) {
-	//printf("exec line 231\n");
+	printf("exec line 231\n");
 	ops_decoded.opcode = instr_fetch(eip, 1);
-	//printf("exec line 233\n");
+	printf("exec line 233\n");
 	return opcode_table[ ops_decoded.opcode ](eip);
 }
 
 static make_helper(_2byte_esc) {
 	eip ++;
+	printf("exec line 239\n");
 	uint32_t opcode = instr_fetch(eip, 1);
 	ops_decoded.opcode = opcode | 0x100;
 	return _2byte_opcode_table[opcode](eip) + 1; 
