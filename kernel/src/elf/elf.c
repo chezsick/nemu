@@ -53,7 +53,7 @@ uint32_t loader() {
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
 			ramdisk_read((void*)v_addr, ph->p_offset, ph->p_filesz);
-			 
+			set_bp();
 	 		/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
