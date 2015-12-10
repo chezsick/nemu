@@ -67,6 +67,7 @@ uint32_t loader() {
 #endif
 			//memcpy((void*)(ph->p_vaddr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
 	 		memcpy((void*)(v_addr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
+			set_bp();
 		}
 	}
 	//set_bp();
