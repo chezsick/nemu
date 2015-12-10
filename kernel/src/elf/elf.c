@@ -65,8 +65,9 @@ uint32_t loader() {
 			uint32_t new_brk = ph->p_vaddr + ph->p_memsz - 1;
 			if(brk < new_brk) { brk = new_brk; }
 #endif
-			memcpy((void*)(ph->p_vaddr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
-	 	}
+			//memcpy((void*)(ph->p_vaddr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
+	 		memcpy((void*)(v_addr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
+		}
 	}
 	//set_bp();
 	volatile uint32_t entry = elf->e_entry;
