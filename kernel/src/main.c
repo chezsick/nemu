@@ -78,6 +78,7 @@ void init_cond() {
 #endif
 
 	/* Load the program. */
+	set_bp();
 	uint32_t eip = loader();
 	set_bp();
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
