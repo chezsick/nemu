@@ -48,12 +48,10 @@ uint32_t loader() {
 		//continue;
 		ph=(void*)buf+elf->e_phoff+(elf->e_phentsize)*i;
 		if(ph->p_type == PT_LOAD) {
-			//set_bp();
-			//printf("virtaddr:%x\n",ph->p_vaddr);
-	 		/* TODO: read the content of the segment from the ELF file 
+			
+			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
-			//set_bp();
 			ramdisk_read((void*)ph->p_vaddr, ph->p_offset, ph->p_filesz);
 			 
 	 		/* TODO: zero the memory region 
@@ -69,7 +67,7 @@ uint32_t loader() {
 			uint32_t v_addr= mm_malloc(ph->p_vaddr, ph->p_memsz);
 #endif
 			//memcpy((void*)(ph->p_vaddr)+ph->p_filesz, 0, ph->p_memsz-p    h->p_filesz);
-			memcpy((void*)(v_addr)+ph->p_filesz, 0, ph->p_memsz    -p    h->p_filesz);
+			memcpy((void*)(v_addr)+ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
 	 	}
 	}
 	//set_bp();
