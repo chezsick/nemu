@@ -31,7 +31,7 @@ make_helper(cld) {
 }
 
 make_helper(std) {
-	cpu.EFLAGS.DF=0;
+	cpu.EFLAGS.DF=1;
 	print_asm("std");
 	return 1;
 }
