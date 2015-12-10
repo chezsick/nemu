@@ -1,7 +1,7 @@
 #include "common.h"
 #include "cpu/reg.h"
 #define IA32_SEG
-
+//#define IA32_PAGE
 uint32_t dram_read(hwaddr_t, size_t);
 void dram_write(hwaddr_t, size_t, uint32_t);
 
@@ -20,12 +20,40 @@ void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 	//dram_write(addr, len, data);
 }
 
+lnaddr_t page_translate(lnaddr_t);
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
+#ifdef DEBUG
+	assert(len == 1 || len == 2 || len == 4);
+#endif
+#ifdef IA32_PAGE
+ 	if ((addr^(addr+len-1))&(~0xfff)){
+		assert(0);
+	}
+ 	else{
+		hwaddr_t hwaddr = page_translate(addr);
+		return hwaddr_read(hwaddr, len);
+	
+	}
+#else
 	return hwaddr_read(addr, len);
+#endif
 }
 
 void lnaddr_write(lnaddr_t addr, size_t len, uint32_t data) {
+#ifdef DEBUG
+	assert(len == 1 || len == 2 || len == 4);
+#endif
+#ifdef IA32_PAGE
+ 	if ((addr^(addr+len-1))&(~0xfff)){
+		assert(0);
+	}
+ 	else{
+		hwaddr_t hwaddr = page_translate(addr);
+		hwaddr_write(hwaddr, len, data);
+	}
+#else
 	hwaddr_write(addr, len, data);
+#endif
 }
 
 lnaddr_t seg_translate(swaddr_t, size_t, uint8_t);
