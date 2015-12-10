@@ -88,7 +88,7 @@ static void init_sreg(){
 
  	}
 	//cpu.gdtr.base=0;
-	cpu.cr0.protect_enable=1;
+	cpu.cr0.protect_enable=0;
 	cpu.sreg[R_CS].limit=0xffffffff;
 	cpu.sreg[R_CS].base=0x0;
 }

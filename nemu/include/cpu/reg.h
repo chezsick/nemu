@@ -80,6 +80,7 @@ typedef struct {
 	}EFLAGS;
 
 	CR0 cr0; 
+	CR3 cr3;
 	DTR gdtr;
 	union	{
 		Sreg sreg[6];
