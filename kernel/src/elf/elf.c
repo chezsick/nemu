@@ -66,14 +66,12 @@ uint32_t loader() {
 #endif
 			//memcpy((void*)(ph->p_vaddr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
 	 		memcpy((void*)(v_addr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
-			set_bp();
 		}
 	}
 	//set_bp();
 	volatile uint32_t entry = elf->e_entry;
 #ifdef IA32_PAGE
 	mm_malloc(KOFFSET - STACK_SIZE, STACK_SIZE);
-	set_bp();
 
 #ifdef HAS_DEVICE
 	create_video_mapping();
