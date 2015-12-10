@@ -64,6 +64,7 @@ void init_cond() {
 #ifdef IA32_PAGE
 	/* Initialize the memory manager. */
 	init_mm();
+	set_bp();
 #endif
 
 	/* Output a welcome message.
@@ -99,7 +100,7 @@ void init_cond() {
 	/* Keep the `bt' command happy. */
 	asm volatile("movl $0, %ebp");
 	asm volatile("subl $16, %esp");
-	set_bp();
+	//set_bp();
 	/* Here we go! */
 	((void(*)(void))eip)();
 	//set_bp();
