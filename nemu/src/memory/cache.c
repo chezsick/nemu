@@ -15,7 +15,7 @@
 #define NR_SLOT (1<<SLOT_WIDTH)			
 #define NR_INDEX (1<<INDEX_WIDTH)
 
-#define HW_MEM_SIZE (1 << 27)
+#define HW_MEM_SIZE (0xffffffff)
 
 #define L2
 #ifdef L1
