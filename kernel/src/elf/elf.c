@@ -75,7 +75,8 @@ uint32_t loader() {
 	//set_bp();
 	volatile uint32_t entry = elf->e_entry;
 #ifdef IA32_PAGE
-	mm_malloc(KOFFSET - STACK_SIZE, STACK_SIZE);
+	entry = mm_malloc(KOFFSET - STACK_SIZE, STACK_SIZE);
+
 
 #ifdef HAS_DEVICE
 	create_video_mapping();
