@@ -25,7 +25,6 @@ void init() {
 	 * is located at 0xc0100000, which is set by the linking options in Makefile.
 	 * Before setting up correct paging, no global variable can be used. */
 	init_page();
-	set_bp();
 	/* After paging is enabled, transform %esp to virtual address. */
 	asm volatile("addl %0, %%esp" : : "i"(KOFFSET));
 #endif
@@ -100,7 +99,7 @@ void init_cond() {
 	/* Keep the `bt' command happy. */
 	asm volatile("movl $0, %ebp");
 	asm volatile("subl $16, %esp");
-	//set_bp();
+	set_bp();
 	/* Here we go! */
 	((void(*)(void))eip)();
 	//set_bp();
