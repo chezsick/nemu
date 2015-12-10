@@ -35,6 +35,7 @@ hwaddr_t page_translate(lnaddr_t addr){
 	ln_addr lnaddr;
 	lnaddr.val= addr;
 	int i;
+	assert(0);
 	for (i=0; i< NR_TLB; i++){
 		if (tlb[i].valid&&(tlb[i].tag== lnaddr.tag)) break;
 		if (!tlb[i].valid) break;
