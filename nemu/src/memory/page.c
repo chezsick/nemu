@@ -31,14 +31,14 @@ void init_TLB(){
 }
 
 hwaddr_t page_translate(lnaddr_t addr){
-	/*
+	
 	if ((cpu.cr0.protect_enable==0) || (cpu.cr0.paging==0)) return addr;
 	uint16_t dir = addr >>22;
 	uint16_t page = (addr >> 12) & 0x3ff;
 	uint16_t offset = addr & 0xfff;
 	uint32_t page_base= hwaddr_read((cpu.cr3.page_directory_base<<12) + dir*4, 4) >> 12;
 	return offset + ((hwaddr_read((page_base<<12) + page*4, 4) >> 12) << 12);
-	*/
+	/*
 	ln_addr lnaddr;
 	lnaddr.val= addr;
 	int i;
@@ -59,4 +59,5 @@ hwaddr_t page_translate(lnaddr_t addr){
 		tlb[i].pte=pte;
 	}
 	return (tlb[i].pte.page_frame<< 12)+ lnaddr.offset;
+	*/
 }
