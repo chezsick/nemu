@@ -47,8 +47,9 @@ hwaddr_t page_translate(lnaddr_t addr){
 		if (tlb[i].valid&&(tlb[i].tag== lnaddr.tag)) break;
 		if (!tlb[i].valid) break;
 	}
-	if (i==NR_TLB) i=addr % NR_TLB;
-	if (tlb[i].valid==0){
+	//if (i==NR_TLB) i=addr % NR_TLB;
+	if (tlb[i].valid==0 || i==NR_TLB){
+		if (i==NR_TLB) i=addr % NR_TLB;
 		hwaddr_t pde_addr =(cpu.cr3.page_directory_base<<12)+lnaddr.dir*sizeof(PDE);
 		PDE pde;
 		pde.val=hwaddr_read(pde_addr, 4);
