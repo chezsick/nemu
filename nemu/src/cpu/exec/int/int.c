@@ -28,3 +28,11 @@ void raise_intr(uint8_t NO) {
 
 		longjmp(jbuf, 1);
 }
+
+make_helper(int_i){
+	uint8_t imm = instr_fetch(eip+1, 1);
+	cpu.eip += 2;
+	raise_intr(imm);
+	print_asm("int\t $0x%02x", imm);
+	return 2;
+}
