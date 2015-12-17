@@ -1,5 +1,4 @@
 #include "cpu/exec/template-start.h"
-
 #define instr push
 
 static void do_execute() {
@@ -16,4 +15,21 @@ make_instr_helper(i)
 make_instr_helper(r)
 make_instr_helper(rm)
 
+/*
+void push_l(uint32_t x){
+	cpu.esp-=4;
+	swaddr_write(cpu.esp, 4, x, R_SS);
+}
+
+make_helper(concat(pusha_, SUFFIX)) {
+	swaddr_t temp = REG(R_ESP);
+	int i;
+	for (i = R_EAX; i <= R_EDI; i++){
+		cpu.esp-=4;
+		if (i == R_ESP) push_l(temp);
+		else push_l(reg_l(i));
+	print_asm("pusha"str(SUFFIX));
+	return 1;
+}
+*/
 #include "cpu/exec/template-end.h"

@@ -16,7 +16,23 @@
 make_helper_v(push_i)
 make_helper_v(push_r)
 make_helper_v(push_rm)
-//make_helper_v(pusha)
+
+void push_l(uint32_t x){
+	cpu.esp-=4;
+	swaddr_write(cpu.esp, 4, x, R_SS);
+}
+
+make_helper(pusha){
+	swaddr_t temp = cpu.esp;
+	int i;
+	for (i = R_EAX; i <= R_EDI; i++){
+		cpu.esp-=4;
+		if (i == R_ESP) push_l(temp);
+		else push_l(reg_l(i));
+	}
+	print_asm("pusha"str(SUFFIX));
+	return 1;
+}
 /*
 make_helper_v(sub_si2rm)
 make_helper_v(sub_r2rm)
