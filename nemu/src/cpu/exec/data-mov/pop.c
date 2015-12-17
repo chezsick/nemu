@@ -16,11 +16,18 @@
 //make_helper_v(push_i)
 make_helper_v(pop_r)
 make_helper_v(pop_rm)
-/*
-make_helper_v(sub_si2rm)
-make_helper_v(sub_r2rm)
-make_helper_v(sub_rm2r)
 
-make_helper_v(mov_a2moffs)
-make_helper_v(mov_moffs2a)
-*/
+uint32_t pop_l(){
+	uint32_t re=swaddr_read(cpu.esp, 4, R_SS);
+	cpu.esp+=4;
+	return re;
+}
+make_helper(popa){
+	int i;
+	for (i = R_EAX; i <= R_EDI; i++){
+		if (i == R_ESP) pop_l();
+		else reg_l(i)= pop_l();
+	}
+	print_asm("popa"str(SUFFIX));
+	return 1;
+}
