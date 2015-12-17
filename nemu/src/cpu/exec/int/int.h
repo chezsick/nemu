@@ -1,7 +1,7 @@
-#ifndef __CLI_H__
-#define __CLI_H__
+#ifndef __INT_I_H__
+#define __INT_I_H__
 
-make_helper(cli);
+make_helper(int_i);
 
 #endif
 

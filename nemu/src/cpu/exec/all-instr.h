@@ -52,3 +52,6 @@
 #include "seg/lgdt.h"
 #include "seg/mov-seg.h"
 #include "seg/ljmp.h"
+
+#include "int/int.h"
+#include "int/iret.h"

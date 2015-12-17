@@ -30,7 +30,7 @@ make_helper(pusha){
 		if (i == R_ESP) push_l(temp);
 		else push_l(reg_l(i));
 	}
-	print_asm("pusha");
+	print_asm("pusha"str(SUFFIX));
 	return 1;
 }
 /*
