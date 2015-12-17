@@ -10,3 +10,10 @@ make_helper(lgdt_m) {
          return 6;
 }
 
+make_helper(lidt_m){
+	swaddr_t addr=instr_fetch(eip+2, 4);
+	cpu.idtr.limit = swaddr_read(addr, 2, R_SS);
+	cpu.idtr.base = swaddr_read(addr+2, 4, R_SS);
+	print_asm("lidt");
+	return 6; 
+}

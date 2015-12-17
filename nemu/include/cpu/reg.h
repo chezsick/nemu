@@ -9,8 +9,8 @@ enum { R_AL, R_CL, R_DL, R_BL, R_AH, R_CH, R_DH, R_BH };
 enum { R_ES, R_CS, R_SS, R_DS, R_GS, R_FS };
 
 typedef struct {
-	uint16_t limit;
 	lnaddr_t base;
+	uint16_t limit;
 }DTR;
 
 typedef struct {
@@ -81,7 +81,7 @@ typedef struct {
 
 	CR0 cr0; 
 	CR3 cr3;
-	DTR gdtr;
+	DTR gdtr, idtr;
 	union	{
 		Sreg sreg[6];
 		struct{ Sreg ES, CS, SS, DS, GS, FS;};
