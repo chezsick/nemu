@@ -59,9 +59,6 @@ hwaddr_t page_translate(lnaddr_t addr){
 		tlb[i].tag= lnaddr.tag;
 		tlb[i].valid = true;
 		tlb[i].pte=pte;
-
-	Log("addr:%x\n", addr);
-	Log("pde:%x\n",pde.val);
 	}
 	return (tlb[i].pte.page_frame<< 12)+ lnaddr.offset;
 	

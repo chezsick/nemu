@@ -91,6 +91,7 @@ static void init_sreg(){
 	cpu.cr0.val=0;
 	cpu.sreg[R_CS].limit=0xffffffff;
 	cpu.sreg[R_CS].base=0x0;
+	cpu.sreg[R_CS].valid=1;
 }
 
 void restart() {
