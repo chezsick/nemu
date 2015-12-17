@@ -4,6 +4,7 @@
 make_helper(push_r_v);
 make_helper(push_rm_v);
 make_helper(push_i_v);
+//make_helper(pusha_v);
 
 make_helper(push_i_b);
 
