@@ -65,7 +65,7 @@ uint32_t loader() {
 			if(brk < new_brk) { brk = new_brk; }
 #endif
 			//memcpy((void*)(ph->p_vaddr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
-	 		memset((void*)(v_addr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
+	 		memcpy((void*)(v_addr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
 		}
 	}
 	//set_bp();

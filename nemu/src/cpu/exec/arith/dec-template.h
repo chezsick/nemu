@@ -7,7 +7,7 @@ static void do_execute () {
 	OPERAND_W(op_src, result);
 
 	/* TODO: Update EFLAGS. */
-	panic("please implement me");
+	//panic("please implement me");
 	cpu.EFLAGS.SF=MSB(result);
 	//cpu.EFLAGS.CF=(result>op_dest->val)?1:0;
 	cpu.EFLAGS.ZF=(result==0)?1:0;
