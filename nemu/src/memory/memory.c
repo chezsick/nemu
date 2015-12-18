@@ -26,10 +26,10 @@ uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 	assert(len == 1 || len == 2 || len == 4);
 #endif
 #ifdef IA32_PAGE
- 	if ((addr^(addr+len-1))&(~0xfff)){
+ 	/*if ((addr^(addr+len-1))&(~0xfff)){
 		assert(0);
 	}
- 	else{
+ 	else */{
 		hwaddr_t hwaddr = page_translate(addr);
 		return hwaddr_read(hwaddr, len);
 	
@@ -44,10 +44,10 @@ void lnaddr_write(lnaddr_t addr, size_t len, uint32_t data) {
 	assert(len == 1 || len == 2 || len == 4);
 #endif
 #ifdef IA32_PAGE
- 	if ((addr^(addr+len-1))&(~0xfff)){
+ 	/*if ((addr^(addr+len-1))&(~0xfff)){
 		assert(0);
 	}
- 	else{
+ 	else */{
 		hwaddr_t hwaddr = page_translate(addr);
 		hwaddr_write(hwaddr, len, data);
 	}
