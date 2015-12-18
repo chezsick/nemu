@@ -34,10 +34,10 @@ void irq_handle(TrapFrame *tf) {
 	 * following line after you are done.
 	 */
 	//set_bp();
-	//panic("Have you re-organized the ``TrapFrame'' structure?");
+	panic("Have you re-organized the ``TrapFrame'' structure?");
 
 	int irq = tf->irq;
-
+	set_bp();
 	if (irq < 0) {
 		panic("Unhandled exception!");
 	} else if (irq == 0x80) {
