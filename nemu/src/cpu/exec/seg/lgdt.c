@@ -19,10 +19,19 @@ make_helper(lgdt_m) {
 }
 
 make_helper(lidt_m){
-	swaddr_t addr = instr_fetch(eip+2, 4);
-	//int len=read_ModR_M(eip+1, &addr, &addr);
-	cpu.idtr.limit = swaddr_read(addr, 2, R_SS);
-	cpu.idtr.base = swaddr_read(addr+2, 4, R_SS);
-	print_asm("lidt");
-	return 6; 
+	if (instr_fetch(eip+1, 1) == 0x18) {
+		cpu.idtr.limit = swaddr_read(cpu.eax, 2, R_SS);
+		cpu.idtr.base = swaddr_read(cpu.eax+2, 4, R_SS);
+		print_asm("lidt (%%eax)");
+		return 2;
+	}
+	else {
+		swaddr_t addr = instr_fetch(eip+2, 4);
+		//int len=read_ModR_M(eip+1, &addr, &addr);
+		cpu.idtr.limit = swaddr_read(addr, 2, R_SS);
+		cpu.idtr.base = swaddr_read(addr+2, 4, R_SS);
+		print_asm("lidt");
+		return 6;
+	}
+	return 0;
 }
