@@ -48,11 +48,11 @@ uint32_t loader() {
 		//continue;
 		ph=(void*)buf+elf->e_phoff+(elf->e_phentsize)*i;
 		if(ph->p_type == PT_LOAD) {
-			uint32_t v_addr= mm_malloc(ph->p_vaddr, ph->p_memsz);
+			void* v_addr= (void*)mm_malloc(ph->p_vaddr, ph->p_memsz);
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
-			ramdisk_read((void*)v_addr, ph->p_offset, ph->p_filesz);
+			ramdisk_read(v_addr, ph->p_offset, ph->p_filesz);
 	 		/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
@@ -65,7 +65,7 @@ uint32_t loader() {
 			if(brk < new_brk) { brk = new_brk; }
 #endif
 			//memcpy((void*)(ph->p_vaddr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
-	 		memcpy((void*)(v_addr)+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
+	 		memset(v_addr+ph->p_filesz, 0, ph->p_memsz-ph->p_filesz);
 		}
 	}
 	//set_bp();
