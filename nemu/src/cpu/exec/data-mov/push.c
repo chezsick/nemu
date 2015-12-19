@@ -29,8 +29,9 @@ make_helper(pusha){
 		//cpu.esp-=4;
 		if (i == R_ESP) push_l(temp);
 		else push_l(reg_l(i));
+		Log("pusha:%d", i);
 	}
-	print_asm("pusha"str(SUFFIX));
+	print_asm("pusha");
 	return 1;
 }
 /*
