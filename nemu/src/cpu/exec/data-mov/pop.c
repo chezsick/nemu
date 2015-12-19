@@ -24,7 +24,7 @@ uint32_t pop_l(){
 }
 make_helper(popa){
 	int i;
-	for (i = R_EAX; i <= R_EDI; i++){
+	for (i = R_EDI; i >= R_EAX; i++){
 		if (i == R_ESP) pop_l();
 		else reg_l(i)= pop_l();
 	}
