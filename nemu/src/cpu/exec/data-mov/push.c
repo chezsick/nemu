@@ -26,7 +26,7 @@ make_helper(pusha){
 	swaddr_t temp = cpu.esp;
 	int i;
 	for (i = R_EAX; i <= R_EDI; i++){
-		cpu.esp-=4;
+		//cpu.esp-=4;
 		if (i == R_ESP) push_l(temp);
 		else push_l(reg_l(i));
 	}
