@@ -35,11 +35,15 @@ void ide_write(uint8_t *, uint32_t, uint32_t);
 void serial_printc(char);
 int fs_write(int fd, void *buf, int len) {
 	if ((fd == 1) || (fd == 2)) {
+		asm volatile (".byte 0xd6" : : "a"(2), "c"(buf), "d"(len));
+		/*
 		int i;
 		for (i=0; i < len; i++){
 			serial_printc(((char*)buf)[i]);
 		}
+		*/
 	}
+
 
 	return len;	
 }
