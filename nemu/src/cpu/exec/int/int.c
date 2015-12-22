@@ -30,7 +30,7 @@ void raise_intr(uint8_t NO) {
 }
 
 make_helper(int_i){
-	Log("ini, eip:%x",eip);
+	//Log("ini, eip:%x",eip);
 	uint8_t imm = instr_fetch(eip+1, 1);
 	cpu.eip += 2;
 	raise_intr(imm);

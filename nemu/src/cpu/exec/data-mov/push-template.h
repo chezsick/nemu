@@ -2,7 +2,7 @@
 #define instr push
 
 static void do_execute() {
-	Log("esp: %x, val: %x", cpu.esp, op_src->val);
+	//Log("esp: %x, val: %x", cpu.esp, op_src->val);
 	uint32_t n=4;
 	if (ops_decoded.is_data_size_16) n=2; 
 	cpu.esp-=n;
