@@ -32,3 +32,14 @@ void ide_write(uint8_t *, uint32_t, uint32_t);
 
 /* TODO: implement a simplified file system here. */
 
+void serial_printc(char);
+int fs_write(int fd, void *buf, int len) {
+	if ((fd == 1) || (fd == 2)) {
+		int i;
+		for (i=0; i < len; i++){
+			serial_printc(((char*)buf)[i]);
+		}
+	}
+
+	return len;	
+}

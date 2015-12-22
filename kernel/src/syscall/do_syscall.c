@@ -4,6 +4,7 @@
 
 void add_irq_handle(int, void (*)(void));
 void mm_brk(uint32_t);
+int fs_write(int, void *, int);
 
 static void sys_brk(TrapFrame *tf) {
 #ifdef IA32_PAGE
@@ -28,7 +29,9 @@ void do_syscall(TrapFrame *tf) {
 		case SYS_brk: sys_brk(tf); break;
 
 		/* TODO: Add more system calls. */
-
+		case SYS_write:
+			tf->eax = fs_write(tf->ebx,(void*)tf->ecx, tf->edx);
+			break;
 		default: panic("Unhandled system call: id = %d", tf->eax);
 	}
 }
