@@ -34,7 +34,7 @@ make_helper(nemu_trap) {
 				printf("%c", swaddr_read(cpu.ecx+i, 1, R_DS));
 				//printf("");
 			}
-			printf("\n");
+			//printf("\n");
 		   	break;
 
 		default:
