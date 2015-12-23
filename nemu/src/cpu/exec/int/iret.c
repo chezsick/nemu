@@ -9,7 +9,7 @@ uint32_t pop(){
 	return result;
 }
 make_helper(iret) {
-	cpu.eip = pop()-1;
+	cpu.eip = pop();
 	cpu.CS.Selector.val = pop();
 	cpu.CS.valid = false;
 	cpu.EFLAGS.eflags = pop();
