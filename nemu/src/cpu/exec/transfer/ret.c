@@ -26,7 +26,7 @@ make_helper(ret){
 	}
 	else{
 		//printf("%x\n",cpu.eip);
-		cpu.eip=swaddr_read(reg_l(R_ESP), 4, R_SS);
+		cpu.eip=swaddr_read(cpu.esp, 4, R_SS);
 		cpu.esp+=4;
 		//printf("%x\n",cpu.eip);
 	}
