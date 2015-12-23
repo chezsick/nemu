@@ -32,6 +32,7 @@ void do_syscall(TrapFrame *tf) {
 		case SYS_write:
 			//set_bp();
 			tf->eax = fs_write(tf->ebx,(void*)tf->ecx, tf->edx);
+			set_bp();
 			break;
 		default: panic("Unhandled system call: id = %d", tf->eax);
 	}
