@@ -14,7 +14,7 @@ make_helper(iret) {
 	cpu.CS.valid = false;
 	cpu.EFLAGS.eflags = pop();
 	print_asm("iret");
-	return 1;
+	return 0;
 }
 
 #include "cpu/exec/template-end.h"
