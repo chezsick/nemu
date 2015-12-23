@@ -5,7 +5,7 @@
 uint32_t pop(){
 	uint32_t result;
 	result=MEM_R(cpu.esp,R_SS);
-	//cpu.esp+=DATA_BYTE;
+	cpu.esp+=8;
 	return result;
 }
 make_helper(iret) {
