@@ -26,7 +26,7 @@ make_helper(ret){
 	}
 	else{
 		//printf("%x\n",cpu.eip);
-		if (cpu.eip==0x0804f0bf) cpu.esp-=4;
+		//if (cpu.eip==0x0804f0bf) cpu.esp-=4;
 		cpu.eip=swaddr_read(cpu.esp, 4, R_SS);
 		cpu.esp+=4;
 		//printf("%x\n",cpu.eip);
