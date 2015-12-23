@@ -25,8 +25,8 @@ static void do_execute() {
 			}*/
 		}
 	}
-	//if (ops_decoded.opcode==0xff)
-	else {
+	if (ops_decoded.opcode==0xff)
+	{
 		if (ops_decoded.is_data_size_16){
 			cpu.esp-=2;
 			MEM_W(cpu.esp,(cpu.eip&0xff)+2, R_SS);
@@ -36,6 +36,7 @@ static void do_execute() {
 			cpu.esp-=4;
 			MEM_W(cpu.esp,cpu.eip+2, R_SS);
 			cpu.eip=(op_src->val)-2;	
+			Log("eip:%x, val:%x", cpu.eip, op_src->val);
 		}
 	}
 	print_asm_template1();
