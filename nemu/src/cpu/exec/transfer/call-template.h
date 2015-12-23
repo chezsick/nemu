@@ -25,16 +25,13 @@ static void do_execute() {
 			}*/
 		}
 	}
-	if (ops_decoded.opcode==0xff)
-	{
-		/*
+	if (ops_decoded.opcode==0xff){
 		if (ops_decoded.is_data_size_16){
 			cpu.esp-=2;
 			MEM_W(cpu.esp,(cpu.eip&0xff)+2, R_SS);
 			cpu.eip=((op_src->val)&0xffff)-2;
 		}
-		else
-		*/{
+		else{
 			cpu.esp-=4;
 			Log("esp:%x, oldeip:%x", cpu.esp, cpu.eip);
 			MEM_W(cpu.esp,cpu.eip+2, R_SS);
