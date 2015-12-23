@@ -42,8 +42,9 @@ int fs_write(int fd, void *buf, int len) {
 			serial_printc(((char*)buf)[i]);
 		}
 		*/
+		return len;
 	}
 
 
-	return len;	
+	return 0;	
 }

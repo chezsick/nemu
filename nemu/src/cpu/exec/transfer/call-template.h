@@ -25,7 +25,8 @@ static void do_execute() {
 			}*/
 		}
 	}
-	if (ops_decoded.opcode==0xff){
+	//if (ops_decoded.opcode==0xff)
+	else {
 		if (ops_decoded.is_data_size_16){
 			cpu.esp-=2;
 			MEM_W(cpu.esp,(cpu.eip&0xff)+2, R_SS);
