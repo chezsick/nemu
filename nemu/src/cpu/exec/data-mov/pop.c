@@ -26,8 +26,8 @@ make_helper(popa){
 	int i;
 	for (i = R_EDI; i >= R_EAX; i--){
 		if (i == R_ESP) pop_l();
-		else reg_l(i)= pop_l();
+		else reg_l(i) = pop_l();
 	}
-	print_asm("popa"str(SUFFIX));
+	print_asm("popa");
 	return 1;
 }
