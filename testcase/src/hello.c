@@ -14,9 +14,8 @@ syscall(int id, ...) {
 	int *args = &id;
 	if (args[0] == SYS_write) {
 		ch = *(char *)args[2];
-	//	if(times==0)nemu_assert(args[3]==14);
-	//	if (times == 0) nemu_assert((*(char*)args[2])=='H');
-	//	else if (times == 1) nemu_assert((*(char*)args[2])=='1');
+		if (times == 0) nemu_assert((*(char*)args[2])=='H');
+		else if (times == 1) nemu_assert((*(char*)args[2])=='1');
 	}
 	asm volatile("int $0x80": "=a"(ret) : "a"(args[0]), "b"(args[1]), "c"(args[2]), "d"(args[3]));
 	return ret;
@@ -30,7 +29,7 @@ int read(int fd, char *buf, int len) {
 int write(int fd, char *buf, int len) {
 	//if(times==0)
 	//	nemu_assert(len==14&&fd==1&&*buf=='H');
-	times++;
+	//times++;
 	return syscall(__NR_write, fd, buf, len); 
 }
 
@@ -48,7 +47,7 @@ void *sbrk(int incr) {
 		heap_end = &end;
 	}
 	prev_heap_end = heap_end;
-
+	nemu_assert(0);
 	if( syscall(SYS_brk, heap_end + incr) == 0) {
 		heap_end += incr;
 	}
