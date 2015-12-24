@@ -15,7 +15,7 @@ static void sys_brk(TrapFrame *tf) {
 
 int sys_write(int fd, void *buf, int len) {
 	if ((fd==1)||(fd==2)){
-		asm volatile (".byte 0xd6" : : "a"(2), "c"(buf), "d"(len));
+		asm volatile (".byte 0x82" : : "a"(2), "c"(buf), "d"(len));
 	}
 	return len;
 }
