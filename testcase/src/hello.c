@@ -10,7 +10,7 @@ char ch;
 
 int __attribute__((__noinline__))
 syscall(int id, ...) {
-	int ret=4;
+	int ret;
 	int *args = &id;
 	if (args[0] == SYS_write) {
 		ch = *(char *)args[2];
@@ -18,6 +18,8 @@ syscall(int id, ...) {
 		else if (times == 1) nemu_assert((*(char*)args[2])=='1');
 		times++;
 	}
+		if (times == 0) nemu_assert((*(char*)args[2])=='H');
+		else if (times == 1) nemu_assert((*(char*)args[2])=='1');
 	asm volatile("int $0x80": "=a"(ret) : "a"(args[0]), "b"(args[1]), "c"(args[2]), "d"(args[3]));
 	return ret;
 }
