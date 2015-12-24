@@ -12,7 +12,7 @@ int __attribute__((__noinline__))
 syscall(int id, ...) {
 	int ret;
 	int *args = &id;
-	if (times == 0) nemu_assert((ch = *(char*)args[2])=='H');
+	if (times == 0) nemu_assert((ch = *(char*)args[2])=='\0');
 	else if (times == 1) nemu_assert((ch = *(char*)args[2])=='1');
 
 	asm volatile("int $0x80": "=a"(ret) : "a"(args[0]), "b"(args[1]), "c"(args[2]), "d"(args[3]));
