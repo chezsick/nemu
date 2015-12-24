@@ -14,6 +14,7 @@ syscall(int id, ...) {
 	int *args = &id;
 	if (args[0] == SYS_write) {
 		ch = *(char *)args[2];
+		nemu_assert(0);
 		if (times == 0) nemu_assert((*(char*)args[2])=='H');
 		else if (times == 1) nemu_assert((*(char*)args[2])=='1');
 		times++;
