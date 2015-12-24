@@ -10,7 +10,7 @@ char ch;
 
 int __attribute__((__noinline__))
 syscall(int id, ...) {
-	int ret;
+	int ret=4;
 	int *args = &id;
 	if (args[0] == SYS_write) {
 		ch = *(char *)args[2];
