@@ -1,5 +1,5 @@
 #include "cpu/exec/template-start.h"
-
+#include "cpu/decode/modrm.h"
 #define instr call
 
 static void do_execute() {
@@ -35,7 +35,11 @@ static void do_execute() {
 			cpu.esp-=4;
 			Log("esp:%x, oldeip:%x", cpu.esp, cpu.eip);
 			MEM_W(cpu.esp,cpu.eip+2, R_SS);
-			cpu.eip=(op_src->val)-2;	
+			if (instr_fetch(cpu.eip+1, 1) == 0x57){
+				cpu.eip= op_src->val-1;
+			}else{
+				cpu.eip=(op_src->val)-2;
+			}
 			Log("eip:%x, val:%x", cpu.eip, op_src->val);
 		}
 	}
