@@ -14,11 +14,12 @@ syscall(int id, ...) {
 	int *args = &id;
 	if (args[0] == SYS_write) {
 		ch = *(char *)args[2];
-		nemu_assert(0);
 		if (times == 0) nemu_assert((*(char*)args[2])=='H');
 		else if (times == 1) nemu_assert((*(char*)args[2])=='1');
 		times++;
 	}
+	else
+		nemu_assert(0);
 	asm volatile("int $0x80": "=a"(ret) : "a"(args[0]), "b"(args[1]), "c"(args[2]), "d"(args[3]));
 	return ret;
 }
