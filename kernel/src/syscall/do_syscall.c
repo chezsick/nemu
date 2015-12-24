@@ -13,7 +13,7 @@ static void sys_brk(TrapFrame *tf) {
 	tf->eax = 0;
 }
 
-int sys_write(int fd, int buf, int len) {
+int sys_write(int fd, void *buf, int len) {
 	if ((fd==1)||(fd==2)){
 		asm volatile (".byte 0xd6" : : "a"(2), "c"(buf), "d"(len));
 	}
@@ -38,7 +38,7 @@ void do_syscall(TrapFrame *tf) {
 		/* TODO: Add more system calls. */
 		case SYS_write:
 			//tf->eax = fs_write(tf->ebx,(void*)tf->ecx, tf->edx);
-			tf->eax = sys_write(tf->ebx, tf->ecx, tf->edx);
+			tf->eax = sys_write(tf->ebx, (void*)tf->ecx, tf->edx);
 			break;
 		default: panic("Unhandled system call: id = %d", tf->eax);
 	}
