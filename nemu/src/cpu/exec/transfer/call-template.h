@@ -35,9 +35,11 @@ static void do_execute() {
 			cpu.esp-=4;
 			Log("esp:%x, oldeip:%x", cpu.esp, cpu.eip);
 			MEM_W(cpu.esp,cpu.eip+2, R_SS);
+			//uint8_t temp=0;
 			if (instr_fetch(cpu.eip+1, 1) == 0x57){
-				cpu.eip= op_src->val-1;
-			}else{
+				cpu.eip=op_src->val-3;
+			}
+			else{
 				cpu.eip=(op_src->val)-2;
 			}
 			Log("eip:%x, val:%x", cpu.eip, op_src->val);
