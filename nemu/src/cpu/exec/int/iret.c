@@ -7,7 +7,7 @@
 make_helper(iret) {
 	cpu.eip = pop();
 	cpu.CS.Selector.val = pop();
-	//cpu.CS.valid = false;
+	cpu.CS.valid = false;
 	cpu.EFLAGS.eflags = pop();
 
 	/*
