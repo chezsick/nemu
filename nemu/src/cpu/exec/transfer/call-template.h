@@ -35,7 +35,7 @@ static void do_execute() {
 			cpu.esp-=4;
 			Log("esp:%x, oldeip:%x", cpu.esp, cpu.eip);
 			MEM_W(cpu.esp,cpu.eip+2, R_SS);
-			cpu.eip=(op_src->val)-3;	
+			cpu.eip=(op_src->val)-2;	
 			Log("eip:%x, val:%x", cpu.eip, op_src->val);
 		}
 	}
