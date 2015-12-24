@@ -9,7 +9,7 @@ int __attribute__((__noinline__))
 syscall(int id, ...) {
 	int ret;
 	int *args = &id;
-	nemu_assert(&(args[2])==(void*)0x80504c0);
+	//nemu_assert(&(args[2])==(void*)0x80504c0);
 	asm volatile("int $0x80": "=a"(ret) : "a"(args[0]), "b"(args[1]), "c"(args[2]), "d"(args[3]));
 	return ret;
 }
