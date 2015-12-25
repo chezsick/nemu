@@ -30,7 +30,7 @@ make_helper(pusha){
 		if (i == R_ESP) push_l(temp);
 		else push_l(reg_l(i));
 		//if (i== R_EBX)
-		Log("pusha:%d, addr:%x",i , cpu.esp);
+		Log("pusha%d:%x, addr:%x", i,reg_l(i), cpu.esp);
 	}
 	print_asm("pusha");
 	return 1;
