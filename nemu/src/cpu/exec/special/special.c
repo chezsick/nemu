@@ -31,7 +31,7 @@ make_helper(nemu_trap) {
 	switch(cpu.eax) {
 		case 2:
 			//int i;
-			Log("cpu.ecx[0] = %c, cpu.edx = %x", swaddr_read(cpu.ecx, 1, R_DS), cpu.edx);
+			//Log("cpu.ecx[0] = %c, cpu.edx = %x", swaddr_read(cpu.ecx, 1, R_DS), cpu.edx);
 			for (i=0; i<cpu.edx; i++){
 				printf("%c", swaddr_read(cpu.ecx+i, 1, R_DS));
 				//printf("");
