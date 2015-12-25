@@ -27,6 +27,7 @@ make_helper(inv) {
 make_helper(nemu_trap) {
 	print_asm("nemu trap (eax = %d)", cpu.eax);
 	int i;
+	Log("cpu.eax %x", cpu.eax);
 	switch(cpu.eax) {
 		case 2:
 			//int i;
