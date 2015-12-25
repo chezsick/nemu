@@ -47,7 +47,6 @@ void *sbrk(int incr) {
 		heap_end = &end;
 	}
 	prev_heap_end = heap_end;
-	nemu_assert(0);
 	if( syscall(SYS_brk, heap_end + incr) == 0) {
 		heap_end += incr;
 	}
