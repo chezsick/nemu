@@ -22,6 +22,7 @@ int sys_write(int fd, void *buf, int len) {
 }
 
 void do_syscall(TrapFrame *tf) {
+	set_bp();
 	switch(tf->eax) {
  		/* The ``add_irq_handle'' system call is artificial. We use it to 
 		 * let user program register its interrupt handlers. But this is 
