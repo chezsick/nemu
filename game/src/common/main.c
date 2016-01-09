@@ -10,6 +10,7 @@ void add_irq_handle(int irq, void *handler) {
 
 void
 game_init(void) {
+	assert(0);
 	init_timer();
 
 	add_irq_handle(0, timer_event);
