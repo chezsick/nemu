@@ -12,6 +12,7 @@ volatile int tick = 0;
 void
 timer_event(void) {
 	tick ++;
+	Log("%d ",tick);
 }
 
 static int real_fps;
