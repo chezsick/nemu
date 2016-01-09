@@ -82,6 +82,7 @@ typedef struct {
 	CR0 cr0; 
 	CR3 cr3;
 	DTR gdtr, idtr;
+	volatile bool INTR;
 	union	{
 		Sreg sreg[6];
 		struct{ Sreg ES, CS, SS, DS, GS, FS;};
