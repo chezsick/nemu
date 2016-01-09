@@ -1,7 +1,9 @@
 #include "common.h"
 #include "cpu/reg.h"
+#include "device/mmio.h"
 #define IA32_SEG
 #define IA32_PAGE
+
 uint32_t dram_read(hwaddr_t, size_t);
 void dram_write(hwaddr_t, size_t, uint32_t);
 
@@ -12,11 +14,21 @@ void cache_write(hwaddr_t, size_t, uint32_t);
 
 uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 	//return dram_read(addr, len) & (~0u >> ((4 - len) << 3));
-	return cache_read(addr, len) & (~0u >> ((4 - len) << 3));
+	int mm = is_mmio(addr);
+	if (mm == -1) {
+		return cache_read(addr, len) & (~0u >> ((4 - len) << 3));
+	} else {
+		return mmio_read(addr, len, mm);
+	}
 }
 
 void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
-	cache_write(addr, len, data);
+	int mm = is_mmio(addr);
+	if (mm == -1) {
+		cache_write(addr, len, data);
+	} else {
+		mmio_write(addr, len, data, mm);
+	}
 	//dram_write(addr, len, data);
 }
 
