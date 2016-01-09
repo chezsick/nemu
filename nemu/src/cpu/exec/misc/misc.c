@@ -43,7 +43,7 @@ make_helper(cli){
 }
 make_helper(sti){
 	cpu.EFLAGS.IF = 1;
-	print_asm("cli");
+	print_asm("sti");
 	return 1;
 }
 make_helper(hlt) {
