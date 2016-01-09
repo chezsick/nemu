@@ -85,5 +85,11 @@ static void do_execute() {
 }
 make_instr_helper(rm2r)
 #undef instr
+#define instr cmovne
+static void do_execute() {
+        cmov(ZF!=0)
+}
+make_instr_helper(rm2r)
+#undef instr
 
 #include "cpu/exec/template-end.h"

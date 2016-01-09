@@ -26,6 +26,7 @@ make_helper_v(cmovl_rm2r)
 make_helper_v(cmovle_rm2r)
 make_helper_v(cmovs_rm2r)
 make_helper_v(cmovns_rm2r)
+make_helper_v(cmovne_rm2r)
 
 /*
 make_helper_v(jl_i)
