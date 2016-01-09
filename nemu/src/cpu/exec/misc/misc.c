@@ -41,7 +41,11 @@ make_helper(cli){
 	print_asm("cli");
 	return 1;
 }
-
+make_helper(sti){
+	cpu.EFLAGS.IF = 1;
+	print_asm("cli");
+	return 1;
+}
 make_helper(hlt) {
 	while (!(cpu.INTR&&cpu.EFLAGS.IF));
 	print_asm("hlt");
