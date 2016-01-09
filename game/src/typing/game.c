@@ -11,6 +11,7 @@ volatile int tick = 0;
 
 void
 timer_event(void) {
+	assert(0);
 	tick ++;
 	Log("%d ",tick);
 }
