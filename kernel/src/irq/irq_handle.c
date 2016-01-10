@@ -35,7 +35,7 @@ void irq_handle(TrapFrame *tf) {
 	 */
 	//set_bp();
 	//panic("Have you re-organized the ``TrapFrame'' structure?");
-	assert(0);
+	//assert(0);
 	int irq = tf->irq;
 	//set_bp();
 	if (irq < 0) {
