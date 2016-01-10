@@ -1,5 +1,6 @@
 #include "common.h"
 #include "x86.h"
+#include <assert.h>
 
 #define SERIAL_PORT  0x3F8
 
