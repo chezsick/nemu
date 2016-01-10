@@ -37,7 +37,7 @@ void irq_handle(TrapFrame *tf) {
 	//panic("Have you re-organized the ``TrapFrame'' structure?");
 	//assert(0);
 	int irq = tf->irq;
-	set_bp();
+	Log("kdlsfaj");
 	if (irq < 0) {
 		panic("Unhandled exception!");
 	} else if (irq == 0x80) {
