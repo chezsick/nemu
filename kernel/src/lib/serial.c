@@ -1,6 +1,5 @@
 #include "common.h"
 #include "x86.h"
-#include <assert.h>
 
 #define SERIAL_PORT  0x3F8
 
@@ -22,7 +21,8 @@ serial_idle(void) {
 
 void
 serial_printc(char ch) {
-	//assert(0);
+	set_bp();
+	assert(0);
 	while (!serial_idle());
 	out_byte(SERIAL_PORT, ch);
 }
