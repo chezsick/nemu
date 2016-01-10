@@ -12,6 +12,7 @@ void raise_intr(uint8_t NO) {
 		/* TODO: Trigger an interrupt/exception with ``NO''.
 		 * That is, use ``NO'' to index the IDT.
 		*/	 	
+		cpu.eip += 2;
 		push(cpu.EFLAGS.eflags);
 		push(cpu.CS.Selector.val);
 		push(cpu.eip);
@@ -32,7 +33,6 @@ void raise_intr(uint8_t NO) {
 make_helper(int_i){
 	//Log("ini, eip:%x",eip);
 	uint8_t imm = instr_fetch(eip+1, 1);
-	cpu.eip += 2;
 	raise_intr(imm);
 	print_asm("int\t $0x%02x", imm);
 	return 2;
