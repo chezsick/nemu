@@ -12,6 +12,7 @@ static void sys_brk(TrapFrame *tf) {
 #endif
 	tf->eax = 0;
 }
+char ch;
 void serial_printc(char);
 int sys_write(int fd, void *buf, int len) {
 	if ((fd==1)||(fd==2))
@@ -19,9 +20,11 @@ int sys_write(int fd, void *buf, int len) {
 		//asm volatile (".byte 0xd6" : : "a"(2), "c"(buf), "d"(len));
 		int i;
 		for (i=0; i<len; i++) {
-			//assert(0);
+			ch = ((char*)buf)[i];
+			assert(!(ch == 'H'));
 			serial_printc(((char*)buf)[i]);
-			Log("sys_write:%c", ((char*)buf)[i]);
+			//Log("sys_write:%c", ((char*)buf)[i]);
+			//set_bp();
 		}
 	}
 	//ide_write(buf, file_table[fd-3].disk_offset+file_state[fd].offset, len);
