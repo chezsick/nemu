@@ -21,6 +21,7 @@ serial_idle(void) {
 
 void
 serial_printc(char ch) {
+	set_bp();
 	while (!serial_idle());
 	out_byte(SERIAL_PORT, ch);
 }
