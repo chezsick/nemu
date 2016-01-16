@@ -47,7 +47,7 @@ make_helper(sti){
 	return 1;
 }
 make_helper(hlt) {
-	//while (!(cpu.INTR&&cpu.EFLAGS.IF));
+	while (!(cpu.INTR&&cpu.EFLAGS.IF));
 	print_asm("hlt");
 	return 1;
 }
