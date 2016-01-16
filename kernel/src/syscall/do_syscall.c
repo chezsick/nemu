@@ -23,6 +23,8 @@ int sys_write(int fd, void *buf, int len) {
 			serial_printc(((char*)buf)[i]);
 		}
 	}
+	//ide_write(buf, file_table[fd-3].disk_offset+file_state[fd].offset, len);
+	//file_state[fd].offset += len;
 	return len;
 }
 
