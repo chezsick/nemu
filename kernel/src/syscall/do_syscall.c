@@ -20,6 +20,7 @@ int sys_write(int fd, void *buf, int len) {
 		//asm volatile (".byte 0xd6" : : "a"(2), "c"(buf), "d"(len));
 		int i;
 		for (i=0; i<len; i++) {
+			assert(0);
 			ch = ((char*)buf)[i];
 			assert(!(ch == 'H'));
 			serial_printc(((char*)buf)[i]);
