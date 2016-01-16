@@ -11,7 +11,7 @@ make_helper(concat(out_i82a_, SUFFIX)) {
 
 make_helper(concat(out_d2a_, SUFFIX)) {
 	pio_write(cpu.gpr[R_DX]._16, DATA_BYTE, REG(R_EAX));
-	Log("dx:%c, eax:%c",reg_w(R_DX), REG(R_EAX));
+	Log("dx:%c, eax:%c", cpu.gpr[R_DX]._16, REG(R_EAX));
 	print_asm("out" str(SUFFIX) " %%%s, (%%dx)", REG_NAME(R_EAX));
 	return 1;
 }
