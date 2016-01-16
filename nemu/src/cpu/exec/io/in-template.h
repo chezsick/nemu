@@ -32,7 +32,8 @@ make_helper(concat(in_i82a_, SUFFIX)) {
 }
 
 make_helper(concat(in_d2a_, SUFFIX)) {
-	REG(R_EAX) = pio_read(reg_w(R_DX), DATA_BYTE);
+	REG(R_EAX) = pio_read(cpu.gpr[R_DX]._16, DATA_BYTE);
+	Log("%c",REG(R_EAX));
 	print_asm("in" str(SUFFIX) " (%%dx), %%%s", REG_NAME(R_EAX));
 	return 1;
 }
