@@ -18,7 +18,7 @@ uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 		//return cache_read(addr, len) & (~0u >> ((4 - len) << 3));
 		return dram_read(addr, len) & (~0u >> ((4 - len) << 3));
 	} else {
-		return mmio_read(addr, len, mm);
+		return mmio_read(addr, len, mm) & (~0u >> ((4 - len) << 3));
 	}
 }
 
