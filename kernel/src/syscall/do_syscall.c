@@ -21,6 +21,7 @@ int sys_write(int fd, void *buf, int len) {
 		for (i=0; i<len; i++) {
 			//assert(0);
 			serial_printc(((char*)buf)[i]);
+			Log("sys_write:%c", ((char*)buf)[i]);
 		}
 	}
 	//ide_write(buf, file_table[fd-3].disk_offset+file_state[fd].offset, len);
