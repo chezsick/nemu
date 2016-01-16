@@ -2,6 +2,7 @@
 #include "x86.h"
 
 #define SERIAL_PORT  0x3F8
+char pcc;
 
 void
 init_serial(void) {
@@ -21,6 +22,7 @@ serial_idle(void) {
 
 void
 serial_printc(char ch) {
+	pcc = ch;
 	set_bp();
 	while (!serial_idle());
 	out_byte(SERIAL_PORT, ch);
