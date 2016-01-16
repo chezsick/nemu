@@ -51,7 +51,7 @@ void do_syscall(TrapFrame *tf) {
 		/* TODO: Add more system calls. */
 		case SYS_write:
 			//tf->eax = fs_write(tf->ebx,(void*)tf->ecx, tf->edx);
-			assert(0);
+			//assert(0);
 			tf->eax = sys_write(tf->ebx, (void*)tf->ecx, tf->edx);
 			break;
 		/*case SYS_read:
