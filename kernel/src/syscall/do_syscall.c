@@ -18,11 +18,9 @@ int sys_write(int fd, void *buf, int len) {
 	if ((fd==1)||(fd==2))
  	{
 		//asm volatile (".byte 0xd6" : : "a"(2), "c"(buf), "d"(len));
-		assert(0);
 		int i;
 		for (i=0; i<len; i++) {
 			ch = ((char*)buf)[i];
-			assert(!(ch == 'H'));
 			serial_printc(((char*)buf)[i]);
 			//Log("sys_write:%c", ((char*)buf)[i]);
 			//set_bp();
