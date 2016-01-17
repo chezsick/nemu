@@ -26,6 +26,7 @@ static void do_execute() {
 		}
 	}
 	if (ops_decoded.opcode==0xff){
+		Log("esp:%x, oldeip:%x", cpu.esp, cpu.eip);
 		if (ops_decoded.is_data_size_16){
 			cpu.esp-=2;
 			MEM_W(cpu.esp,(cpu.eip&0xff)+2, R_SS);
@@ -33,7 +34,7 @@ static void do_execute() {
 		}
 		else{
 			cpu.esp-=4;
-			Log("esp:%x, oldeip:%x", cpu.esp, cpu.eip);
+			//Log("esp:%x, oldeip:%x", cpu.esp, cpu.eip);
 			MEM_W(cpu.esp,cpu.eip+2, R_SS);
 			//uint8_t temp=0;
 			if (instr_fetch(cpu.eip+1, 1) == 0x57){
