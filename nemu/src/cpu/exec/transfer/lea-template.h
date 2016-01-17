@@ -7,7 +7,7 @@ static void do_execute() {
 		OPERAND_W(op_dest,(short int)(op_src->addr&0xffff));
 	}
 	else {
-		OPERAND_W(op_dest,op_src->addr);
+		OPERAND_W(op_dest, op_src->addr);
 	}
 	print_asm_template2();
 }

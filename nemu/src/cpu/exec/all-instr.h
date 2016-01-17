@@ -34,7 +34,7 @@
 #include "logic/test.h"
 #include "logic/setcc.h"
 
-#include "transfer/lea.h"
+//#include "transfer/lea.h"
 #include "transfer/call.h"
 #include "transfer/ret.h"
 #include "transfer/jcc.h"
