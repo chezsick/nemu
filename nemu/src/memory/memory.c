@@ -77,6 +77,7 @@ uint32_t swaddr_read(swaddr_t addr, size_t len, uint8_t sreg) {
 #ifdef DEBUG
 	assert(len == 1 || len == 2 || len == 4);
 #endif
+	if (addr == 0xc010810c) Log("eip:%x", cpu.eip);
 	lnaddr_t lnaddr=addr;
 //#ifdef IA32_SEG
 	lnaddr= seg_translate(addr, len, sreg);
