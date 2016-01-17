@@ -2,7 +2,6 @@
 #include "x86.h"
 
 #define SERIAL_PORT  0x3F8
-char pcc;
 
 void
 init_serial(void) {
