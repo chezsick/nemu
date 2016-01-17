@@ -33,7 +33,7 @@ static void do_execute() {
 		}
 		else{
 			cpu.esp-=4;
-			//Log("esp:%x, oldeip:%x", cpu.esp, cpu.eip);
+			Log("esp:%x, oldeip:%x", cpu.esp, cpu.eip);
 			MEM_W(cpu.esp,cpu.eip+2, R_SS);
 			//uint8_t temp=0;
 			if (instr_fetch(cpu.eip+1, 1) == 0x57){
