@@ -34,9 +34,20 @@ static void do_execute() {
 		}
 		else{
 			cpu.esp-=4;
+			uint32_t modrm = instr_fetch(cpu.eip+1, 1);
+			uint32_t mod = modrm>>6;
+			if (mod == 1 || mod == 2) {
+				MEM_W(cpu.esp, cpu.eip+3, R_SS);
+				cpu.eip = op_src->val - 3;
+			}
+			else {
+				MEM_W(cpu.esp, cpu.eip+2, R_SS);
+				cpu.eip = op_src->val -2;
+			}
+			/*
 			//Log("esp:%x, oldeip:%x", cpu.esp, cpu.eip);
-			MEM_W(cpu.esp,cpu.eip+2, R_SS);
 			//uint8_t temp=0;
+			MEM_W(cpu.esp,cpu.eip+2, R_SS);
 			if (instr_fetch(cpu.eip+1, 1) <= 0x57 && instr_fetch(cpu.eip+1, 1) >= 0x50){
 				cpu.eip=op_src->val-3;
 			}
@@ -44,6 +55,7 @@ static void do_execute() {
 				cpu.eip=(op_src->val)-2;
 			}
 			//Log("eip:%x, val:%x", cpu.eip, op_src->val);
+			*/
 		}
 	}
 	print_asm_template1();
