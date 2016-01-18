@@ -61,7 +61,6 @@ PAL_GetPalette(
       //
       // Read failed
       //
-      assert(0);
       return NULL;
    }
    else if (i <= 256 * 3)
