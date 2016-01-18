@@ -52,6 +52,7 @@ PAL_GetPalette(
    //
    // Read the palette data from the pat.mkf file
    //
+   if (fp==NULL) Log("fp==NULL");
    i = PAL_MKFReadChunk(buf, 1536, iPaletteNum, fp);
 
    fclose(fp);
