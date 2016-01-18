@@ -767,9 +767,10 @@ PAL_MKFReadChunk(
    UINT     uiChunkCount;
    UINT     uiChunkLen;
 
-   Log("foo");
    if (lpBuffer == NULL || fp == NULL || uiBufferSize == 0)
    {
+	if (fp==NULL) Log("fp==NULL");
+
       return -1;
    }
 
