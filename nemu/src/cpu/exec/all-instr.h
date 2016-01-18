@@ -33,6 +33,7 @@
 #include "logic/shrd.h"
 #include "logic/test.h"
 #include "logic/setcc.h"
+#include "logic/bt.h"
 
 //#include "transfer/lea.h"
 #include "transfer/call.h"
@@ -58,3 +59,4 @@
 
 #include "io/in.h"
 #include "io/out.h"
+
