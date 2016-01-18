@@ -59,6 +59,7 @@ int fs_write(int fd, void *buf, int len) {
 }
 int fs_lseek(int fd, int offset, int whence) {
 	if (fd < 3) return 0;
+	Log("lseek");
 	assert(file_state[fd].opened);
 	switch (whence) {
 		case SEEK_SET:
@@ -89,6 +90,7 @@ int fs_close(int fd) {
 
 int fs_read(int fd, void *buf, int len) {
 	if (fd < 3) return 0;
+	Log("read");
 	assert(file_state[fd].opened);
 	if (file_state[fd].offset+len >= file_table[fd-3].size)
 		len = file_table[fd-3].size-file_state[fd].offset-1;
