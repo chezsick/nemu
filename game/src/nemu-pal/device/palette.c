@@ -49,7 +49,6 @@ PAL_GetPalette(
    FILE                 *fp;
 
    fp = UTIL_OpenRequiredFile("pat.mkf");
-   assert(fp!=NULL);
    //
    // Read the palette data from the pat.mkf file
    //
@@ -62,6 +61,7 @@ PAL_GetPalette(
       //
       // Read failed
       //
+      assert(0);
       return NULL;
    }
    else if (i <= 256 * 3)
