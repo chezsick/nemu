@@ -80,7 +80,6 @@ int fs_open(const char* pathname, int flags) {
 			return i+3;
 		}
 	}
-	assert(0);
 	return 0;
 }
 int fs_close(int fd) {
@@ -95,5 +94,6 @@ int fs_read(int fd, void *buf, int len) {
 		len = file_table[fd-3].size-file_state[fd].offset-1;
 	ide_read(buf, file_table[fd-3].disk_offset+file_state[fd].offset, len);
 	file_state[fd].offset += len;
+	assert(0);
 	return len;
 }
