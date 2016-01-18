@@ -33,7 +33,7 @@ make_helper(int_i){
 	//Log("ini, eip:%x",eip);
 	uint8_t imm = instr_fetch(eip+1, 1);
 	cpu.eip += 2;
-	raise_intr(imm);
 	print_asm("int\t $0x%02x", imm);
+	raise_intr(imm);
 	return 2;
 }
