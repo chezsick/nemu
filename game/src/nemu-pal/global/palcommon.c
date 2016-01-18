@@ -775,6 +775,7 @@ PAL_MKFReadChunk(
    //
    // Get the total number of chunks.
    //
+   Log("MKF");
    uiChunkCount = PAL_MKFGetChunkCount(fp);
    if (uiChunkNum >= uiChunkCount)
    {
