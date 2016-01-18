@@ -72,8 +72,6 @@ int fs_lseek(int fd, int offset, int whence) {
 	return file_state[fd].offset;
 }
 int fs_open(const char* pathname, int flags) {
-	set_bp();
-	Log("%s", pathname);
 	int i;
 	for (i = 0; i < NR_FILES; i++) {
 		if (strcmp(file_table[i].name, pathname) == 0) {
