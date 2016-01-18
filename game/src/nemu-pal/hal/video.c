@@ -71,7 +71,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
 	 * NULL, fill the whole surface.
 	 */
 
-	if (dstrect == NULL)
+	/*if (dstrect == NULL)
 	{
 		memset(dst->pixels, (uint8_t)color, dst->refcount);
 	}
@@ -88,7 +88,13 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
 			memset(dst_ptr, (uint8_t)color, w);
 			dst_ptr += next;
 		}
-	}
+	}*/
+	if (dstrect) {
+		int i;
+		for (i = dstrect->y; i < dstrect->y+dstrect->h; i++)
+			memset(dst->pixels+i*dst->pitch+dstrect->x,color, dstrect->w);
+	} else memset(dst->pixels, color, dst->pitch*dst->h);
+
 }
 
 void SDL_UpdateRect(SDL_Surface *screen, int x, int y, int w, int h) {
@@ -106,7 +112,7 @@ void SDL_UpdateRect(SDL_Surface *screen, int x, int y, int w, int h) {
 	}
 
 	/* TODO: Copy the pixels in the rectangle area to the screen. */
-
+	/*
 	int i;
 	uint8_t *dst = (void *)0xa0000 + x + y * 320;
 	uint8_t *src = screen->pixels + x + y * screen->w;
@@ -116,6 +122,12 @@ void SDL_UpdateRect(SDL_Surface *screen, int x, int y, int w, int h) {
 		dst += 320;
 		src += screen->w;
 	}
+	*/
+	int i, j;
+	vmem = VMEM_ADDR;
+	for (i = y; i < y+h; i++)
+		for (j = x; j < x+w; j++)
+			draw_pixel(i, j, *(screen->pixels+i*screen->pitch+j));
 }
 
 void SDL_SetPalette(SDL_Surface *s, int flags, SDL_Color *colors, 
