@@ -9,4 +9,5 @@ make_helper(std);
 make_helper(sti);
 make_helper(cli);
 make_helper(hlt);
+make_helper(clc);
 #endif

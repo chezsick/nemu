@@ -52,3 +52,8 @@ make_helper(hlt) {
 	print_asm("hlt");
 	return 1;
 }
+make_helper(clc) {
+	cpu.EFLAGS.CF = 0;
+	print_asm("clc");
+	return 1;
+}
