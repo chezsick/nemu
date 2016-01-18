@@ -88,6 +88,7 @@ PAL_InitGlobals(
 #endif
    gpGlobals->bCurrentSaveSlot = 1;
 
+   Log("UTIL");
    return 0;
 }
 
@@ -110,7 +111,6 @@ PAL_FreeGlobals(
 
 --*/
 {
-   Log("UTIL");
    if (gpGlobals != NULL)
    {
       //
