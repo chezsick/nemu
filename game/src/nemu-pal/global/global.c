@@ -110,6 +110,7 @@ PAL_FreeGlobals(
 
 --*/
 {
+   Log("UTIL");
    if (gpGlobals != NULL)
    {
       //
