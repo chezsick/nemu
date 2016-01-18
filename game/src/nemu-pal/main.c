@@ -271,7 +271,7 @@ PAL_SplashScreen(
    if (palette == NULL)
    {
       fprintf(stderr, "ERROR: PAL_SplashScreen(): palette == NULL\n");
-      //return;
+      return;
    }
 
    //
