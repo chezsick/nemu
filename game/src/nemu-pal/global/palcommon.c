@@ -778,6 +778,7 @@ PAL_MKFReadChunk(
    uiChunkCount = PAL_MKFGetChunkCount(fp);
    if (uiChunkNum >= uiChunkCount)
    {
+      Log("CN>CC");
       return -1;
    }
 
@@ -800,6 +801,7 @@ PAL_MKFReadChunk(
       return -2;
    }
 
+   Log("sjdfkla");
    if (uiChunkLen != 0)
    {
       fseek(fp, uiOffset, SEEK_SET);
