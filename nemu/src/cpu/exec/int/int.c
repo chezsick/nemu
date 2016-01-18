@@ -14,7 +14,7 @@ void raise_intr(uint8_t NO) {
 		*/	 	
 		push(cpu.EFLAGS.eflags);
 		push(cpu.CS.Selector.val);
-		push(cpu.eip);
+		push(cpu.eip + 2);
 		GateDesc gd;
 		int i;
 		for (i = 0; i < sizeof(GateDesc); i++){
@@ -32,7 +32,7 @@ void raise_intr(uint8_t NO) {
 make_helper(int_i){
 	//Log("ini, eip:%x",eip);
 	uint8_t imm = instr_fetch(eip+1, 1);
-	cpu.eip += 2;
+	//cpu.eip += 2;
 	print_asm("int\t $0x%02x", imm);
 	raise_intr(imm);
 	return 2;
