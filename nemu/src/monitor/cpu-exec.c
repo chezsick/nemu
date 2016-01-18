@@ -80,14 +80,14 @@ void cpu_exec(volatile uint32_t n) {
 
 		if (if_changes_wp()) nemu_state=STOP;
 		if(nemu_state != RUNNING) { return; }
-	}
+		Log("INTR:%d, IF:%d", cpu.INTR, cpu.EFLAGS.IF);
+	
 
+		if(cpu.INTR && cpu.EFLAGS.IF) {
+			uint32_t intr_no = i8259_query_intr();
+			i8259_ack_intr();
+			raise_intr(intr_no);
+		}
+	}
 	if(nemu_state == RUNNING) { nemu_state = STOP; }
-
-	if(cpu.INTR && cpu.EFLAGS.IF) {
-		assert(0);
-		uint32_t intr_no = i8259_query_intr();
-		i8259_ack_intr();
-		raise_intr(intr_no);
-	}
 }
