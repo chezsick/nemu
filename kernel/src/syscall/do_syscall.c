@@ -39,9 +39,9 @@ void do_syscall(TrapFrame *tf) {
 		 * system call never exists in GNU/Linux.
 		 */
 		case 0: 
-			cli();
+			//cli();
 			add_irq_handle(tf->ebx, (void*)tf->ecx);
-			sti();
+			//sti();
 			break;
 
 		case SYS_brk: sys_brk(tf); break;
