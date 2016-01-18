@@ -37,7 +37,7 @@ static void do_execute() {
 			//Log("esp:%x, oldeip:%x", cpu.esp, cpu.eip);
 			MEM_W(cpu.esp,cpu.eip+2, R_SS);
 			//uint8_t temp=0;
-			if (instr_fetch(cpu.eip+1, 1) <= 0x57 || instr_fetch(cpu.eip+1, 1) >= 0x50){
+			if (instr_fetch(cpu.eip+1, 1) <= 0x57 && instr_fetch(cpu.eip+1, 1) >= 0x50){
 				cpu.eip=op_src->val-3;
 			}
 			else{
