@@ -80,7 +80,7 @@ void cpu_exec(volatile uint32_t n) {
 
 		if (if_changes_wp()) nemu_state=STOP;
 		if(nemu_state != RUNNING) { return; }
-		Log("INTR:%d, IF:%d", cpu.INTR, cpu.EFLAGS.IF);
+		//Log("INTR:%d, IF:%d", cpu.INTR, cpu.EFLAGS.IF);
 	
 
 		if(cpu.INTR && cpu.EFLAGS.IF) {
