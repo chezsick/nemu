@@ -4,7 +4,12 @@
 
 void add_irq_handle(int, void (*)(void));
 void mm_brk(uint32_t);
-int fs_write(int, void *, int);
+
+int fs_open(const char*, int);
+int fs_read(int, void*, int);
+int fs_write(int, void*, int);
+int fs_lseek(int, int, int);
+int fs_close(int);
 
 static void sys_brk(TrapFrame *tf) {
 #ifdef IA32_PAGE
@@ -26,8 +31,6 @@ int sys_write(int fd, void *buf, int len) {
 			//set_bp();
 		}
 	}
-	//ide_write(buf, file_table[fd-3].disk_offset+file_state[fd].offset, len);
-	//file_state[fd].offset += len;
 	return len;
 }
 
@@ -50,9 +53,9 @@ void do_syscall(TrapFrame *tf) {
 		case SYS_write:
 			//tf->eax = fs_write(tf->ebx,(void*)tf->ecx, tf->edx);
 			//assert(0);
-			tf->eax = sys_write(tf->ebx, (void*)tf->ecx, tf->edx);
+			tf->eax = fs_write(tf->ebx, (void*)tf->ecx, tf->edx);
 			break;
-		/*case SYS_read:
+		case SYS_read:
 			tf->eax = fs_read(tf->ebx, (void*)tf->ecx, tf->edx);
 			break;
 		case SYS_open:
@@ -64,7 +67,7 @@ void do_syscall(TrapFrame *tf) {
 		case SYS_lseek:
 			tf->eax = fs_lseek(tf->ebx, tf->ecx, tf->edx);
 			break;
-		*/
+
 		default: panic("Unhandled system call: id = %d", tf->eax);
 	}
 }

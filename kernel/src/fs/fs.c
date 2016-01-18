@@ -31,20 +31,28 @@ void ide_read(uint8_t *, uint32_t, uint32_t);
 void ide_write(uint8_t *, uint32_t, uint32_t);
 
 /* TODO: implement a simplified file system here. */
+typedef struct {
+	bool opened;
+	uint32_t offset;
+} Fstate;
+
+static Fstate file_state[NR_FILES+3];
 
 void serial_printc(char);
 int fs_write(int fd, void *buf, int len) {
 	if ((fd == 1) || (fd == 2)) {
-		asm volatile (".byte 0xd6" : : "a"(2), "c"(buf), "d"(len));
-		/*
 		int i;
 		for (i=0; i < len; i++){
 			serial_printc(((char*)buf)[i]);
 		}
-		*/
 		return len;
 	}
-
-
+	if (fd < 3) return 0;
+	assert(file_state[fd].opened);
+	if (file_state[fd].offset+len >= file_table[fd-3].size)
+		len = file_table[fd-3].size-file_state[fd].offset-1;
+	if (len <= 0) return 0;
+	ide_write(buf, file_table[fd-3].disk_offset+file_state[fd].offset, len);
+	file_state[fd].offset += len;
 	return 0;	
 }
