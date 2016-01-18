@@ -49,7 +49,7 @@ PAL_GetPalette(
    FILE                 *fp;
 
    fp = UTIL_OpenRequiredFile("pat.mkf");
-   assert(fp==NULL);
+   assert(fp!=NULL);
    //
    // Read the palette data from the pat.mkf file
    //
